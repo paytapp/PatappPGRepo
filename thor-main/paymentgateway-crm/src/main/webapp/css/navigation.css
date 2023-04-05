@@ -1,0 +1,183 @@
+* {
+  outline: none;
+}
+:focus {
+  outline: none;
+}
+#main { padding: 0px; padding:0px; width:100%; float:left;}
+
+#navigation {
+	border:none;
+	margin:0px auto;
+	padding:0px;
+	text-indent:0px;
+	background-color:transparent;
+	min-width:95%;
+	width:216px;
+}
+
+#navigation a.head:hover {
+  color: #333;
+  text-decoration:none;
+}
+
+#navigation a.selected {
+	background:#002163;
+	color:#ffffff;
+}
+
+#navigation a.selected:hover {
+	background:#002163;
+	color:#ffffff;
+}
+
+#navigation a.selected > i {
+	color:#ffffff;
+}
+
+#navigation a.current {
+	/* background:#fff url(../image/arrow-sublinks-current.png) no-repeat 12% 40%; */	
+	color:#002163;
+	font-weight:bold;
+}
+
+#navigation a.head1:hover {
+  color: #333;
+  text-decoration:none;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+#navigation a.head1.current {
+	background:#002163;
+	color:#ffffff;
+	-webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;  
+}
+
+#navigation a.head1.current:hover {
+	background:#002163;
+	color:#ffffff;
+	-webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;  
+}
+
+#navigation a.head.current:hover {
+	background:#002163;
+	color:#ffffff;
+	-webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;  
+}
+
+#navigation a.head1.current > i {	
+	color:#ffffff;
+}
+
+#navigation ul {
+	border-width:0px;
+	margin:0px;
+	padding:0px;
+	text-indent:0px;
+}
+#navigation li {
+	list-style:none outside none; display:inline;
+}
+#navigation li ul {
+	margin-bottom:10px;	
+	}
+#navigation li li a {
+  background:#ffffff /* url(../image/arrow-sublinks.png) no-repeat 12% 40% */;
+  display: block;
+  position: relative;
+ 
+  font-size:12.5px;
+  padding: 7px 10px;
+  border-bottom: 1px dashed #dddddd;
+  color: #535353;
+  -webkit-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  -ms-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+  text-indent:40px;
+}
+#navigation li li a:hover {
+	/* background:#d0d0d0 url(../image/arrow-sublinks-current.png) no-repeat 12% 40%;	 */
+	color:#002163;
+  text-decoration:none;
+}
+
+#navigation li a.sublinks { margin-top:-25px; z-index:-9999; border:none; }
+#navigation li a.sublinks.current {background:url(../image/arrow-sublinks-small.png) no-repeat #d0d0d0 25% 40%; margin:0px 0px 0px 0px; padding:7px; text-indent:60px; z-index:9999; /*font:normal 10px Arial;*/ font-family: 'Open Sans', sans-serif; font-size:11px; color:#333333; text-decoration:none; }
+
+@media screen and (max-width:414px) {
+
+#navigation li li a {
+  background:#ffffff;
+  display: block;
+  position: relative;
+  font:normal 12px Arial;
+  padding: 7px 10px;
+  border-bottom: 1px dashed #dddddd;
+  color: #535353;
+  -webkit-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  -ms-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+  text-indent:40px;
+}
+#navigation li li a:hover {
+	color:#002163;
+  text-decoration:none;
+}
+
+#navigation a.current {	
+	color:#002163;
+	font-weight:bold;
+}
+
+#navigation li a.sublinks { margin-top:-25px; z-index:-9999; }
+#navigation li a.sublinks.current {background:url(../image/arrow-sublinks-small.png) no-repeat #d0d0d0 10% 40%; margin:0px 0px 0px 0px; padding:7px; text-indent:40px; z-index:9999; font:normal 10px Arial; color:#333333; text-decoration:none; }
+
+
+}
+
+@media screen and (max-width:768px) {
+#navigation li a.sublinks { margin-top:-25px; z-index:-9999; }
+#navigation li a.sublinks.current {background:url(../image/arrow-sublinks-small.png) no-repeat #d0d0d0 7% 40%; margin:0px 0px 0px 0px; padding:7px; text-indent:40px; z-index:9999; font:normal 10px Arial; color:#333333; text-decoration:none; }
+	
+#navigation li li a {
+  background:#ffffff;
+  display: block;
+  position: relative;
+  font:normal 12px Arial;
+  padding: 7px 10px;
+  border-bottom: 1px dashed #dddddd;
+  color: #535353;
+  -webkit-transition: all 0.15s ease-in;
+  -moz-transition: all 0.15s ease-in;
+  -ms-transition: all 0.15s ease-in;
+  -o-transition: all 0.15s ease-in;
+  transition: all 0.15s ease-in;
+  text-indent:40px;
+}
+#navigation li li a:hover {
+	color:#002163;
+  text-decoration:none;
+}
+
+#navigation a.current {
+	color:#002163;
+	font-weight:bold;
+}
+
+}

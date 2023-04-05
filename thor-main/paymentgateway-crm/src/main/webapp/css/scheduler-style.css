@@ -1,0 +1,352 @@
+.mt-30{
+    margin-top: 30px !important;
+}
+
+.save-status-div{
+    display: none;
+}
+
+.save-status-div h4{
+    text-align: center;
+    background-color: #b8f9c0;
+    margin: 0;
+    padding: 10px;
+    font-size: 15px;
+    color: #126123;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 100%;
+}
+
+.delete-status-div{
+    display: none;
+}
+
+.delete-status-div h4{
+    text-align: center;
+    background-color: #ffcece;
+    margin: 0;
+    padding: 10px;
+    font-size: 15px;
+    color: #b62828;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 100%;
+}
+
+
+
+.mb-20{
+    margin-bottom: 20px !important;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.scheduler-save{
+    display: inline-block;
+}
+
+.select-box-custom{
+    padding: 15px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    position: absolute;
+    left: 10px;
+    z-index: 999999;
+    right: 10px;
+    background-color: #fff;
+    display: none;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.lpay-select{
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.active-box{
+    display: block !important;
+}
+
+.unchecked input{
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .unchecked:before {
+      content: "";
+      width: 15px;
+      height: 15px;
+      background-color: #fff;
+      border-radius: 3px;
+      border: 3px solid #888888;
+      display: inline-block;
+      opacity: .5;
+      box-sizing: border-box;
+      left: 0;
+      position: absolute;
+  }
+  
+  .checkbox-checked:before{
+    background-image: url(../image/checked.png);
+      background-size: 100%;
+      opacity: 1;
+      border: none;
+  }
+
+  .select-box-custom label{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .checkbox-label{
+    position: relative;
+    font-size: 13px;
+    color: #888888;
+    font-weight: 600;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    padding-left: 23px;
+    cursor: pointer;
+  }
+
+.lpay-heading{
+	padding: 15px;
+	background-color: #F5F7F9;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	margin-bottom: 20px;
+}
+
+.lpay-heading h3{
+	/* font-family: 'Source Sans Pro'; */
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 15px;
+	color: #002163;
+	margin: 0;
+}
+
+.lpay-white-default-bg {
+    padding: 20px;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12);
+}
+
+.block-div{
+    width: 100%;
+    display: inline-block;
+}
+
+.lpay-input{
+    width: 100%;
+    height: 35px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 7px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 4px;
+
+}
+
+.red-line{
+    border-color: #f00 !important;
+}
+
+
+.lpay-input::placeholder{
+    text-transform: capitalize;
+    color: #73879C;
+}
+
+.lpay-button{
+    background-color:#002163;
+    padding: 9px 20px;
+    font-size: 12px;
+    color:#fff;
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.merchnatStatus-head {
+    background-color: #f5f7f9;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    
+}
+
+.merchnatStatus-head span {
+    width: 24%;
+}
+
+.merchnatStatus-head span:nth-child(2){
+    width: 56%;
+}
+
+.merchnatStatus-head span:nth-child(3){
+    width: 20%;
+}
+
+.merchantStatus-data tr{
+    width: 100%;
+    border-radius: 8px;
+    background-color: #FFFFFF !important;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.12);
+    margin-bottom: 20px;
+    padding: 12px;
+    
+}
+
+.merchantStatus-data tr td{
+    padding: 15px 8px !important;
+}
+
+
+.action-btn button {
+    height: 30px;
+    width: 32px;
+    border-radius: 4px;
+    background-color: rgba(0,38,99,0.1);
+    margin: 0;
+    display: inline-flex;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: inline-bloc;
+    justify-content: center;
+    border: none;
+}
+
+
+
+.merchantStatus-data > div:nth-child(2){
+    width: 56%;
+}
+
+
+.merchantStatus-data > div:nth-child(3){
+    width: 20%;
+}
+
+.cancel-btn{
+    background-color: #e5e4e4 !important;
+    color: #000 !important;
+}
+
+.link-edit:disabled{
+    pointer-events: none;
+}
+
+.confrim-popup{
+    display: none;
+}
+
+.confirm-delete-button button{
+    margin-bottom: 0;
+}   
+
+.confirm-delete-text {
+    color: #000;
+    text-align: center;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.confirm-delete-text h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.confirm-delete-text span{
+    color: #888888;
+    margin-top: 10px;
+    display: block;
+}
+
+.merchantAssing-status{
+    margin-bottom: 30px;
+}
+
+.showData{
+    position: absolute;
+    top: 3px;
+    margin-top: 6px;
+    margin-left: 8px;
+    font-size: 13px;
+    background-color: #fff;
+    width: calc(100% - 50px);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.static-select .acquirer-input input{
+    color: transparent;
+    z-index: 11;
+    position: relative;
+    background-color: transparent;
+}
+
+/* button animation  */
+
+.create-job-btn .lpay-button{
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.create-job-btn .lpay-button:before{
+	content: " ";
+    width: 50%;
+    left: -87px;
+    top: -36px;
+    background-color: #3e5583;
+    position: absolute;
+	height: 246%;
+	z-index: -1;
+	transition: all .5s ease;
+    transform: rotate(45deg);
+}
+
+.create-job-btn .lpay-button:after{
+	content: " ";
+    width: 50%;
+    right: -87px;
+    bottom: -36px;
+    background-color: #3e5583;
+    position: absolute;
+	height: 246%;
+	transition: all .5s ease;
+	z-index: -1;
+    transform: rotate(45deg);
+}
+
+.create-job-btn .lpay-button:hover:before{
+	left: 0;
+}
+
+.create-job-btn .lpay-button:hover:after{
+	right: 0;
+}

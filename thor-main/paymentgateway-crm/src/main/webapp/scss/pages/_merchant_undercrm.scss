@@ -1,0 +1,13 @@
+.editPermission{
+    color: #00f;
+    text-decoration: underline;
+    cursor: pointer;
+}
+th.editPermission{
+    pointer-events: none;
+    text-decoration: none;
+}
+.edit-permission {
+    position: absolute;
+    z-index: -1;
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="paymentGatewaypg" extends="struts-default,json-default" namespace="/jsp">
+
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+			<result name="timeout">sessionTimeout</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error" />
+		</global-exception-mappings>
+		
+		<action name="error" >
+			<result>error.jsp</result>
+		</action>
+	<!-- Session Manage-->
+		<action name="sessionTimeout" class="com.paymentgateway.crm.action.AbstractSecureAction">
+			<result name="input">sessionTimeout.jsp</result>
+		</action>
+		<!-- Session Manage-->
+
+		<!-- Payment Page Landing Action -->
+		<action name="paymentrequest" class="com.paymentgateway.pg.action.RequestAction">
+			<result name="paymentPage" type="redirectAction">
+			  <param name="actionName">locale</param>	
+			  <param name="request_locale">${defaultLanguage}</param>
+			  <param name="defaultLanguage">${defaultLanguage}</param>	 		
+			</result>
+			<result name="surchargePaymentPage" type="redirectAction">
+			  <param name="actionName">surchargelocale</param>	
+			  <param name="request_localeA">${defaultLanguage}</param>
+			  <param name="defaultLanguageA">${defaultLanguage}</param>	 		
+			</result>
+			<result name="invalidRequest">invalidRequest.jsp</result>
+		</action>	 
+
+		<!-- Payment Page Landing Action -->
+
+		<!-- Buy Button on Payment Page Action -->
+		<action name="pay" class="com.paymentgateway.pg.action.RequestAction" method="acquirerHandler">
+	            <interceptor-ref name="defaultStack" />
+			<result name="success">response.jsp</result>
+			<result name="paymentPage">paymentPage.jsp</result>
+			<result name="redirecturl" type="redirect">${redirectUrl}</result>
+		</action>
+		<!-- Buy Button on Payment Page Action -->
+
+		<!-- Delete Existing Token -->
+		<action name="deletecard" class="com.paymentgateway.pg.action.RequestAction" method="deleteSavedCard">
+			<result name="success">paymentPage.jsp</result>
+		</action>
+		<!-- Delete Existing Token -->
+
+		<!-- Merchant Hosted Transaction Process -->
+		<action name="merchantpay" class="com.paymentgateway.pg.action.RequestAction" method="directPay">
+			<result name="redirecturl" type="redirect">${redirectUrl}</result>
+			<result name="invalidRequest">invalidRequest.jsp</result>
+		</action>
+		<!-- Merchant Hosted Transaction Process -->
+
+		<!-- FSS Response Processor -->
+		<action name="payment3ds" class="com.paymentgateway.pg.action.ResponseAction">
+			<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		<!-- FSS Response Processor -->
+		
+		<!-- ICICI Response Processor -->
+		<action name="payment3ds" class="com.paymentgateway.pg.action.IciciResponseAction">
+			<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		<!-- ICICI Response Processor -->
+		
+		<!-- Citrus Response Processor -->
+		<action name="citrusPay3ds" class="com.paymentgateway.pg.action.CitrusPayResponseAction">
+			<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		<!-- Citrus Response Processor -->
+		
+		<!-- MobiKwik Response Processor -->
+		<action name="paytmresponse" class="com.paymentgateway.pg.action.PaytmResponseAction"></action>
+		<!-- MobiKwik Response Processor -->
+		
+		<!-- MobiKwik Response Processor -->
+		<action name="mobikwikresponse" class="com.paymentgateway.pg.action.MobikwikResponseAction">
+		<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		<!-- MobiKwik Response Processor -->
+		
+		<!-- Direcpay Response Processor -->
+		<action name="direcpayauthresponse" class="com.paymentgateway.pg.action.DirecpayResponseAction">
+			<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		<action name="direcpayrefundresponse"
+			class="com.paymentgateway.pg.action.DirecpayRefundResponseAction">
+			<result name="success" type="chain">refundConfirmAction</result>
+		</action>
+		<!-- Direcpay Response Processor -->
+		
+		<!-- Amex Transaction Processor -->
+		<action name="amexresponse" class="com.paymentgateway.pg.action.AmexResponseAction">
+			<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		<!-- Amex Transaction Processor -->
+		
+		<!-- Amex EzeeClick -->
+		<action name="ezeeresponse" class="com.paymentgateway.pg.action.EzeeClickResponseAction">
+			<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		<!-- Amex EzeeClick -->
+		
+		<!-- Cancel By User -->
+		<action name="txncancel" class="com.paymentgateway.pg.action.RequestAction" method="cancelByUser">
+			<result name="success">response.jsp</result>
+			<result name="error">response.jsp</result>
+		</action>
+		<!-- Cancel By User -->
+		
+		<!-- Direct NetBanking -->
+		<action name="yesbankauthresponse" class="com.paymentgateway.pg.action.YesBankResponseAction">
+		<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		<action name="kotakauthresponse" class="com.paymentgateway.pg.action.KotakResponseAction">
+		<result name="paymentPage">paymentPage.jsp</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE xml>
+<decorators defaultdir="/WEB-INF/decorators">
+
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+
+
+	<excludes>
+		<!-- <pattern>/nodecorate/*</pattern> <pattern>/styles/*</pattern> <pattern>/scripts/*</pattern> 
+			<pattern>/images/*</pattern> <pattern>/dojo/*</pattern> <pattern>/struts/*</pattern> -->
+		<pattern>/jsp/index.jsp*</pattern>
+		<pattern>/jsp/signup.jsp*</pattern>
+		<pattern>/jsp/forgetPassword.jsp*</pattern>
+		<pattern>/jsp/forgetUsername.jsp*</pattern>
+		<pattern>/jsp/paymentPage.jsp*</pattern>		
+		<pattern>/jsp/logoutSuccess.jsp*</pattern>
+		<pattern>/jsp/thankYou.jsp*</pattern>
+		<pattern>/jsp/emailValidation.jsp*</pattern>
+		<pattern>/jsp/error.jsp*</pattern>
+		<pattern>/jsp/merchantProfileCompletion.jsp*</pattern>
+		<pattern>/jsp/changePasswordSignup.jsp*</pattern>
+		<pattern>/jsp/resetPassword.jsp*</pattern>
+		<pattern>/jsp/invalidRequest.jsp*</pattern>		
+		<pattern>/jsp/invoicePay.jsp*</pattern>
+		<pattern>/jsp/invoicePayEvent.jsp*</pattern>
+		<pattern>/jsp/invoicePopup.jsp*</pattern>
+		<pattern>/jsp/authoriseDetails.jsp*</pattern>
+		<pattern>/jsp/popup.jsp*</pattern>
+		<pattern>/jsp/response.jsp*</pattern>
+		<pattern>/jsp/signupWebsite.jsp*</pattern>
+		<pattern>/jsp/transactionAuthentication.jsp*</pattern>
+		<pattern>/jsp/sdkResponse.jsp*</pattern>
+		<pattern>/jsp/sessionTimeout.jsp*</pattern>
+		<pattern>/jsp/wait.jsp*</pattern>
+		<pattern>/jsp/previewPaymentPage.jsp*</pattern>
+		<pattern>/jsp/redirectIndex.jsp*</pattern>
+		<pattern>/jsp/loading.jsp*</pattern>
+		<pattern>/jsp/loadingGetParams.jsp*</pattern>
+		<pattern>/jsp/iosResponse.jsp*</pattern>
+		<pattern>/jsp/invoiceResponse.jsp*</pattern>
+		<pattern>/jsp/onboardingMerchant.jsp*</pattern>
+		<pattern>/jsp/processingMerchant.jsp*</pattern>
+		<pattern>/jsp/merchantOnboardOffline.jsp*</pattern>
+		<pattern>/jsp/merchantOnBoard.jsp*</pattern>
+		<pattern>/jsp/onboardMerchantOffline.jsp*</pattern>
+		<pattern>/jsp/customPageView.jsp*</pattern>
+		<pattern>/jsp/eNachMandateRegistration.jsp*</pattern>
+		<pattern>/jsp/iciciEnachResponse.jsp*</pattern>
+		<pattern>/jsp/autoPayMandate.jsp*</pattern>
+		<pattern>/jsp/beneVerificationForm.jsp*</pattern>
+		<pattern>/jsp/verificationResponse.jsp*</pattern>
+		<pattern>/jsp/eNachRegistration.jsp*</pattern>
+		<pattern>/jsp/linkExpired.jsp*</pattern>
+		<pattern>/jsp/upiAutoPayResponse.jsp*</pattern>
+
+	</excludes>
+
+
+
+	<decorator name="main" page="main.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+
+</decorators>

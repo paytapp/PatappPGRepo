@@ -1,0 +1,136 @@
+package com.paymentgateway.crm.mpa;
+
+/**
+ * @author Amitosh Aanand
+ *
+ */
+public class Constants {
+
+	public static final String USERNAME = "USERNAME";
+	public static final String PASSWORD = "PASSWORD";
+	public static final String AUTHENTICATION_LOGIN_URL = "AUTHENTICATION_LOGIN_URL";
+	public static final String AUTHENTICATION_LOGOUT_URL = "AUTHENTICATION_LOGOUT_URL";
+	public static final String ESIGN_AUTHENTICATION_LOGIN_URL = "ESIGN_AUTHENTICATION_LOGIN_URL";
+	public static final String ESIGN_AUTHENTICATION_LOGOUT_URL = "ESIGN_AUTHENTICATION_LOGOUT_URL";
+	public static final String ESIGN_FLOW_URL = "ESIGN_FLOW_URL";
+	public static final String ESIGN_CALLBACK_URL = "ESIGN_CALLBACK_URL";
+	public static final String ESIGN_GETCALLBACK_DATA_URL = "ESIGN_GETCALLBACK_DATA_URL";
+	public static final String ESIGN_REDIRECT_URL = "ESIGN_REDIRECT_URL";
+	public static final String ESIGN_FILE_UPLOAD_URL = "ESIGN_FILE_UPLOAD_URL";
+	public static final String ESIGN_FILE_NAME = "esignedFile";
+	public static final String AGREEMENT_FILE_NAME = "Agreement";
+	public static final String ESIGN_AGREEMENT_FILE_LOCATION = "ESIGN_AGREEMENT_FILE_LOCATION";
+	public static final String MPA_FILE_FOLDER_NAME = "mpaFiles";
+	public static final String IDENTITY_VERIFICATION_URL = "IDENTITY_VERIFICATION_URL";
+	public static final int TIME_OUT = 60000;
+	public static final String IDENTITIES_FLOW_URL = "IDENTITIES_FLOW_URL";
+	public static final String Authorization = "Authorization";
+	public static final String MPA_CALLBACK_URL = "MPA_CALLBACK_URL";
+	public static final String IMAGES = "images";
+	public static final String INDIVIDUAL_PAN = "individualPan";
+	public static final String VERIFICATION = "verification";
+	public static final String VERIFICATION_2 = "verification-2";
+	public static final String IDENTITY = "Identity";
+	public static final String VERIFIED = "verified";
+	public static final String TRUE = "true";
+	public static final String ORGANIZATION_OBJECT_URL = "ORGANIZATION_OBJECT_URL";
+	public static final String IDENTIFIER = "identifier";
+	public static final String SERVICE = "service";
+	public static final String ROC = "roc";
+	public static final String SIMPLE_CIN_URL = "SIMPLE_CIN_URL";
+	public static final String TARGET = "target";
+	public static final String ORGANIZATION = "Organization";
+	public static final String ITEM_ID = "itemId";
+	public static final String ACCESS_TOKEN = "accessToken";
+	public static final String TASK = "task";
+	public static final String SIMPLE_SEARCH_BY_CIN = "simpleSearchByCin";
+	public static final String ESSENTIALS = "essentials";
+	public static final String CIN = "cin";
+	public static final String MAX_CIN_ATTEMPTS = "MAX_CIN_ATTEMPTS";
+	public static final String PAN_TO_GST_URL = "PAN_TO_GST_URL";
+	public static final String PAN_SEARCH = "panSearch";
+	public static final String PAN_NUMBER = "panNumber";
+	public static final String STATE = "state";
+	public static final String CONTENT_TYPE = "Content-Type";
+	public static final String TYPE = "type";
+	public static final String EMAIL= "email";
+	public static final String CALLBACK_URL = "callbackUrl";
+	public static final String REDIRECT_URL = "redirectUrl";
+	public static final String COMPANY_NAME_TO_CIN = "COMPANY_NAME_TO_CIN";
+	public static final String COMPANY_SEARCH_USERNAME = "COMPANY_SEARCH_USERNAME";
+	public static final String COMPANY_SEARCH_PASSWORD = "COMPANY_SEARCH_PASSWORD";
+	public static final String ELECTRICITY_BILL_EXTRACTION_URL = "ELECTRICITY_BILL_EXTRACTION_URL";
+	public static final String CONSUMER_NO = "consumerNo";
+	public static final String ELECTRICITY_PROVIDER = "electricityProvider";
+	public static final String FILE_UPLOAD_URL = "FILE_UPLOAD_URL";
+	
+	public static final String MPA_FILE_UPLOAD_LOCATION = "MPA_FILE_UPLOAD_LOCATION";
+	public static final String MPA_POLICY_FILE_LOCATION = "MPA_POLICY_FILE_LOCATION";
+	public static final String RECON_FILE_UPLOAD_LOCATION = "RECON_FILE_UPLOAD_LOCATION";
+	public static final String CHEQUE = "cheque";
+	public static final String AUTO_RECOGNITION = "autoRecognition";
+	public static final String SUMMARY = "summary";
+	public static final String GSTIN = "gstin";
+	public static final String AUTH_TOKEN = "authToken";
+	public static final String APP_KEY = "appKey";
+	public static final String SEK = "sek";
+	public static final String RET_PERIOD = "retPeriod";
+	public static final String GSTR3B_URL = "GSTR3B_URL";
+	public static final String BUSINESS_PAN = "businessPan";
+	public static final String NUMBER = "number";
+	public static final String NAME = "name";
+	public static final String FUZZY = "fuzzy";
+	public static final String DRIVING_LICENSE = "drivingLicence";
+	public static final String DOB = "dob";
+	public static final String ISSUE_DATE = "issueDate";
+	public static final String ENTITY_NEGATIVE_LIST = "entityNegativeList";
+	public static final String AML_CFT = "AML_CFT";
+	public static final String DIRECTOR_NEGATIVE_LIST = "directorNegativeList";
+	public static final String DIN = "din";
+	public static final String BANK_ACCOUNT_VERIFICATION_URL = "BANK_ACCOUNT_VERIFICATION_URL";
+	public static final String BENEFICIARY_ACCOUNT = "beneficiaryAccount";
+	public static final String BENEFICIARY_IFSC = "beneficiaryIFSC";
+	public static final String BENEFICIARY_MOBILE = "beneficiaryMobile";
+	public static final String BENEFICIARY_NAME = "beneficiaryName";
+	public static final String BANK_TRANSFER = "bankTransfer";
+	public static final String IMAGE_CHEQUE = "CHEQUE";
+	public static final String IMAGE_ESIGN = "ESIGN";
+	public static final String IMAGE_DRIVING_LICENSE = "DRIVING_LICENSE";
+	public static final String IMAGE_LOGO = "LOGO";
+	public static final String ERROR_TYPE_ELECTRICTY = "ELECTRICITY";
+	public static final String ERROR_TYPE_GENERIC = "ERROR_TYPE_GENERIC";
+	public static final String ERROR_TYPE_CIN = "ERROR_TYPE_CIN";
+	public static final String ERROR_TYPE_PAN_TO_GSTIN = "ERROR_TYPE_PAN_TO_GSTIN";
+	public static final String ERROR_TYPE_CIN_BY_COMPANY_NAME = "ERROR_TYPE_CIN_BY_COMPANY_NAME";
+	public static final String ERROR_TYPE_CHEQUE_EXTRACTION_BANK_VERIFICATION = "ERROR_TYPE_CHEQUE_EXTRACTION_BANK_VERIFICATION";
+	public static final String ERROR_TYPE_ESIGN_VERIFICATION = "ERROR_TYPE_ESIGN_VERIFICATION";
+	public static final String ERROR_TYPE_DRIVING_LICENSE_EXTRACTION = "ERROR_TYPE_DRIVING_LICENSE_EXTRACTION";
+	public static final String ERROR_TYPE_BUSINESS_PAN = "ERROR_TYPE_BUSINESS_PAN";
+	public static final String ERROR_TYPE_CIN_ATTEMPT = "ERROR_TYPE_CIN_ATTEMPT";
+	public static final String ERROR_TYPE_CIN_ATTEMPT_WARN = "ERROR_TYPE_CIN_ATTEMPT_WARN";
+	public static final String ERROR_TYPE_UPLOAD = "ERROR_TYPE_UPLOAD";
+	public static final String ERROR_TYPE_TRY_AGAIN = "ERROR_TYPE_TRY_AGAIN";
+	public static final String ERROR_TYPE_ESIGNID_SAVE = "ESIGNID_COULD_NOT_BE_SAVED";
+	public static final String ERROR_TYPE_INDIVIDUAL_PAN = "ERROR_TYPE_INDIVIDUAL_PAN";
+	public static final String ERROR_TYPE_ESIGN_BY_AADHAAR = "ERROR_TYPE_ESIGN_BY_AADHAAR";
+	public static final String USER = "USER";
+	public static final String ERROR_TYPE_GSTR3B = "ERROR_TYPE_GSTR3B";
+	public static final String GSTR_INITIATION_URL = "GSTR_INITIATION_URL";
+	public static final String GSTR_USERNAME = "username";
+	public static final String GET_OTP = "getOtp";
+	public static final String GET_AUTH_TOKEN = "getAuthToken";
+	public static final String OTP = "otp";
+	public static final String IMAGE_DIRECTOR = "IMAGE_DIRECTOR";
+	public static final String ERROR_TYPE_UNKNOWN = "ERROR_TYPE_UNKNOWN";
+	public static final String ERROR_TYPE_COMPANY_NAME_SEARCH = "ERROR_TYPE_COMPANY_NAME_SEARCH";
+	public static final String ADVANCE_EXTRACTION = "advanceExtraction";
+	public static final String ERROR_TYPE_SNECS = "ERROR_TYPE_SNECS";
+	public static final String SNECS_URL = "SNECS_URL";
+	public static final String REGISTRATION_NUMBER = "registrationNumber";
+	public static final String ERROR_TYPE_GSTIN_UNAVAILABLE = "ERROR_TYPE_GSTIN_UNAVAILABLE";
+	public static final String MPA_CHECKER_FILE_UPLOAD_LOCATION = "checkerFiles";
+	
+	//Khadi vendor empanelment  API
+		public static final String SIGNZY_USERID = "SIGNZY_USERID";
+				
+}

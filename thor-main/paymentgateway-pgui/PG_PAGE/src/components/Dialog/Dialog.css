@@ -1,0 +1,28 @@
+.dialog-box {
+    width: 300px;
+    background: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.dialog-close-btn {
+    width: 25px;
+    height: 25px;
+    /* background: #fff !important; */
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-close-btn:focus {
+    outline: none !important;
+}

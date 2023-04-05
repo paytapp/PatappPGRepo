@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns="http://java.sun.com/xml/ns/javaee"
+   xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+   http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+   id="WebApp_ID" version="3.0">
+	<display-name>CRM</display-name>
+	
+	<context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:all-beans-spring.xml                   
+      </param-value>
+    </context-param>
+ 
+	
+	<!--   Security Restrictions -->
+  	<security-constraint>
+	   <web-resource-collection>
+	       <web-resource-name>Deny Direct Access</web-resource-name>
+	           <url-pattern>*.jsp</url-pattern>
+	           <url-pattern>*.do</url-pattern>
+	   </web-resource-collection>
+	  <auth-constraint>
+	     <role-name>Denied</role-name> 
+	  </auth-constraint>
+	</security-constraint>  
+	
+ 	<security-role>
+	   <role-name>Denied</role-name> 
+	</security-role>
+	
+
+	<security-constraint> 
+
+	   <web-resource-collection>
+	      <web-resource-name>Exclude from Security</web-resource-name>
+	      <url-pattern>/jsp/paymentPage.jsp</url-pattern>
+	      <url-pattern>/jsp/response.jsp</url-pattern>
+	      <url-pattern>/jsp/paymentPageNew.jsp</url-pattern>
+	      <url-pattern>/jsp/sdkResponse.jsp</url-pattern>
+	      <url-pattern>/jsp/test.jsp</url-pattern>
+	      <url-pattern>/jsp/sessionTimeout.jsp</url-pattern>
+	      <url-pattern>/jsp/iosResponse.jsp</url-pattern>
+	      <url-pattern>/jsp/invoiceResponse.jsp</url-pattern>
+	       
+	   </web-resource-collection>
+	</security-constraint>
+		
+     <!-- Session timeout -->
+      <session-config>
+         <session-timeout>5000</session-timeout> 
+      </session-config>
+
+    <!-- Error mapping-->
+
+    <error-page>
+    <exception-type>java.lang.Throwable</exception-type >
+    	<location>/jsp/error.jsp</location>
+	</error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+	  <!-- Filters -->
+	
+	<filter>
+		<filter-name>struts2-prepare</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareFilter</filter-class>
+	</filter>
+    
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+    </filter>
+    
+    <filter>
+        <filter-name>struts2-execute</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsExecuteFilter</filter-class>
+    </filter>
+    
+	<filter>
+        <filter-name>header-options</filter-name>
+        <filter-class>com.paymentgateway.crm.filter.SetHeaderFilter</filter-class>
+        <init-param>
+            <param-name>mode</param-name>
+            <param-value>DENY</param-value>
+        </init-param>
+    </filter>
+    
+    <filter>
+         <filter-name>NoEtagFilter</filter-name>
+         <filter-class>com.paymentgateway.crm.filter.NoEtagFilter</filter-class>
+     </filter>
+    
+     <filter>
+         <filter-name>encoder</filter-name>
+         <filter-class>com.paymentgateway.crm.filter.NoEtagFilter</filter-class>
+     </filter>
+     
+	<filter-mapping>
+        <filter-name>struts2-prepare</filter-name>
+        <url-pattern>/jsp/*</url-pattern> 
+         <url-pattern>/help/*</url-pattern>               
+    </filter-mapping>
+   
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+         <url-pattern>/help/*</url-pattern>        
+         <dispatcher>FORWARD</dispatcher>
+         <dispatcher>REQUEST</dispatcher>  
+    </filter-mapping>
+    
+	 <filter-mapping>
+        <filter-name>header-options</filter-name>
+        <url-pattern>/jsp/*</url-pattern>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.jpeg</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+        <url-pattern>/help/*</url-pattern>
+    </filter-mapping>
+       
+    <filter-mapping>
+        <filter-name>struts2-execute</filter-name>
+        <url-pattern>/jsp/*</url-pattern>  
+         <url-pattern>/help/*</url-pattern>              
+    </filter-mapping>
+    
+    <filter-mapping>
+         <filter-name>NoEtagFilter</filter-name>
+         <servlet-name>default</servlet-name>
+         <dispatcher>REQUEST</dispatcher>
+         <dispatcher>FORWARD</dispatcher>
+     </filter-mapping>
+     
+       <filter-mapping>
+         <filter-name>encoder</filter-name>
+         <!-- <url-pattern>*.*</url-pattern>
+         <url-pattern>/jsp/statisticsAction</url-pattern> -->
+            <servlet-name>default</servlet-name>
+         <dispatcher>REQUEST</dispatcher>
+         <dispatcher>FORWARD</dispatcher>
+     </filter-mapping>
+          <!-- Only needed for Tomcat which stamps the eTag header to all responses -->
+  
+  
+	<!-- Listeners -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>        
+    </listener>
+    
+  <!--   <listener>
+        <listener-class> com.paymentgateway.crm.session.TaskSchedulerListener</listener-class>        
+    </listener> -->
+
+    <listener>
+		<listener-class>com.paymentgateway.crm.session.SessionEventListener</listener-class>
+	</listener>
+    
+    <!-- Servlets -->
+       
+   <servlet>
+       <servlet-name>CXFServlet</servlet-name>
+       <servlet-class>
+           org.apache.cxf.transport.servlet.CXFServlet
+       </servlet-class>
+       <load-on-startup>1</load-on-startup>
+   </servlet>
+ 
+   <servlet-mapping>
+       <servlet-name>CXFServlet</servlet-name>
+       <url-pattern>/services/*</url-pattern>
+   </servlet-mapping>
+    
+	<servlet>
+	     <servlet-name>dwr-invoker</servlet-name>
+	     <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+	</servlet>
+	      
+	<servlet-mapping>
+	     <servlet-name>dwr-invoker</servlet-name>
+	     <url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	       
+    <servlet>
+    	<servlet-name>jspSupportServlet</servlet-name>
+    	<servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>
+    	<load-on-startup>5</load-on-startup>
+    </servlet>
+    
+	<servlet>
+		<servlet-name>Captcha</servlet-name>
+		<servlet-class>com.paymentgateway.crm.action.CaptchaServlet</servlet-class>
+		<init-param>
+			<description>passing height</description>
+			<param-name>height</param-name>
+			<param-value>30</param-value>
+		</init-param>
+		<init-param>
+			<description>passing height</description>
+			<param-name>width</param-name>
+			<param-value>120</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Captcha</servlet-name>
+		<url-pattern>/Captcha.jpg/*</url-pattern>
+	</servlet-mapping>
+        
+    <!--     added by harpeet for CRM app web services -->
+    <!--  <servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/crm/api/*</url-pattern>
+	</servlet-mapping>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-servlet.xml</param-value>
+	</context-param> -->
+	
+    <!-- Welcome file lists -->
+    <welcome-file-list>
+        <welcome-file>/jsp/index</welcome-file>
+    </welcome-file-list>
+    
+<!--     <resource-ref>
+	    <description>DB Connection</description>
+	    <res-ref-name>jdbc/UsersDB</res-ref-name>
+	    <res-type>javax.sql.DataSource</res-type>
+	    <res-auth>Container</res-auth>
+	    
+	</resource-ref> -->
+</web-app>

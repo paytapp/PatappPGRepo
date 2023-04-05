@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#002163" />
+    <meta
+      name="description"
+      content="Payment Gateway"
+    />
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/loader-animation.min.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/common-style.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/surchargePaymentPage.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/style.min.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/pg-icon.min.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/pinlogin.css" />
+
+    <title>Payment Gateway</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <input type="hidden" th:value="${pageData}" id="sessionObj" />
+
+  </body>
+</html>

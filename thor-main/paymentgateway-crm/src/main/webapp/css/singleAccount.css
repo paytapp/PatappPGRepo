@@ -1,0 +1,223 @@
+.horizontal-nav-wrapper .nav-tabs{
+    border: none
+}
+
+.req {
+    font-size: 14px;
+    color: #f00;
+    vertical-align: super;
+    position: absolute;
+    margin-left: 5px;
+    margin-top: -4px;
+}
+
+
+.hasError .error-field{
+    opacity: 1;
+    margin-right: 0;
+}
+
+.heading_with_icon{
+    flex-wrap: wrap;
+}
+
+.media-heading {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+
+.hasError{
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+.lpay_popup .lpay_popup-inner .lpay_popup-innerbox{
+    max-width: 400px !important;
+}
+
+.hasError .lpay_input_group::after, .hasError .lpay_select_group::after, .hasError .lpay_upload_input::after{
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+}
+
+.lpay_input_group::after, .lpay_select_group::after, .lpay_upload_input::after{
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    width: 100%;
+    left: 0;
+    height: 1px;
+    background-color: #f00;
+    opacity: 0;
+    transform: scale(0);
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+}
+
+.lpay-upload{
+    position: relative;
+}
+
+.hasError.lpay-upload::after{
+    content: "";
+    position: absolute;
+    bottom: 1px;
+    width: 100%;
+    left: 0;
+    height: 1px;
+    background-color: #f00;
+    opacity: 1;
+}
+
+
+.error-field {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #f00;
+    opacity: 0;
+    margin-right: -15px;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+.transaction-type form{
+    opacity: .6;
+    pointer-events: none;
+    transition: all .5s ease ;
+    -webkit-transition: all .5s ease ;
+    -moz-transition: all .5s ease ;
+    -ms-transition: all .5s ease ;
+    -o-transition: all .5s ease ;
+}
+
+.active-transaction-type.transaction-type form{
+    opacity: 1;
+    pointer-events: unset;
+}
+
+.accountTransferBox{
+    margin-top: 50px;
+    background-color: #f5f5f5;
+}
+
+.accountTransferBox .media-heading{
+    margin-bottom: 0;
+}
+
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 310px;
+    margin: 1em auto;
+}
+
+#container {
+    height: 500px;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #EBEBEB;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+.ledger-balance .ledger-amount{
+    font-size: 20px;
+}
+
+.ledger-balance .ledger-text{
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.ledger-refresh{
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    box-shadow: inset 0 0 10px rgb(5 18 38 / 70%);
+    background-color: #fff;
+    color: #333;
+}
+
+.ledger-filter > .single-account-input{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 768px) {
+    .ledger-filter .ledgerDate {
+        width: 15%;
+    }
+    .ledger-filter > .single-account-input { width: 20%; }
+}
+
+.ledger-account-input input.lpay_input{
+    background-color: #fff;
+}
+
+.ledger-filter .lpay_select_group .bootstrap-select .dropdown-toggle:hover, .ledger-filter .lpay_select_group .bootstrap-select .dropdown-toggle:focus{
+    background-color: #fff !important;
+}
+
+@keyframes blink {
+    0%   {opacity: .1;}
+    50%  {opacity: .8;}
+    100%  {opacity: .1;}
+}
+
+  .loader-amount #ledgerAmount{
+    animation-name: blink;
+    animation-duration: .800s;
+    animation-iteration-count: infinite;
+  }
+
+  .loader-amount .totalAmount{
+    animation-name: blink;
+    animation-duration: .800s;
+    animation-iteration-count: infinite;
+  }
+
+  .mb-5 { margin-bottom: 5px !important; }

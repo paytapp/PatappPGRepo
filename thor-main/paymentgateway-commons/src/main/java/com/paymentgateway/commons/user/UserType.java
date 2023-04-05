@@ -1,0 +1,20 @@
+package com.paymentgateway.commons.user;
+
+public enum UserType {
+	SUPERADMIN, 
+	ADMIN, 
+	MERCHANT, 
+	BUYER, 
+	ACQUIRER, 
+	POSMERCHANT, 
+	SUBUSER, 
+	RESELLER, 
+	SUBADMIN,
+	SUBACQUIRER,
+	ASSOCIATE,
+	AGENT,
+	SUBMERCHANT,
+	SUPERMERCHANT,
+	RECONUSER,
+	PARENTMERCHANT
+}

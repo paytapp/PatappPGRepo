@@ -1,0 +1,66 @@
+.merchant__tab_button{
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	padding: 7px 20px;
+	border: none;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	color: $defaultTextColor;
+	font-weight: $fontWeightLighter !important;
+	line-height: 20px;
+	cursor: pointer;
+    font-size: 10px;
+}
+
+.merchant__tab_button.active-tab{
+    color: #fff;
+    background-size: 200% auto;
+	background-image: linear-gradient(to right, #050c16 0%, #002663 51%, #050c16 100%);
+}
+.merchant__forms_block{
+	display: none;
+}
+
+.active-block{
+	display: block;
+}
+
+.paymentGatewayRadio{
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.inner-heading{
+    padding: 12px !important;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    h3{
+        font-size: 16px !important;
+    }
+}
+
+.mpaFormRowRadio{
+    margin-bottom: 20px;
+    label{
+        margin-right: 20px;
+    }
+
+}
+
+
+
+.checkbox-group{
+    > div{
+        label{
+            margin-bottom: 20px !important;
+        }
+    }
+}

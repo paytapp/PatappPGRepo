@@ -1,0 +1,746 @@
+/* #siteseal img { height: 30px; } */
+body[data-navigation="upiQr"] #pay-now { display: none; }
+#container-outer-wrap { transition: all ease .5s; }
+#supported-payment-type {
+    background: #D6E4FE;
+    padding: 0px 5px;
+    border-radius: 999px;
+    color: #617BD3;
+    font-size: 12px;
+}
+
+@media (min-width: 992px) {
+    .site-verification-logo {
+        margin-left: 140px !important;
+    }
+}
+@media (min-width: 1200px) {
+    .site-verification-logo {
+        margin-left: 270px !important;
+    }
+}
+
+.text-ax { color: #2478BC; }
+
+#navigation > li > .tabLi {
+    color: #173a71;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 2px solid #fff;
+    padding: 7px 10px;
+    /* transition: all ease .5s; */
+    width: 100%;
+    background: transparent;
+}
+
+#navigation > li > .tabLi.active {
+    border: 2px solid #0096d7;
+    /* background-image: linear-gradient(to right, #ffe000, #ffe000, #ffe000); */
+    background-color: #0096d7;
+    color: #fff;
+}
+
+#navigation > li > .tabLi > .nav-icon {
+    max-width: 35px;
+    flex: 0 0 35px;
+    display: flex;
+}
+@media (min-width: 768px) {
+    #navigation > li:not(:first-child) {
+        margin-top: 8px;
+    }
+}
+
+@media (min-width: 992px) {
+    #navigation > li > .tabLi {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    #navigation > li > .tabLi .nav-icon {
+        max-width: 45px;
+        flex: 0 0 45px;
+    }
+}
+
+/* ORDER SUMMARY */
+#order-summary li:not(:last-child) {
+    margin-bottom: 8px;
+    line-height: 20px;
+}
+
+.btn-primary {
+    /* background-image: linear-gradient(to right, #002368, #002368, #002368); */
+    background-color: #173a71;
+    border-color: #173a71 !important;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-size: 300% 100%;
+}
+
+.btn-primary.btn-disabled {
+    background-image: linear-gradient(to right, #ccc, #ccc);
+    border-color: #ccc !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+    border-color: #2A2A6C !important;
+}
+
+.btn-primary:hover {
+    background-position: 100% 0;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.hideBox {
+    display: none;
+}
+
+.pointerEventNone {
+    pointer-events: none !important;
+    background: #ccc !important;
+    border: 2px solid #ccc !important;
+}
+
+.bankList .nb-icon,
+.saveNbDetails .nb-icon,
+.saveWlDetails .nb-icon {
+    width: 50px;
+    height: 50px;
+    transition: all ease 0.5s;
+    background: #fff;
+    border-radius: 100%;
+    padding: 5px;
+}
+
+/* @media (min-width: 992px) {
+    .bankList .nb-icon,
+    .saveNbDetails .nb-icon,
+    .saveWlDetails .nb-icon {
+        width: 50px;
+        height: 50px;
+    }
+} */
+
+.bankList .nb-icon img,
+.saveNbDetails .nb-icon img,
+.saveWlDetails .nb-icon img {
+    max-width: 100%;
+    position: relative;
+    /* top: 50%;
+    transform: translateY(-50%); */
+}
+
+#wallet-list .bankList .nb-icon,
+#cod-list .bankList .nb-icon {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 575px) {
+    .bankList .nb-text { font-size: 14px; }
+    .bank_list_label { height: 100%; }
+}
+
+.bankList .nb-text,
+.saveNbDetails .nb-text,
+.saveWlDetails .nb-text {
+    color: #a1a1a1;
+}
+
+.bank_list_label { transition: all ease .5s; }
+
+.bank_list_label.active {
+    background-color: #173a71;
+    /* background-image: linear-gradient(to right, #012a93, #2626BA, #2A2A6C); */
+    border-color: rgba(18, 18, 178, 0.5);
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px 0px, rgba(0, 0, 0, 0.01) 0px 0px 0px 1px; */
+}
+
+.bank_list_label.active .nb-text,
+.saveNbDetails.active .nb-text,
+.saveWlDetails.active .nb-text {
+    color: #fff;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1300px;
+    }
+
+    .custom-scroll {
+        max-height: 410px;
+        overflow-y: scroll;
+    }
+}
+
+.custom-logo { max-height: 50px; max-width: 100%; }
+
+/* =================================== */
+/* KASHI MERCHANT */
+/* =================================== */
+@media (max-width: 767px) {
+    .smt-supermerchant .custom-logo { max-height: 50px; }
+}
+
+.kashi-merchant .custom-logo { max-height: 70px; }
+
+.kashi-merchant .checkmark_checkbox {
+    border-color: #FDC392;
+    background: #FDC392;
+}
+.kashi-merchant .container_check .checkmark_checkbox:after { border-color: #D1670D; }
+
+.smt-supermerchant .checkmark_checkbox {
+    border-color: #FAA61A;
+    background: #FAA61A;
+}
+
+.smt-supermerchant .container_check .checkmark_checkbox:after { border-color: #fff; }
+
+.kashi-merchant .bankList .bank_list_label {
+    background: #FDC392;
+    border: 1px solid #FDC392;
+    box-shadow: rgba(238, 124, 28, 0.16) 0px 5px 15px 0px, rgba(238, 124, 28, 0.06) 0px 0px 0px 1px;
+}
+
+.smt-supermerchant .bankList .bank_list_label {
+    background: #8FC75A;
+    border-color: #8FC75A;
+}
+
+.blue-whale-merchant .bankList .bank_list_label {
+    background: rgba(255, 146, 43, 0.8);
+    border-color: rgba(255, 146, 43, 0.8);
+}
+
+.kashi-merchant .savedCards li .card-dtls,
+.kashi-merchant .savedVpa li .card-dtls,
+.kashi-merchant .savedNb li .card-dtls,
+.kashi-merchant .savedWl li .card-dtls {
+    background: #FDC392;
+    border: 1px solid #FDC392;
+    box-shadow: rgba(238, 124, 28, 0.16) 0px 5px 15px 0px, rgba(238, 124, 28, 0.06) 0px 0px 0px 1px;
+}
+
+.smt-supermerchant .savedCards li .card-dtls,
+.smt-supermerchant .savedVpa li .card-dtls,
+.smt-supermerchant .savedNb li .card-dtls,
+.smt-supermerchant .savedWl li .card-dtls {
+    background: #8FC75A;
+    border: 1px solid #8FC75A;
+}
+
+.kashi-merchant .savedCards li.active .card-dtls,
+.kashi-merchant .savedVpa li.active .card-dtls,
+.kashi-merchant .savedNb li.active .card-dtls,
+.kashi-merchant .savedWl li.active .card-dtls {
+    background-image: linear-gradient(130deg, #F48C35, #EE7C1C, #F37001);
+    border-color: #EE7C1C;
+}
+
+.smt-supermerchant .savedCards li.active .card-dtls,
+.smt-supermerchant .savedVpa li.active .card-dtls,
+.smt-supermerchant .savedNb li.active .card-dtls,
+.smt-supermerchant .savedWl li.active .card-dtls {
+    background-image: linear-gradient(130deg, #095D86, #095D86, #095D86);
+    border-color: #095D86;
+}
+
+.kashi-merchant .savedCards li .save-payment-type { color: #D1670D; }
+
+.smt-supermerchant .savedCards li .save-payment-type { color: #fff; }
+
+.kashi-merchant #navigation > li > .tabLi { color: #222; }
+
+.kashi-merchant #navigation > li > .tabLi.active {
+    background: #EE7C1C;
+    border-color: #EE7C1C;
+    color: #fff;
+    font-weight: normal;
+}
+
+.smt-supermerchant #navigation > li > .tabLi { color: #095D86; }
+
+.smt-supermerchant #navigation > li > .tabLi.active {
+    background-color: #095D86;
+    border-color: #095D86;
+    color: #fff;
+}
+
+.kashi-merchant .btn-primary {
+    background-image: linear-gradient(to right, #EE7C1C, #FEAF6C, #EE7C1C);
+    border-color: #EE7C1C !important;
+}
+
+.smt-supermerchant .btn-primary {
+    background-image: linear-gradient(to right, #FAA61A, #EF9B10, #E08D04);
+    border-color: #FAA61A !important;
+
+    /* background-image: linear-gradient(to right, #FAA61A, #FAA61A, #FAA61A);
+    border-color: #FAA61A !important; */
+}
+
+.kashi-merchant .btn-primary.btn-disabled {
+    background-image: linear-gradient(to right, #FDC392, #FDC392);
+    border-color: #FDC392 !important;
+}
+
+ /* {
+    background-image: linear-gradient(to right, #ccc, #ccc);
+    border-color: #ccc !important;
+} */
+
+.blue-whale-merchant .btn-primary.btn-disabled,
+.smt-supermerchant .btn-primary.btn-disabled,
+.payble-merchant .btn-primary.btn-disabled {
+    background-image: linear-gradient(to right, #ccc, #ccc);
+    border-color: #ccc !important;
+    color: #fff !important;
+}
+
+.kashi-merchant .btn-primary:not(:disabled):not(.disabled).active,
+.kashi-merchant .btn-primary:not(:disabled):not(.disabled):active,
+.kashi-merchant .show>.btn-primary.dropdown-toggle {
+    border-color: #EE7C1C !important;
+}
+
+.kashi-merchant .bankList .nb-text,
+.kashi-merchant .saveNbDetails .nb-text,
+.kashi-merchant .saveWlDetails .nb-text,
+.blue-whale-merchant .bankList .nb-text,
+.blue-whale-merchant .saveNbDetails .nb-text,
+.blue-whale-merchant .saveWlDetails .nb-text {
+    color: #222;
+}
+
+.kashi-merchant .bank_list_label.active .nb-text,
+.kashi-merchant .saveNbDetails.active .nb-text,
+.kashi-merchant .saveWlDetails.active .nb-text,
+.smt-supermerchant .bankList .nb-text,
+.smt-supermerchant .saveNbDetails .nb-text,
+.smt-supermerchant .saveWlDetails .nb-text,
+.blue-whale-merchant .bank_list_label.active .nb-text,
+.blue-whale-merchant .saveNbDetails.active .nb-text,
+.blue-whale-merchant .saveWlDetails.active .nb-text {
+    color: #fff;
+}
+
+.kashi-merchant .bank_list_label.active {
+    background-color: #EE7C1C;
+    border-color: #EE7C1C;
+}
+
+.smt-supermerchant .bank_list_label.active {
+    background-color: #095D86;
+    border-color: #095D86;
+}
+
+.kashi-merchant #ccCancelButton { color: #EE7C1C; }
+.kashi-merchant #ccCancelButton:hover { color: #D1670D; }
+
+/* .kashi-merchant #summary-column {
+    background: url("../img/kashi-watermark.png") #FFE3D0 no-repeat bottom right;
+} */
+
+.smt-supermerchant #summary-column { background-color: #0A5E87; }
+
+.blue-whale-merchant #summary-column { background-image: linear-gradient(to bottom, #FF922B, #108D01); }
+
+.blue-whale-merchant #summary-column { border-bottom-left-radius: 20px; }
+
+@media (min-width: 768px) {
+    .kashi-merchant #summary-column,
+    .smt-supermerchant #summary-column,
+    .blue-whale-merchant #summary-column,
+    .payble-merchant #summary-column { border-top-right-radius: 20px; }
+    
+    .blue-whale-merchant #navigation-column,
+    .payble-merchant #navigation-column { border-bottom-left-radius: 20px; }
+
+    .blue-whale-merchant #order-summary span,
+    .smt-supermerchant #order-summary span { color: #fff !important; }
+
+    .blue-whale-merchant #summary-column,
+    .payble-merchant #summary-column { border-bottom-left-radius: 0; }
+}
+
+.blue-whale-merchant #footer,
+.payble-merchant #footer,
+.payTense-merchant #footer { display: none; }
+
+.blue-whale-merchant #summary-column,
+.payble-merchant #summary-column { border-bottom-right-radius: 20px; }
+
+.kashi-merchant #summary-title { color: #EE7C1C !important; }
+.smt-supermerchant #summary-title { color: #FAA61A !important; }
+
+.kashi-merchant #customerName,
+.kashi-merchant #summary-title { border-color: #FDC392 !important; }
+
+.smt-supermerchant #customerName,
+.smt-supermerchant #summary-title { border-color: #ccc !important; }
+
+.blue-whale-merchant #customerName,
+.blue-whale-merchant #summary-title { border-color: #0D6C02 !important; }
+
+.kashi-merchant #order-summary span { color: #222 !important; }
+.smt-supermerchant #order-summary span { color: #fff !important; }
+
+.kashi-merchant ::-webkit-scrollbar-thumb { background: #EE7C1C; }
+
+.kashi-merchant #rbi-guideline {
+    background-color: #FFE3D0 !important;
+    border-color: #FDC392 !important;
+}
+
+.smt-supermerchant #rbi-guideline {
+    background-color: #faa61a26 !important;
+    border-color: #faa61a5c !important;
+}
+
+.kashi-merchant .tabLi.active .icon-upi .path1:before,
+.kashi-merchant .tabLi.active .icon-upi .path2:before { color: #fff; }
+
+.kashi-merchant #safe-secure-logo { color: #666 !important; }
+.smt-supermerchant #safe-secure-logo { color: #ccc !important; }
+.blue-whale-merchant #safe-secure-logo { color: #222 !important; }
+.smt-supermerchant #ccCancelButton,
+.blue-whale-merchant #ccCancelButton { color: #8FC75A !important; }
+
+/* BLUE WHALE PAY */
+.blue-whale-merchant #navigation > li > .tabLi { color: #2450CD; }
+.blue-whale-merchant #navigation > li > .tabLi.active {
+    border-color: #2450CD;
+    background-color: #2450CD;
+    color: #fff;
+}
+.blue-whale-merchant .bank_list_label.active {
+    border-color: #2450CD;
+    background-color: #2450CD;
+}
+.blue-whale-merchant ::-webkit-scrollbar-thumb { background: #2450CD; }
+.blue-whale-merchant #lang-switch-desktop { display: none; }
+
+.blue-whale-merchant #summary-wrap-mobile .row:first-child { display: none !important; }
+
+/* ============================ */
+/* ==== MOBIKWIK WALLET ======= */
+/* ============================ */
+/* .mobikwik--active #wallet-list .bankList:not(#MobikwikWallet_wallet) { display: none !important; } */
+.mobikwik--active #wallet-list .bank_list_label {
+    flex-direction: row !important;
+    justify-content: left;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0 !important;
+}
+
+.mobikwik--active #wallet-list .bankList .nb-icon {
+    box-shadow: rgb(0 0 0 / 16%) 0 5px 15px 0, rgb(0 0 0 / 6%) 0 0 0 1px;
+    padding: 10px;
+    max-width: 50px;
+    flex: 0 0 50px;
+    height: 50px;
+}
+
+.mobikwik--active #wallet-list .bank_list_label .nb-text {
+    margin-left: 15px;
+    margin-top: 0px !important;
+    color: #000;
+}
+
+#mobikwik-section input::placeholder {
+    font-family: "WeezerFont", sans-serif;
+    font-weight: normal;
+}
+
+.mobikwik--active #MobikwikWallet_wallet {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+@media (min-width: 1200px) and (max-width: 1300px) {
+    .mobikwik--active .pinlogin .pinlogin-field { width: 15%; }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .mobikwik--active .pinlogin .pinlogin-field { width: 15%; }
+    /* .mobikwik--active #wallet-otp-box { margin-top: 15px; } */
+}
+
+@media (max-width: 767px) {
+    .mobikwik--active .pinlogin .pinlogin-field { width: 15%; }
+}
+
+@media (max-width: 767px) {
+    .tabBox {
+        padding-top: 10px !important;
+        padding-bottom: 5px !important;
+        background: #FDFDFD !important;
+        border: 1px solid #eee !important;
+        border-bottom-left-radius: 8px !important;
+        border-bottom-right-radius: 8px !important;
+    }
+
+    .tabBox.codBox { padding-top: 15px !important; }
+
+    #navigation > li { margin-bottom: 10px !important; }
+    /* #navigation > li > .tabLi { background: #eee; } */
+
+    #navigation > li > .tabLi:not(.active) {
+        background: #eee;
+        border: 1px solid #ddd;
+    }
+
+    #navigation > li > .tabLi.active {
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    .mobikwik--active #MobikwikWallet_wallet {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .mobikwik--active .pinlogin .pinlogin-field { width: 15%; }
+
+    .mobikwik--active #insufficient-fund,
+    .mobikwik--active #wallet-logged-in { margin-top: 15px; }
+}
+
+/* PAYBLE PAY ID */
+.payble-merchant #navigation > li > .tabLi,
+.payble-merchant #ccCancelButton {
+    color: #EA2628;
+}
+
+.payble-merchant #ccCancelButton:hover { color: #F49A2C; }
+
+.payble-merchant #navigation > li > .tabLi.active {
+    background-image: linear-gradient(to right, #EA2628 , #F49A2C);
+    border-color: #F49A2C;
+    color: #fff;
+}
+
+.payble-merchant .checkmark_checkbox {
+    background: #F49A2C;
+    border-color: #F49A2C;
+}
+
+.payble-merchant .container_check .checkmark_checkbox:after { border-color: #fff; }
+
+.payble-merchant .bankList .bank_list_label {
+    background: #FDC27A;
+    border: 1px solid #FDC27A;
+    box-shadow: rgba(238, 124, 28, 0.16) 0px 5px 15px 0px, rgba(238, 124, 28, 0.06) 0px 0px 0px 1px;
+}
+
+.payble-merchant .bankList .nb-text { color: #EA2628; }
+
+.payble-merchant .bank_list_label.active {
+    background-image: linear-gradient(to right, #EA2628, #F49A2C);
+    border-color: #F49A2C;
+}
+
+.payble-merchant .bank_list_label.active .nb-text { color: #fff; }
+
+.payble-merchant .btn-primary {
+    background-image: linear-gradient(to right, #EA2628, #F49A2C);
+    background-position: 50% 50%;
+    border-color: #F49A2C !important;
+}
+
+.payble-merchant .btn-primary:hover {
+    background-position: 100% 0;
+}
+
+.payble-merchant ::-webkit-scrollbar-thumb { background-image: linear-gradient(to right, #EA2628, #F49A2C); }
+
+@media (max-width: 767px) {
+    #rbi-guideline { display: none; }
+
+    .saveCardDetails:not(.active) .savedCvv { display: none !important; }
+
+    .saveCardDetails.active .savedCvv {
+        max-width: 75px;
+        flex: 0 0 75px;
+    }
+
+    .saveCardDetails:not(.active) .w-save-card { width: 100%; }
+
+    .saveCardDetails.active .w-save-card {
+        max-width: calc(100% - 85px);
+        overflow: hidden;
+        /* d-flex flex-column  */
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 575px) {
+    .saveCardDetails.active .savedCvv {
+        max-width: 60px;
+        flex: 0 0 60px;
+    }
+
+    .saveCardDetails.active .w-save-card { max-width: calc(100% - 70px); }
+}
+
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .savedCards li {
+        width: 48%;
+    }
+    .savedCards li:nth-child(odd) { margin-right: 2%; }
+    .savedCards li:nth-child(even) { margin-left: 2%; }
+}
+
+.mobile-summary li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+#ccCancelButton {
+    color: #173a71;
+    border: none;
+    outline: none;
+}
+
+/* UPI & UPI QR MERGE */
+.toggle-list-box .toggle-list {
+    margin-bottom: 15px;
+}
+
+
+.toggle-list-box .toggle-content {
+    display: none;
+}
+
+.toggle-list-box .toggle-list.active .toggle-icon.toggle-icon-active,
+.toggle-list-box .toggle-list:not(.active) .toggle-icon.toggle-icon-inactive {
+    display: inline-block;
+}
+
+.toggle-list-box .toggle-list.active .toggle-content { display: block; }
+
+.toggle-list-box .toggle-list .toggle-box {
+    padding: 5px;
+    text-align: left;
+}
+
+.toggle-list-box .toggle-list .toggle-box,
+.toggle-list-box .toggle-list .toggle-content {
+    background-color: rgba(0,150,215,.1);
+    border: 1px solid #ccc;
+}
+
+.toggle-list-box .toggle-list.active .toggle-box { border-bottom: none; }
+.toggle-list-box .toggle-list.active .toggle-content { border-top: none; }
+
+.toggle-list-box .toggle-list .toggle-title {
+    color: #000;
+}
+
+/* PAY TENSE */
+.payTense-merchant #logo,
+.payTense-merchant #logo-mobile { visibility: hidden; }
+
+.payTense-merchant #navigation > li > a.active {
+    background-color: #1034A6;
+    border-color: #1034A6;
+}
+
+/* #siteseal img { height: 25px; } */
+
+#footer .payment-accept { height: 96px; }
+
+@media only screen and (min-width: 576px) {
+    #footer { height: 109px; }
+    #footer .payment-accept { height: auto; }
+}
+
+@media only screen and (min-width: 768px) {
+    #footer { height: 62px; }
+}
+
+/* CHECKOUT JS STYLE */
+#checkout-popup-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    /* transition: all ease .5s; */
+    transition: .3s cubic-bezier(.3,1.5,.7,1) transform,.3s opacity;
+    z-index: -999;
+}
+
+#checkout-popup-inner {
+  width: 320px;
+  height: 550px;
+  /* border-radius: 10px; */
+  position: relative;
+  box-shadow: 0 8px 22px -6px rgba(0,10,38,0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: all ease 0.5s;
+  background: #fff;
+}
+
+#checkout-loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition: all ease .5s;
+}
+
+#checkout-popup-overlay iframe {
+    width: 100%;
+    height: 100%;
+    /* border-radius: 20px; */
+}
+
+body.checkout-popup--active #checkout-popup-overlay {
+  opacity: 1;
+  visibility: visible;
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1);
+  z-index: 9999;
+}
+
+body.add-and-pay--active #checkout-popup-inner,
+body.checkout-loader--active #checkout-loader {
+  opacity: 1;
+  visibility: visible;
+}
+
+#close-checkout {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}

@@ -1,0 +1,41 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+apply plugin: 'io.spring.dependency-management'
+
+bootWar {
+    baseName = 'bindb'
+    archiveName 'bindb.war'
+}
+sourceCompatibility = 1.8
+
+repositories {	
+	mavenCentral()
+}
+
+dependencies {
+	compile project(':paymentgateway-commons')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile ('org.apache.httpcomponents:httpmime:4.2.3')
+    compile ('org.json:json:20160212')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.1.Final'
+    compile group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.2.1.Final'
+    compile group: 'org.apache.struts', name: 'struts2-convention-plugin', version: '2.3.24'
+    compile group: 'org.hibernate', name: 'hibernate-ehcache', version: '5.2.1.Final'
+    compile group: 'net.sf.uadetector', name: 'uadetector-resources', version: '2014.10'
+    compile group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.11'
+}

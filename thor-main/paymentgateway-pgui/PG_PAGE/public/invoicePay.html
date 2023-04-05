@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#002163" />
+	<title>Payment Gateway</title>
+	<link rel="shortcut icon" href="%PUBLIC_URL%/img/favicon.ico" type="image/x-icon">
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/fontawesome.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/loader-animation.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/common-style.min.css">
+</head>
+<body class="bg-grey-primary">
+	<div id="root"></div>
+
+	<input type="hidden" th:value="${pageData}" id="sessionObj" />
+
+	<!-- <input type="hidden" id="sessionObj" value='{"country":"India","durationFrom":"11-11-2021","expiresDay":"11-11-2021 23:59","city":"Hisar","durationTo":"11-11-2021","productName":"Realme Pro","serviceCharge":"0.00","currencyName":"INR","invoicePayUrl":"http://127.0.0.1:8082/pgui/jsp/paymentrequest","state":"Haryana","returnUrl":"http://127.0.0.1:8082/pgui/jsp/response","email":"sunilsoni103@gmail.com","zip":"125001","amount":"100","address":"Hisar","quantity":"1","productDesc":"Mobile Phone","UDF17":"23423j4l32","totalAmount":"10000","UDF16":"lkj3l2j432","phone":"9896215750","invoiceUrl":"http://127.0.0.1:8082/pgui/jsp/payInvoice?svalue=1004111111104711","name":"Sunil Soni","invoiceId":"1004111111104711","UDF11":"l23jkl4j32l","payId":"1004111018151710","enablePay":"TRUE","currencyCode":"356","hash":"35F8C3E35F9B39035DFA7F1F3EF56C023046498B3958C44C7BCED6038C611791"}' /> -->
+	
+</body>
+</html>

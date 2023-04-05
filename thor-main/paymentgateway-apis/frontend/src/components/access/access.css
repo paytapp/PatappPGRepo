@@ -1,0 +1,22 @@
+*{ box-sizing: border-box; }
+.lp-access_wrapper{ position: relative;display: flex;align-items: center;height: 100vh; }
+.lp-access_wrapper:after{ content: "";width: 100%;max-width: 220px;position: absolute;left: 0;top: 0;background-color: #192333;height: 100%;z-index: -1; }
+.lp-logo{ position: absolute;top: 20px;left: 20px; }
+.lp-access_wrapper .lp-access_bg{ position: fixed;width: 100%;top: 0;left: 0;z-index: -1; }
+.lp-access_box{ width: 100%;max-width: 450px;position: relative; }
+.lp-access_box .lp-wrapper{ padding-left: 40px; }
+.tabchange_text{ text-align: center; }
+.tabchange_text button{ padding: 0;border: none;background-color:transparent;font-weight: 600; }
+.lp-access_box:after{box-shadow: 7px 0 5px rgb(0 0 0 / 30%);content: "";position: absolute;left: -30px;top: -50px;width: 70px;background-color: #192333;bottom: -50px;z-index: 9;}
+.lp-access_box .lp-heading .heading_with_icon{ justify-content: flex-end; }
+.lp-access_box .lp-heading .heading_with_icon h2{ padding: 8px 20px; margin-left: 0; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px;position: relative;margin-right: -30px; }
+.lp-shape{ position: absolute;top: -50px;left: -30px;width: 70px;bottom: -50px; }
+.lp-shape:after, .lp-shape:before{ content: ""; width: 15px; height: 15px; position: absolute; background-color: #fff; border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%;z-index: 999;margin: auto;left: 0;right: 0;top: 30px; }
+.lp-shape:before{ bottom: 30px; top: unset }
+.lpay_input_group_pin{ display: flex;justify-content: space-between; }
+.lpay_input_group_pin input{ max-width: 15%;height: 40px !important;text-align: center;text-indent: 0 !important; }
+.lpay_input_group_pin input:focus{ border: 1px solid #ddd;box-shadow: 0 0 5px rgba(0,0,0,.3); }
+.optPinLogin label{ text-transform: uppercase; }
+.error-msg{ position: absolute;top: 0;right: 0;color: #f00; }
+#timer{ position: absolute;top: 0px;right: 0; }
+.reset-button{ float: right;cursor: pointer; }

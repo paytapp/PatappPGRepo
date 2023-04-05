@@ -1,0 +1,494 @@
+.merchantAssign-filter {
+    display: inline-block;
+    width: 100%;
+}
+
+.merchantDetail-action {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px !important;
+}
+
+.merchantDetail-action .merchantDetail-box{
+    width: 100%;
+    max-width: 23%;
+    background-color: #f5f5f5;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.submit-shift{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+span.heading-ribbon {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #0096d7;
+    color: #fff;
+    margin-left: -12px;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 11px;
+    margin-top: -11px;
+}
+span.heading-ribbon h4 {
+    color: #fff;
+    font-size: 14px;
+}
+
+.merchantDetail-action .merchantDetail-box:nth-child(4n){
+    border: none;
+}
+
+.merchantDetail-box span{
+    margin-bottom: 8px;
+    display: block;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.merchantDetail-box div{
+    color: #000;
+    font-size: 13px;
+}
+
+.upload-pic {
+    height: 43px;
+    /* width: 100%; */
+    position: relative;
+    cursor: pointer;
+}
+
+.upload-pic input {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+}
+
+.upload-pic img {
+    width: 20px;
+    position: absolute;
+    top: 12px;
+    z-index: 1;
+    left: 11px;
+}
+
+.upload-pic:after {
+    content: " ";
+    min-width: 43px;
+    height: 43px;
+    border-radius: 21px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    -ms-border-radius: 21px;
+    -o-border-radius: 21px;
+    border: 1px solid rgba(204, 204, 204, .4);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.upload-success:after {
+    border-color: #68B118;
+}
+
+.upload-denied:after {
+    border-color: #E60000;
+}
+
+.upload-text {
+    padding-left: 55px;
+    margin-top: 2px;
+    display: inline-block;
+    word-break: break-all;
+}
+
+.upload-text .doc-text {
+    display: block;
+}
+
+.upload-text .doc-file-name {
+    display: block;
+    margin-top: 4px;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.errorMessage {
+    color: #ff0000;
+    text-align: left;
+    margin-top: -15px;
+    margin-left: 2px;
+}
+
+.var-failed {
+    color: #ff0000;
+    font-weight: 400;
+}
+
+div#saveMessage {
+    text-align: center;
+    background-color: #47dd4b73;
+    border-radius: 5px;
+}
+
+div#saveMessage span {
+    text-align: center;
+}
+
+input[type="radio"] {
+    margin-left: 10px !important;
+}
+
+#radiodiv span {
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.textFL_merch:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+.textFL_merch5:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+.btn {
+    font-size: 10pt !important;
+}
+
+.success-text { /* color:#ff0000!important; */
+    margin: 4px auto 15px !important;
+    padding: 10px !important;
+}
+
+.tranjuctionSet {
+    width: 98%;
+    float: left;
+    font: bold 12px arial;
+    color: #666;
+    margin: -10px 0px 10px 10px;
+    padding-top: 4px;
+    line-height: 22px;
+    background: #fff;
+    border: 1px solid #e4e4e4;
+    height: 65px;
+}
+
+.tranjuctionCon {
+    width: 98% !important;
+}
+
+.trans-top {
+    margin-top: 10px;
+}
+
+.trans-btm {
+    margin-bottom: 10px;
+}
+
+.rkb-mg {
+    margin: 0px !important;
+}
+
+#radioError {
+    color: #ff0000 !important;
+    margin-left: 13px;
+    font-size: 11px;
+}
+
+.uploaded-logo img {
+    height: 40px;
+}
+
+.MerchBx {
+    margin-top: 15px !important;
+    margin-bottom: -15px !important;
+}
+
+button, input {
+    border: none;
+}
+
+.margin-email {
+    margin-top: 11px !important;
+}
+
+.error-text {
+    color: #a94442;
+    background-color: #f2dede;
+    list-style-type: none;
+    text-align: center;
+    list-style-type: none;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.error-text span {
+    text-align: center;
+}
+
+.error-text li {
+    list-style-type: none;
+}
+
+#response {
+    color: green;
+}
+
+.actionMessage li {
+    padding: 0px !important;
+}
+
+.selctInpt:focus {
+    background-color: #FFF;
+    outline: 0;
+    border: none;
+    box-shadow: none;
+}
+
+.FlowupLabels .fl_input {
+    top: 10px !important;
+    bottom: 5px !important;
+    color: #000 !important;
+}
+
+.FlowupLabels .fl_wrap {
+    color: #000 !important;
+}
+
+.btn:focus {
+    outline: 0 !important;
+}
+
+#wwerr_resellerId {
+    margin-left: 20% !important;
+}
+
+#wwerr_ifscCode {
+    margin-left: 20% !important;
+}
+
+#wwerr_currency {
+    margin-left: 22% !important;
+}
+
+#wwerr_transactionEmailId {
+    margin-top: 3%;
+    margin-left: -1%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+.float-none {
+    float: none !important;
+}
+
+.mt-20 {
+    margin-top: 20px !important;
+}
+
+.allowed-boxes .tranjuctionCon4 {
+    width: 25% !important;
+    display: flex;
+}
+
+.subtract-value {
+    position: absolute;
+    left: 0;
+    top: -25px;
+    width: 100% !important;
+    max-width: 200px;
+}
+.merchantStatus-data{
+    width: 100%;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.12);
+    margin-bottom: 20px;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.merchantStatus-data > div{
+    width: 24%;
+    font-size: 12px;
+    color: #888888;
+}
+
+
+.merchantStatus-data > div:nth-child(2){
+    width: 56%;
+}
+
+
+.merchantStatus-data > div:nth-child(3){
+    width: 20%;
+}
+
+.merchnatStatus-head {
+    background-color: #f5f7f9;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.merchnatStatus-head span {
+    width: 24%;
+}
+
+.merchnatStatus-head span:nth-child(2){
+    width: 56%;
+}
+
+.merchnatStatus-head span:nth-child(3){
+    width: 20%;
+}
+
+.partSettle {
+    position: relative;
+}
+
+.subTract #wwgrp_deviation {
+    position: relative;
+}
+
+.subTract #deviation {
+    text-indent: 5px;
+}
+
+.subTract #wwgrp_deviation::before {
+    content: "-";
+    position: absolute;
+    top: 8px;
+    left: 0;
+    font-size: 14px;
+}
+
+.mpaDownload {
+    display: inline-block !important;
+    margin-left: 0 !important;
+    margin-right: 15px !important;
+}
+
+.upload-name {
+    display: none;
+}
+
+.upload-size-error {
+    display: none;
+}
+
+[data-file="success"] .upload-text {
+    display: none;
+}
+
+[data-file="success"] .upload-name {
+    display: block;
+    padding-left: 55px;
+}
+
+[data-file="size-error"] .upload-size-error {
+    display: block;
+    padding-left: 55px;
+    color: #E60000
+}
+
+[data-file="size-error"] .upload-text {
+    display: none;
+}
+
+div#uploadedDocuments span{
+    padding: 10px 50px 10px 20px;
+    display: inline-block;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-right: 10px;
+    position: relative;
+}
+
+div#uploadedDocuments span:after{
+    content: "";
+    width: 20px;
+    height: 24px;
+    background-image: url(../image/tick.png);
+    position: absolute;
+    right: 15px;
+    z-index: 999;
+    top: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.lpay_error-msg {
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    background-color: #ffadad;
+    color: #000;
+}
+
+.lpay_button[disabled]{
+    opacity: .7;
+}
+
+@-moz-document url-prefix () {
+    #allowRefund2 {	margin-left:42.6%!important; }
+}
+
+.upload_file-label input { z-index: 999; }
+
+#saveMessage ul li > span { padding: 0 !important; }
+
+span.error-msg {
+    position: absolute;
+    bottom: -16px;
+    color: #f00;
+    font-size: 10px;
+    transition: all .5s ease;
+    right: 0;
+}
+
+[readonly] .lpay_select_group{
+    pointer-events: none;
+}
+
+.pointer-none {
+    pointer-events: none;
+}

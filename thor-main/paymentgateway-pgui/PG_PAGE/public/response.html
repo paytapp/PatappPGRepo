@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0096d7" />
+	<title>Payment Gateway</title>
+	<link rel="shortcut icon" href="%PUBLIC_URL%/img/favicon.ico" type="image/x-icon">
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/fontawesome.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/loader-animation.min.css" />
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/common-style.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/pg-icon.min.css" />
+</head>
+<body class="bg-grey-primary">
+	<div id="root"></div>
+
+	<input type="hidden" th:value="${pageData}" id="sessionObj" />
+
+	<!-- <input type="hidden" id="sessionObj" value='{"RESPONSE_DATE_TIME":"2022-03-15 11:00:08","RESPONSE_CODE":"000","QUANTITY":"1","CUST_PHONE":"9461750175","MOP_TYPE":"1005","CURRENCY_CODE":"356","RRN":"19672206426","STATUS":"Captured","PRODUCT_DESC":"test","PG_REF_NUM":"1187320315105959","AMOUNT":"48000","RESPONSE_MESSAGE":"SUCCESS","CUST_EMAIL":"vishalyadav@gmail.com","RESELLER_ID":"1007311007115418","TXN_ID":"1207320315110007","ACQ_ID":"20220315111212800110168184703559026","TXNTYPE":"SALE","PRODUCT_NAME":"Vishal ","MERCHANT_NAME":"PAYTM2","HASH":"F8E43D2268053967E01971C32CB59483DC84252585535FE766ABA25DE2BCD0C0","PAYMENT_TYPE":"NB","RETURN_URL":"http://127.0.0.1:8082/pgui/jsp/response","PAY_ID":"1003210903114114","HASH_FLAG":"Y","ORDER_ID":"5727320315103425","BOOKING_MERCHANT_FLAG":"N","TOTAL_AMOUNT":"48000","CUST_NAME":"vishal"}' /> -->
+
+	<!-- <input type="hidden" value='{"PAY_ID":"1000310430133459","HASH_FLAG":"N","ORDER_ID":"fSkNJAE8O4qYKWsxrvmo18","ENCDATA":"fBep2aLUpoijFFHGTCvVB+UB4EBb2jsMLZz7uNVtN0/Ijg+s8GMcRvduUZ7VBwIKyhhZojgaUPi3dbndA3kpVvQ8lD4QUsHIdWTisyOZqb8QjN5/D5R0wtDiaN6Y6q//fHUK9KIBkUpYiWU/OPBBHnDMKREhzvI6ssT7Kpr7rtzgu+oI1F5u4IBI9aBrrHcruDiKKUycp+thvOYAEIicsy93GS4LIXX1SGwHYYBHeu1Bq046M4T2HJB15aZJsl1yX2yT3gkVcH/9A9ZC4KX1r7agXxoe3VnW0wngb03YkSUEVcBNClVQeLQjcMGNBIaoYZif1cOKwElJ41nw/il48SGHFPK+WdvoN9yid5lchUllZdlNKCpzY0IlRAgKtY2lQ8bfOTPFfmLYmjLcFFE2IO1lqBcTbMKM3IlzOIupsFe5evmswFdPDQta4VpA1HqmcI5lq/0ih2wRNU03wajkrV4GSpmdU3bAvQJ3S9e0AN3sa54iX23rEKfSwwbnXUI8Xax41SebLvkAWeYgYKojuhvEmROBgd9KLJt+o389oCgDYw9P2kYSTKQT3YEqAn/3J9Ke0PkJ6i+4v8+C3RRYjcjLnrcYiiWOBc+Tf/IXKZQpTQHXHPDQiK5qAS/I4PvS5Zjrsf0e1qPMAUunnOxJ0okxiBg1D4Hx8x2oCmkG/63VtpPPmLErFMY/5FjQxpCTmb7cPQPZ4oiUpMYx8OmqycqjeBA0X5pffwJn5FmAsdpvPprzjWVWzAgONWTdjd9R2BuFVu8RfSnt0Ri3urMm3H97XkPHnuJEoX+OrU2onb00zUee4+46CqjF48wrvb/ua+vqKpE4f7adb8P3UUhdM3xN05vpn2EirY/106Tmh6VhPHshB6U1FRt+dYXphRwL"}' id="sessionObj" /> -->
+	
+</body>
+</html>

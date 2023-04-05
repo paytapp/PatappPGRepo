@@ -1,0 +1,8 @@
+.TitleSection {
+    background: #F4F6FC;
+    /* border: none; */
+    border-bottom: 1px solid #ccc;
+    /* padding: 15px; */
+}
+
+.TitleSection button { background: #F4F6FC; }

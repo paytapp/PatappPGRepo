@@ -1,0 +1,50 @@
+
+/* default, enabled field */
+.pinlogin .pinlogin-field {
+	box-sizing: border-box;	
+	display: inline-block;	
+	width: 15%;
+	height: 42px;	
+	padding: 5px;	
+	margin: 0 1%;
+	border: 1px solid #ddd;	
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;	
+	border-radius: 6px;	
+	text-align: center;
+	font-weight: bold;	
+	outline:none;
+	background: #fff;	
+	transition: all .5s;
+}
+
+.pinlogin .pinlogin-field:first-of-type {
+    margin-left: 0;
+}
+
+.pinlogin .pinlogin-field:last-of-type {
+    margin-right: 0;
+}
+
+/* field with focus */
+.pinlogin .pinlogin-field:focus {
+	border-color: rgba(0,174,255,1);
+}
+
+/* field that's readonly */
+.pinlogin .pinlogin-field:read-only {
+	border-color:#ddd ;
+	color:#aaa;
+	background:#f5f5f5;
+	cursor:default;
+	
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;	
+}
+
+/* field that's invalid */
+.pinlogin .pinlogin-field.invalid {
+	border-color:red;
+	color:red;
+}

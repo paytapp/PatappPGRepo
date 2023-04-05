@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#002163" />
+	<title>Pay EPOS Invoice</title>
+	<link rel="shortcut icon" href="%PUBLIC_URL%/img/favicon.ico" type="image/x-icon">
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/fontawesome.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/loader-animation.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/common-style.min.css">
+</head>
+<body class="bg-grey-primary">
+	<div id="root"></div>
+
+	<input type="hidden" th:value="${pageData}" id="sessionObj" />
+
+	<!-- <input type="hidden" id="sessionObj" value='{"EPOS_PAYMENT_OPTION":"PG_QR","eposUrl":"http://127.0.0.1:8082/pgui/jsp/payInvoice?svalue=LP1641790292787","BUSINESS_NAME":"Sandeep SubMerchant","CURRENCY_CODE":"356","EXPIRY_DATE":"2022-01-10 10:37:08","RETURN_URL":"http://127.0.0.1:8082/pgui/jsp/eposResponse","INVOICE_ID":"LP1641790292787","CREATE_DATE":"2022-01-10 10:22:08","PAY_ID":"5390810108002034","CUST_MOBILE":"9891233268","totalamount":"10000","currencyName":"INR","AMOUNT":"100.00","CUST_EMAIL":"sandeepshmr61@gmail.com","enablePay":"FALSE","hash":"50CFD64311923DF55BF494DFA06D5AEC230F5B65AEF4C05E01663CC9F442DFD6"}' /> -->
+	
+</body>
+</html>

@@ -1,0 +1,14 @@
+.Header-logo {
+    /* background: #002663; */
+    max-width: 90px;
+    flex: 0 0 90px;
+    height: 90px;
+}
+
+.Header-orderId {
+    color: #CBCBCB;
+}
+
+.Header-content {
+    width: calc(100% - 105px);
+}

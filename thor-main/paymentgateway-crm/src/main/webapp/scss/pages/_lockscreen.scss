@@ -1,0 +1,74 @@
+.lockscreen_wrapper{
+    position: fixed;
+    top: 0;
+    display: none;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($blackColor, .9);
+    z-index: 999;
+    .lockscreen_container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .lockscreen_box{
+            width: 100%;
+            max-width: 300px;
+            background-color: $whiteColor;
+            position: relative;
+            padding: 20px;
+            padding-top: 65px;
+
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            .lockscreen_usericon{
+                width: 70px;
+                height: 70px;
+                background-color: $secondaryColor;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                font-size: 30px;
+                color: $whiteColor;
+                position: absolute;
+                top: -35px;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
+    }
+}
+
+
+
+.otp-pin-wrapper{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.otp-pin-wrapper > input{
+    width: 100%;
+    max-width: 12%;
+    height: 40px;
+    text-align: center;
+    text-indent: 0;
+    border: none;
+    border-bottom:3px solid #002163;
+    /* box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12); */
+}
+
+.otp-pin-wrapper > input:read-only{
+    border-bottom-color: rgba(204, 204, 204, .6);
+}

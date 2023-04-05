@@ -1,0 +1,20 @@
+[data-status="error"]{
+    .lpay_popup-innerbox-error{
+        display: flex !important;
+    }
+}
+
+
+[data-status="success"]{
+    .lpay_popup-innerbox-success{
+        display: flex !important;
+    }
+}
+
+.imps-transferred input:-moz-read-only { /* For Firefox */
+    background-color: $defaultBackgroundColor !important;
+  }
+  
+.imps-transferred input:read-only {
+    background-color: $defaultBackgroundColor !important;
+  }

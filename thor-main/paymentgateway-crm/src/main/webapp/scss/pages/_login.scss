@@ -1,0 +1,329 @@
+.login-wrapper{
+    width: 100%;
+    height: 100%;
+    background-image: url("../image/bg-5.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    z-index: 1;
+    &::before{
+        width: 100%;
+		max-width: 100%;
+		position: absolute;
+		height: 80px;
+		top: 0;
+		left: 0;
+		background-color: #192333;
+		content: "";
+		z-index: -1;
+        @include break(768px){
+            max-width: 200px;
+            height: 100%;
+        }
+    }
+    .login-header{
+        .lpay_button{
+            color: $whiteColor;
+            font-weight: $fontWeightSemi !important;
+            padding-right: 0;
+        }
+    }
+
+    .login-action{
+        font-weight: $fontWeightMedium;
+        font-size: 11px;
+        color: #333;
+    }
+
+    .login-form{
+        @extend %lpay-center;
+        justify-content: flex-start;
+        height: 100%;
+        padding: 10px;
+        @include break(768px){
+            padding: 0;
+        }
+        label{
+            color: #333;
+            font-weight: $fontWeightMedium;
+        }
+        .lpay_input{
+            color: #333;
+            border-color: #ddd;
+            letter-spacing: 2px;
+        }
+    }
+
+    .error{
+        color: #ff8c8c;
+        font-weight: 500;
+    }
+
+    .heading_text{
+    font-size: 20px;
+    }
+    .login-box-inner{
+        max-width: 400px;
+        padding: 10px;
+        position: relative;
+        box-sizing: content-box;
+        background-color: rgba(255, 255, 255, 1);
+        border-radius: 5px;
+        margin-top: -90px;
+        display: inline-block;
+        @include break(768px){
+            padding: 20px;
+            margin-left: 150px;
+            padding-left: 30px;
+         }
+        .refresh-icon{
+            color: #333;
+        }
+
+        &:after, .clip-shape{
+            content: "";
+            position: absolute;
+            top: -70px;
+            bottom: -70px;
+            width: 70px;
+            background-color: #192332;
+            left: -60px;
+            border-radius: 5px;
+            display: none;
+            box-shadow: 3px 0 15px rgba(0,0,0, .9);
+            @include break(768px){
+                display: block;
+             }
+        }
+        .clip-shape{
+            width: 150px;
+            left: -137px;
+            z-index: 9;
+            box-shadow: none;
+            display: none;
+            @include break(768px){
+                display: block;
+             }
+
+            &:after, &:before{
+                content: "";
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                top: 20px;
+                right: 28px;
+                display: none;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                background-color: #fff;
+                @include break(768px){
+                   display: block;
+                }
+            }
+            &:before{
+                top: auto;
+                bottom: 20px;
+                right: 28px;
+            }
+        }
+        .heading_with_icon{
+            position: relative;
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #050c16 0%, #002663 51%, #050c16 100%);
+            display: inline-flex;
+            margin-right: -35px;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            &:after{
+                content: "";
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                right: 4px;
+                top: 24px;
+                background-color: #021a3f;
+                z-index: -1;
+                transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+            }
+        }
+        .heading_text{
+            color: $whiteColor;
+            margin-left: 10px;
+            padding-bottom: 0;
+            font-size: 14px !important;
+            padding: 10px 30px 10px 20px;
+        }
+    }
+
+
+
+    .create-account-box-inner{
+        padding: 10px;
+        box-sizing: content-box;
+        background-color: rgba(255,255,255,1);
+        border-radius: 5px;
+        margin-top: -90px;
+        position: relative;
+        @include break(768px){
+            padding: 20px;
+            margin-left: 150px;
+            padding-left: 30px;
+         }
+        .form-group{
+            margin-bottom: 10px;
+            @include break(768px){
+                margin-bottom: 1rem;
+            }
+        }
+        .refresh-icon{
+            color: #333;
+        }
+        &:after, .clip-shape{
+            content: "";
+            position: absolute;
+            top: -70px;
+            bottom: -70px;
+            width: 70px;
+            background-color: #192332;
+            left: -60px;
+            display: none;
+            border-radius: 5px;
+            box-shadow: 3px 0 15px rgba(0,0,0, .9);
+            @include break(768px){
+                display: block;
+             }
+        }
+        .clip-shape{
+            width: 150px;
+            left: -137px;
+            z-index: 9;
+            box-shadow: none;
+            display: none;
+            @include break(768px){
+                display: block;
+             }
+            &:after, &:before{
+                content: "";
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                top: 20px;
+                right: 28px;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                background-color: #fff;
+            }
+            &:before{
+                top: auto;
+                bottom: 20px;
+                right: 28px;
+            }
+        }
+        .heading_with_icon{
+            position: relative;
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #050c16 0%, #002663 51%, #050c16 100%);
+            display: inline-flex;
+            margin-right: -35px;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+            &:after{
+                content: "";
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                right: 4px;
+                top: 24px;
+                background-color: #021a3f;
+                z-index: -1;
+                transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+            }
+        }
+        .heading_text{
+            color: $whiteColor;
+            margin-left: 10px;
+            padding-bottom: 0;
+            font-size: 14px !important;
+            padding: 10px 30px 10px 20px;
+        }
+    }
+    .login-header{
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 0;
+        img{
+            max-width: 70px;
+            @include break(768px){
+                max-width: 150px;
+            }
+        }
+    }
+    &:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 198px;
+        width: 15px;
+        height: 100%;
+        background-image: url('../image/zig-zag.png');
+        z-index: -1;
+        display: none;
+        @include break(768px){
+            display: block;
+        }
+    }
+
+    .heading-wrapper{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.register-btn{
+    font-size: 12px !important;
+    @include break(768px){
+        font-size: 14px !important;
+    }
+}
+
+.create-account-radio{
+    width: 100%;
+    @include break(768px){
+        width: 50% !important;
+    }
+}
+
+.emailPhone-div{
+    .lpay_input_group{
+        margin-bottom: 10px;
+        @include break(768px){
+            margin-bottom: 0px;
+        }
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}

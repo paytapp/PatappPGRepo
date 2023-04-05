@@ -1,0 +1,44 @@
+/* CUSTOM SCROLLBAR */
+@media (max-width: 1199px) {
+    .sb-container {
+        overflow: hidden;
+        padding-right: 10px;
+    }
+    .sb-content {
+      height: 100%;
+      width: 98%;
+      overflow-y: scroll;
+      box-sizing:border-box;
+    }
+    .sb-scrollbar-container {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        top: 5px;
+        width: 10px;
+    }
+    .sb-container-noscroll .sb-scrollbar-container {
+        right: -20px;
+    }
+    
+    .sb-scrollbar {
+      position: absolute;
+      right: 0;
+      height: 30px;
+      width: 10px;
+      border-radius: 10px;
+      background: rgba(50, 50, 50, 0.5);
+    }
+    
+    .sb-scrollbar:hover {
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .sb-container, .sb-content { overflow: -moz-scrollbars-none; }
+    .sb-container::-webkit-scrollbar,
+    .sb-content::-webkit-scrollbar {
+        width: 0 !important;
+        display: none;
+    }
+    .sb-container, .sb-content { -ms-overflow-style: none; }
+}

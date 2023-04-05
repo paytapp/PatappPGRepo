@@ -1,0 +1,102 @@
+.response_wrapper{
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
+}
+
+.error{
+    opacity: 0;
+    margin-bottom: 0;
+    margin-right: -10px;
+    font-size: 12px;
+    position: absolute;
+    top: 6px;
+    right: 0;
+    color: #f00;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+.hasError .error {
+    opacity: 1;
+    margin-right: 0;
+}
+
+.response_logo{
+    display: flex;
+    align-items: center;
+}
+
+.response_logo img{
+    max-width: 100%;
+}
+
+body{
+    margin: 0;
+    background-color: #f8f8fc;
+    font-family: "WeezerFont", sans-serif;
+    cursor: default;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    box-sizing: border-box;
+    
+}
+
+.response_pay{
+    background-size: 200% auto;
+    background-image: linear-gradient(to right, #050c16 0%, #002663 51%, #050c16 100%);
+    padding: 6px 25px !important;
+    border-radius: 25px !important;
+    font-weight: 400 !important;
+    border: none;
+    color: #fff;
+}
+
+.response_pay:focus{
+    outline: none;
+}
+
+.response_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    padding: 20px;
+}
+
+.payTense-merchant .response_logo,
+.payTense-merchant #footer {
+    display: none;
+}
+
+.payTense-merchant .response_footer {
+    padding-bottom: 40px;
+}
+
+.payTense-merchant .response_wrapper {
+    border: 1px solid #ddd;
+}
+
+.btn-additional-info {
+    background: none;
+    padding: 0;
+    outline: none;
+    border: none;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.btn-additional-info:focus {
+    outline: none;
+}

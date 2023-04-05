@@ -1,0 +1,409 @@
+.container {
+    transition: all ease 0.5s;
+}
+#lang--telugu .text-danger1 {
+    font-size: 9.5px !important;
+}
+#lang--hindi .amount_head,
+#lang--hindi .error1,
+#lang--hindi .error2,
+#lang--hindi .red1,
+#lang--hindi .red2,
+#lang--hindi .text-danger1,
+#lang--hindi .vpaPara,
+#lang--kannada .amount_head,
+#lang--kannada .text-danger1,
+#lang--malayalam .amount_head,
+#lang--malayalam .emi-text-field,
+#lang--malayalam .error1,
+#lang--malayalam .error2,
+#lang--malayalam .red1,
+#lang--malayalam .red2,
+#lang--malayalam .text-danger1,
+#lang--marathi .amount_head,
+#lang--punjabi .amount_head,
+#lang--punjabi .error1,
+#lang--punjabi .error2,
+#lang--punjabi .red1,
+#lang--punjabi .red2,
+#lang--punjabi .text-danger1,
+#lang--punjabi .vpaPara,
+#lang--tamil .amount_head,
+#lang--tamil .error1,
+#lang--tamil .error2,
+#lang--tamil .red1,
+#lang--tamil .red2,
+#lang--tamil .text-danger1,
+#lang--tamil .vpaPara,
+#lang--telugu .amount_head,
+#lang--telugu .error1,
+#lang--telugu .error2,
+#lang--telugu .red1,
+#lang--telugu .red2,
+#lang--telugu .vpaPara {
+    font-size: 10px !important;
+}
+#lang--hindi .field-title,
+#lang--malayalam .field-title,
+#lang--marathi .field-title,
+#lang--marathi .text-danger1,
+#lang--punjabi .field-title,
+#lang--punjabi .text-danger1,
+#lang--telugu .field-title {
+    font-size: 11px !important;
+}
+#lang--hindi .emi-text-field,
+#lang--marathi .emi-text-field,
+#lang--punjabi .emi-text-field {
+    font-size: 12px !important;
+}
+#lang--hindi .emi-detail-heading,
+#lang--malayalam #cash_on_delivery,
+#lang--malayalam #paymentNavs > li > span,
+#lang--marathi #cash_on_delivery,
+#lang--punjabi .emi-detail-heading,
+#lang--tamil #cash_on_delivery,
+#lang--tamil .emi-text-field,
+#lang--telugu .emi-text-field,
+#lang--urdu .amount_head {
+    font-size: 14px !important;
+}
+#lang--kannada #paymentNavs > li > span,
+#lang--marathi #paymentNavs > li > span,
+#lang--tamil #paymentNavs > li > span,
+#lang--telugu #paymentNavs > li > span {
+    font-size: 16px !important;
+}
+#lang--hindi #paymentNavs > li > span,
+#lang--punjabi #paymentNavs > li > span {
+    font-size: 15px !important;
+}
+#lang--hindi .emi-detail-left,
+#lang--punjabi .emi-detail-left {
+    margin-top: 3px !important;
+}
+@media (min-width: 768px) {
+    #lang--malayalam .tabLi span.tab-span:not(.pg-icon) {
+        font-size: 12px !important;
+    }
+}
+@media (min-width: 1200px) {
+    /* #lang--arabic .container {
+        max-width: 925px;
+    } */
+    /* #lang--french .container,
+    #lang--spanish .container,
+    #lang--telugu .container {
+        max-width: 980px;
+    } */
+    /* #lang--kannada .container {
+        max-width: 990px;
+    } */
+    /* #lang--tamil .container {
+        max-width: 1017px;
+    } */
+    /* #lang--malayalam .container {
+        max-width: 1085px;
+    } */
+    /* #lang--punjabi.codtext--payathotel .container {
+        max-width: 910px;
+    }
+    #lang--telugu.codtext--payathotel .container {
+        max-width: 1010px;
+    }
+    #lang--malayalam.codtext--payathotel .container,
+    #lang--tamil.codtext--payathotel .container {
+        max-width: 1105px;
+    } */
+    #lang--malayalam #paymentNavs > li > span {
+        font-size: 12px !important;
+    }
+    #lang--kannada #paymentNavs > li > span,
+    #lang--marathi #paymentNavs > li > span,
+    #lang--tamil #paymentNavs > li > span,
+    #lang--telugu #paymentNavs > li > span {
+        font-size: 14px !important;
+    }
+}
+#lang--arabic [data-key="emiFor"],
+#lang--arabic [data-key="rateOfInterest"],
+#lang--english #lblSessionTime,
+/* #lang--english .emi-detail-heading span + span, */
+#lang--french #lblSessionTime,
+#lang--french .emi-detail-heading span + span,
+#lang--hindi .emi-detail-heading span + span + span,
+#lang--kannada .emi-detail-heading span + span + span,
+#lang--malayalam .emi-detail-heading span + span + span,
+#lang--marathi .emi-detail-heading span + span + span,
+#lang--punjabi .emi-detail-heading span + span + span,
+#lang--spanish #lblSessionTime,
+#lang--spanish .emi-detail-heading span + span,
+#lang--tamil .emi-detail-heading span + span + span,
+#lang--telugu .emi-detail-heading span + span + span,
+#lang--urdu [data-key="emiFor"],
+#lang--urdu [data-key="emiMonths"],
+#lang--urdu [data-key="tenure"] {
+    margin-left: 5px;
+}
+#lang--urdu .emi-detail-heading span:first-child {
+    order: 4;
+}
+#lang--urdu [data-key="emiFor"],
+#lang--urdu [data-key="tenure"] {
+    order: 2;
+}
+#lang--urdu [data-key="emiMonths"] {
+    order: 3;
+}
+#lang--urdu #enterVpa,
+#lang--urdu .container_check,
+#lang--urdu [data-key="cvvText"],
+#lang--urdu [data-key="cvvTitle"],
+#lang--urdu [data-key="emptyCvv"],
+#lang--urdu [data-key="rateOfInterest"],
+#lang--urdu [data-key="upiApprovalText"] {
+    direction: rtl;
+}
+#lang--arabic .payment-btn,
+#lang--urdu .payment-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#lang--arabic .payment-btn .lang,
+#lang--urdu .payment-btn .lang {
+    order: 2;
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+#lang--arabic [data-key="tenure"],
+#lang--hindi #lblSessionTime,
+#lang--kannada #lblSessionTime,
+#lang--malayalam #lblSessionTime,
+#lang--marathi #lblSessionTime,
+#lang--punjabi #lblSessionTime,
+#lang--tamil #lblSessionTime,
+#lang--telugu #lblSessionTime,
+#lang--urdu #lblSessionTime {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+#lang--arabic #lblSessionTime {
+    margin-right: 5px !important;
+}
+#lang--malayalam [data-key="retryHeading"] {
+    font-size: 14px !important;
+}
+#lang--malayalam [data-key="retryBtn"] {
+    max-width: 200px !important;
+    font-size: 14px;
+}
+#lang--malayalam [data-key="returnMerchant"] {
+    font-size: 14px !important;
+}
+.emi-val-right-col {
+    max-width: 30%;
+    flex: 0 0 30%;
+}
+.emi-val-left-col {
+    max-width: 70%;
+    flex: 70%;
+}
+@media (min-width: 1200px) {
+    #lang--kannada .paymentNavs li:not(:last-child) {
+        margin-right: 17px !important;
+    }
+    #lang--arabic .paymentNavs li:not(:last-child),
+    #lang--french .paymentNavs li:not(:last-child),
+    #lang--malayalam .paymentNavs li:not(:last-child),
+    #lang--tamil .paymentNavs li:not(:last-child) {
+        margin-right: 20px !important;
+    }
+    #lang--punjabi .paymentNavs li:not(:last-child) {
+        margin-right: 23px !important;
+    }
+    #lang--spanish .paymentNavs li:not(:last-child) {
+        margin-right: 24px !important;
+    }
+    #lang--marathi .paymentNavs li:not(:last-child),
+    #lang--telugu .paymentNavs li:not(:last-child) {
+        margin-right: 25px !important;
+    }
+    /* #lang--malayalam #divName,
+    #lang--malayalam .validityMain,
+    #lang--spanish #divName,
+    #lang--spanish .validityMain,
+    #lang--tamil #divName,
+    #lang--tamil .validityMain,
+    #lang--telugu #divName,
+    #lang--telugu .validityMain {
+        flex: 0 0 22%;
+        max-width: 22%;
+    } */
+    /* #lang--malayalam #divCardNumber,
+    #lang--spanish #divCardNumber,
+    #lang--tamil #divCardNumber,
+    #lang--telugu #divCardNumber {
+        flex: 0 0 39.333%;
+        max-width: 39.333%;
+    } */
+    #lang--tamil .CTA button.payment-btn {
+        min-width: 220px;
+    }
+    #lang--malayalam .CTA button.payment-btn {
+        min-width: 250px;
+    }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+    #translate {
+        max-width: 160px !important;
+    }
+    #lang--kannada .top_header .col-sm-9,
+    #lang--tamil .top_header .col-sm-9 {
+        padding-left: 0 !important;
+    }
+}
+@media (max-width: 767px) {
+    #lang--malayalam .payment-btn,
+    #lang--tamil .payment-btn {
+        font-size: 12px !important;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+    #lang--french .chargedByBank,
+    #lang--hindi .emi-text-field {
+        font-size: 11px !important;
+    }
+    #lang--malayalam .emi-detail-heading,
+    #lang--tamil .emi-text-field {
+        font-size: 12px !important;
+    }
+    #lang--kannada .emi-detail-left,
+    #lang--malayalam .emi-detail-left,
+    #lang--marathi .emi-detail-left,
+    #lang--spanish .emi-detail-left,
+    #lang--tamil .emi-detail-left,
+    #lang--telugu .emi-detail-left {
+        margin-top: 3px !important;
+    }
+}
+@media (min-width: 320px) and (max-width: 391px) {
+    #lang--malayalam .btn-order-detail {
+        font-size: 10px !important;
+    }
+    /* #translate {
+        max-width: 100% !important;
+    } */
+}
+@media (min-width: 392px) and (max-width: 480px) {
+    .top_header .col-sm-9 {
+        justify-content: space-between !important;
+    }
+    #lang--malayalam .text-danger1 {
+        font-size: 9px !important;
+    }
+    #lang--punjabi .emi-text-field {
+        font-size: 10px !important;
+    }
+}
+#translate {
+    min-width: 108px !important;
+    font-size: 12px!important;
+    padding-left: 5px !important;
+}
+
+@media (min-width: 392px) and (max-width: 575px) {    
+    .top_header .col-sm-9 {
+        flex-direction: row !important;
+    }
+}
+@media (min-width: 481px) and (max-width: 575px) {
+    .top_header .col-sm-3 {
+        flex: 0 0 25% !important;
+        max-width: 25% !important;
+    }
+    .top_header .col-sm-9 {
+        flex: 0 0 75% !important;
+        max-width: 75% !important;
+        justify-content: flex-end !important;
+        padding-left: 0 !important;
+    }
+}
+@media (max-width: 480px) {
+    #lang--hindi .text-danger1 {
+        font-size: 9px !important;
+    }
+    #lang--punjabi .text-danger1 {
+        font-size: 8px !important;
+    }
+    #lang--telugu .text-danger1 {
+        font-size: 8.5px !important;
+    }
+    #lang--kannada .payment-btn,
+    #lang--malayalam .payment-btn,
+    #lang--spanish .payment-btn,
+    #lang--tamil .payment-btn {
+        margin-left: 0 !important;
+    }
+    #lang--kannada #ccCancelButton,
+    #lang--malayalam #ccCancelButton,
+    #lang--spanish #ccCancelButton,
+    #lang--tamil #ccCancelButton {
+        margin-top: 15px;
+    }
+    #lang--kannada .ccdc-submit-block,
+    #lang--malayalam .ccdc-submit-block,
+    #lang--spanish .ccdc-submit-block,
+    #lang--tamil .ccdc-submit-block {
+        flex-direction: column-reverse;
+    }
+    #lang--tamil .emi-detail-heading {
+        font-size: 12px !important;
+    }
+    #lang--kannada .emi-text-field {
+        font-size: 13px !important;
+    }
+    #lang--french .payment-btn,
+    #lang--hindi .payment-btn,
+    #lang--marathi .payment-btn,
+    #lang--punjabi .payment-btn {
+        width: 155px !important;
+    }
+    #lang--telugu .payment-btn {
+        width: 180px;
+        margin-left: 10px !important;
+        font-size: 12px !important;
+    }
+    #lang--hindi [data-key="payBtnText"],
+    #lang--punjabi .payment-btn {
+        font-size: 12px !important;
+    }
+    #lang--urdu .payment-btn {
+        width: 150px !important;
+        margin-left: 5px !important;
+    }
+    #lang--kannada .emi-detail-heading,
+    #lang--marathi .emi-detail-heading,
+    #lang--spanish .emi-detail-heading,
+    #lang--telugu .emi-detail-heading {
+        font-size: 14px !important;
+    }
+    #lang--malayalam .emi-detail-heading {
+        font-size: 12.9px !important;
+    }
+    #lang--kannada .mob-btn,
+    #lang--malayalam .mob-btn,
+    #lang--spanish .mob-btn,
+    #lang--tamil .mob-btn {
+        margin-left: 0 !important;
+        width: 100%;
+        display: flex !important;
+        align-items: center !important;
+    }
+    #lang--kannada .saveDetailsReturn,
+    #lang--malayalam .saveDetailsReturn,
+    #lang--spanish .saveDetailsReturn,
+    #lang--tamil .saveDetailsReturn {
+        margin-top: 15px !important;
+    }
+}

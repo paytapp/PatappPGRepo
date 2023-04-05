@@ -1,0 +1,130 @@
+paymentgateway.demo:
+  ################### Master Job Configuration Start ###################
+  masterJobStatus: 1
+  masterJobCron: 0 0/1 * 1/1 * ? *
+  #################### Master Job Configuration End #####################
+  ################### Pending Booking Job Configuration Start ###################
+  pendingBookingJobStatus: 0
+  pendingBookingJobCron: 0 0/1 * 1/1 * ? *
+  #################### Pending Booking Job Configuration End #####################
+  ############################# URL Start ###############################
+  smsApiUrl: http://localhost:8088/sms/sendDailySMS
+  statusEnquiryApiUrl: http://127.0.0.1:8083/pgws/enquiry/process
+  refundApiUrl: http://127.0.0.1:8083/pgws/enquiry/internalRefund
+  #############################  URL End ################################
+  ############################  MONGO_DB  ###############################
+  MONGO_DB_host: 127.0.0.1
+  MONGO_DB_port: 27017
+  MONGO_DB_dbName: letzpaymongodb
+  MONGO_DB_mongoURIprefix: "mongodb://"
+  MONGO_DB_mongoURIsuffix: "@127.0.0.1:27017/letzpaymongodb?maxPoolSize=1000&minPoolSize=100"
+  MONGO_DB_username: pooja
+  MONGO_DB_password: pooja123
+  MONGO_DB_collectionName: transaction
+  MONGO_DB_schedulerLogsCollection: schedulerLogs
+  MONGO_DB_E_Collection : E_Collection
+  MONGO_DB_ImpsSettlementCollection: ImpsSettlementCollection
+  MONGO_DB_closingAmountCollection: closingAmountCollection
+  MONGO_DB_impsUpiBulkCollection: impsUpiBulkCollection
+  MONGO_DB_eNachCollectionName: eNach
+  MONGO_DB_upiAutoPayCollectionName: upiAutoPay
+
+  ########################################################################
+  
+    ################### Transaction Status Enquiry Start ################
+  transactionStatusEnquiry: 0
+  acquirerName: BOB,FSSPAY
+  transactionBankStatusEnquiryCron: 0 0/1 * 1/1 * ? *
+  merchantPayId: ALL
+  hoursBefore: 0
+  hoursInterval: 5
+  minutesBefore: 1
+  minutesInterval: 10
+  enquiryApiUrl: http://127.0.0.1:8083/pgws/enquiry/process
+  ################### Transaction Status Enquiry End ################
+  
+  ################### Order Confirmation Start ################
+  orderConfirmation: 1
+  orderConfirmationCron: 0 0/10 * ? * * *
+  orderMinutesBefore: 5
+  orderMinutesInterval: 10
+  orderMerchantPayId: 1005900615132201
+  orderConfirmApiUrl: http://127.0.0.1:8083/pgws/enquiry/orderConfirm
+  ################### Order Confirmation End ################
+  
+  ################### Retry Callback Start ################
+  retryCallback: 1
+  retryCallbackCron: 0 0/15 * 1/1 * ? *
+  retryCallbackApiUrl: http://127.0.0.1:8083/pgws/process/retryCallback
+  ################### Retry Callback End ################
+  
+  ################### Bulk Imps and UPI ############
+  bulkImpsUpiData: 1
+  impsUpiCron: 0 0/15 * 1/1 * ? *
+  impsUrl: http://127.0.0.1:8083/pgws/impsCompositeApi
+  upiUrl: http://127.0.0.1:8083/pgws/upiCompositeApi
+  
+  ################## Bulk Imps and UPI End ############
+  
+  ################### Closing Amount update Start ################
+  closingAmount: 1
+  closingAmountCron: 0 0 0 1/1 * ? *
+  CLOSING_AMOUNT_COLLECTION: closingAmountCollection
+  ################### Closing Amount update End ################
+  
+  ############ Start ICICI Enach Transaction Schedule For Debit ##########
+  transactionSchedule: 1
+  #Every Morning 00:15AM
+  transactionScheduleCron: 0 15 0 1/1 * ? *
+  iciciEnachTransactionScheduleUrl: ICICI_ENACH_TRANSACTION_SCHEDULE
+  ############################################################
+  
+  ######## Status Enquiry For Debit Transaction ##############
+  statusEnquiryTransactionSchedule: 1
+  # Every Night 11:30PM
+  statusEnquiryTransactionScheduleCron: 0 30 23 1/1 * ? *
+  iciciEnachTransactionStatusEnquiryUrl: ICICI_ENACH_TRANSACTION_STATUS_ENQUIRY
+  #############################################################
+  
+  ############Start ICICI Upi AutoPay Transaction Notification For Debit##########
+  transactionNotificationSchedule: 0
+  #Every Morning 00:15 AM
+  transactionNotificationScheduleCron: 0 15 0 1/1 * ? *
+  transactionNotificationScheduleUrl: UpiAutoPayNotification
+  ############################################################
+  
+  ############Start ICICI Upi AutoPay Debit Transaction For Debit##########
+  upiAutoPayDebitTransactionSchedule: 0
+  #Every Morning 10:00 AM
+  upiAutoPayDebitTransactionScheduleCron: 0 0 10 1/1 * ? *
+  upiAutoPayDebitTransactionScheduleUrl: UpiAutoPayTransaction
+  ############################################################
+  
+  ############Start ICICI Upi AutoPay Debit Transaction For Status Enquiry By Criteria##########
+  upiAutoPayStatusEnquiryCriteriaSchedule: 0
+  #Every Morning 11:00 PM
+  upiAutoPayStatusEnquiryCriteriaScheduleCron: 0 0 23 1/1 * ? *
+  upiAutoPayStatusEnquiryCriteriaScheduleUrl: UpiAutoPayStatusEnquiryByCriteria
+  ############################################################
+  
+  ############Start Auto Refund of Post Settled Transaction for those whose autoRefund flag is ON##########
+  autoRefund: 0
+  #Every Night 08:00 PM
+  autoRefundCron: 0 0 20 1/1 * ? *
+  autoRefundUrl: TransactionWSTransactURL
+  ############################################################
+
+ ###################Payout Status Enquiry Start################
+  payoutStatusEnquiry: 1
+  payoutMinutesInterval: 30
+  payoutStatusEnquiryCron: 0 0/5 * 1/1 * ? *
+  impsStatusEnquiryUrl: http://127.0.0.1:8083/pgws/impsCompositeStatusEnq
+  upiStatusEnquiryUrl: http://127.0.0.1:8083/pgws/upiCompositeStatusEnq
+  ################### Payout Status Enquiry End ################
+  
+  ################### Order Confirmation End ################
+  
+server:
+  port: 8092
+  servlet:
+    context-path: /schedular

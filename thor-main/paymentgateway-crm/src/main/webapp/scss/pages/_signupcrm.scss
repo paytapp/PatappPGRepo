@@ -1,0 +1,22 @@
+.signupCrm{
+    .merchant__form_group{
+        label{
+            font-weight: $fontWeightLighter;
+            line-height: normal;
+            font-size: 13px;
+            color: #000;
+            display: inline-block;
+            font-family: $primaryFont;
+        }
+    }
+    .otp-pin-wrapper{
+        input{
+            height: 30px;
+        }
+    }
+    .crm-signUp{
+        > div{
+            text-align: center;
+        }
+    }
+}

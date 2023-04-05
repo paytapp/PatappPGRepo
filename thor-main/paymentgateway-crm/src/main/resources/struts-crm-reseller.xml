@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="crmReseller" extends="paymentGatewaymain"
+		namespace="/jsp">
+
+		<default-interceptor-ref
+			name="paymentGatewayAdminDefaultToken" />
+
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+		<!-- <action name="resellersList" class="com.paymentgateway.crm.action.MerchantGridViewAction" 
+			method="resellerList"> <result type="json"></result> </action> -->
+
+	</package>
+
+	<package name="jspCallReseller" extends="paymentGatewaymain"
+		namespace="/jsp">
+
+		<default-interceptor-ref
+			name="paymentGatewayAdminDefault" />
+
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+		</global-results>
+
+		<action name="mappedMerchantList"
+			class="com.paymentgateway.crm.action.ResellerMappingAction"
+			method="mappedMerchantList">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result type="json"></result>
+		</action>
+		
+		<action name="resellerDetailsAction"
+			class="com.paymentgateway.crm.action.ResellerGridViewAction">
+			<result type="json"></result>
+		</action>
+
+		<action name="resellerSetup"
+			class="com.paymentgateway.crm.action.MerchantAccountSetupAction">
+			<result name="success">resellerAccountSetup.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+		
+		<action name="merchantSearch"
+			class="com.paymentgateway.crm.action.ResellerMerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/resellerMerchantList.jsp</result>
+		</action>
+		
+		<action name="merchantSearchAction"
+			class="com.paymentgateway.crm.action.ResellerMerchantSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="resellerList"
+			class="com.paymentgateway.crm.action.AbstractSecureAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<interceptor-ref name="execAndWait" />
+			<result name="wait">loading.jsp</result>
+			<result name="input">resellerDetails.jsp</result>
+		</action>
+
+		<action name="resellerChargesUpdate"
+			class="com.paymentgateway.crm.action.ResellerChargesPage">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success">resellerChargesUpdate.jsp</result>
+		</action>
+
+		<action name="resellerChargesUpdateAction"
+			class="com.paymentgateway.crm.action.ResellerChargesUpdateAction">
+			<interceptor-ref
+				name="paymentGatewayAdminDefaultToken" />
+			<result name="input">/jsp/resellerChargesUpdate.jsp</result>
+			<result name="success">/jsp/resellerChargesUpdate.jsp</result>
+			<result name="error">/jsp/resellerChargesUpdate.jsp</result>
+		</action>
+		
+		<action name="updateResellerCharges"
+			class="com.paymentgateway.crm.action.ResellerChargesUpdateAction"
+			method="udpateValues">
+			<interceptor-ref name="paymentGatewayAdminDefaultToken" />
+			<result name="success" type = "json">/jsp/resellerChargesUpdate.jsp</result>
+			<result name="error" type = "json">/jsp/resellerChargesUpdate.jsp</result>
+		</action>
+		
+		<action name="checkPaymentTypeMapedAction"
+			class="com.paymentgateway.crm.action.ResellerChargesUpdateAction"
+			method="checkPaymentTypeMaped">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type = "json">/jsp/resellerChargesUpdate.jsp</result>
+			<result name="error" type = "json">/jsp/resellerChargesUpdate.jsp</result>
+		</action>
+		
+		<action name="viewResellerCharges"
+			class="com.paymentgateway.crm.action.ViewResellerChargesAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/viewResellerCharges.jsp</result>
+			<result name="success">/jsp/viewResellerCharges.jsp</result>
+		</action>
+		
+		<action name="viewResellerChargesAction" 
+			class="com.paymentgateway.crm.action.ViewResellerChargesAction" method="viewCharges">
+			<result name="success" type="json"></result> 
+		</action>
+		
+		<action name="downloadResellerCharges"
+			class="com.paymentgateway.crm.action.DownloadResellerChargesDetailsAction">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+			</result>
+		</action>
+		
+		<action name="downloadResellerChargesPdf"
+			class="com.paymentgateway.crm.action.DownloadResellerChargesDetailsAction"
+			method="pdfDownloader">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>		
+		
+		<action name="resellerMerchantList"
+			class="com.paymentgateway.crm.action.ResellerMerchantAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success">/jsp/resellerMerchantListUpdate.jsp</result>
+		</action>
+		
+		<!-- <action name="resellerMerchantList"
+			class="com.paymentgateway.crm.action.ViewResellerChargesAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success">/jsp/resellerMerchantListUpdate.jsp</result>
+		</action> -->
+	</package>
+</struts>

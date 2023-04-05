@@ -1,0 +1,76 @@
+/* Style the tab */
+div.tab {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Style the buttons inside the tab */
+div.tab .tablinks {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 10px 19px;
+	transition: 0.3s;
+	font-size: 14px;
+	margin-bottom: 0px;
+	margin-right: 0;
+}
+
+div.tab .tablinks:not(:last-child) { border-right: 1px solid #f1f1f1; }
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+/*  background-color: #ddd; */
+	background: #002163;
+	color: #ffffff;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+	/* background-color: #ccc; */
+	background: #002163;
+	color: #ffffff;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	border: 0px solid #ccc;
+	border-top: none;
+}
+.tabcontent.active { display: block; }
+.txnf{
+	border: 0px solid #e4e4e4!important;
+	margin: 15px 0 0!important;
+}
+#UserProfile.scroll--active {
+	overflow: scroll;
+	max-height: 300px;
+}
+
+.mapping-box:not(:first-child) { margin-top: 30px; }
+
+table.bulk-table tbody td { padding: 10px 5px !important;border: 1px solid #ddd; }
+table.bulk-table { border-collapse: collapse !important; }
+table.bulk-table thead{ background-color: #040f1e;color: #fff; }
+table.bulk-table th{ padding: 15px 5px }
+.w-50{ width: 50% !important; }
+.main-div table{ padding: 10px !important }
+.mop_type span div, .payment_type span div{ display: inline-block; padding: 5px 10px; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -ms-border-radius: 15px; -o-border-radius: 15px;background-color: #eee;border: 1px solid #ddd;margin-bottom: 5px;margin-right: 5px; } 
+.lp-bulk_table{ max-height: 600px;overflow-y: auto; }
+.lp-bulk_table::-webkit-scrollbar { width: 5px; }
+.lp-bulk_table::-webkit-scrollbar-thumb { background: #002663;border-radius: 20px; }
+.lp-bulk_table::-webkit-scrollbar-track { background: transparent;border-radius: 20px; }
+.password{ word-break: break-all; }
+.button-div{ white-space: nowrap; }
+.common-status{ padding: 5px 10px 4px;border-radius: 5px;font-weight: 600;background-color:#6fa6ff;color: #082552; }
+.active-status{ background-color: #c5f196;color: #3c6411; }
+.rejected-status{ background-color: #9f0c0c;color: #fff; }
+
+.lp-reject_btn{ padding: 5px 10px; background-color: #ffbebe; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px;font-weight: 600;color: #850707;border: 1px solid #fda2a2;margin-right: 5px; }
+.lp-accept_btn{ padding: 5px 10px; background-color: #c7fbc1; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px;font-weight: 600;color: #125e08;border: 1px solid #31e174;margin-right: 5px; }

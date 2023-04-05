@@ -1,0 +1,25 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+// import Practice from './components/practice/Practice';
+import Access from './components/access/Access';
+import Main from './components/main/Main';
+import "./global";
+
+// import { BrowserRouter } from "react-router-dom";
+
+// import Login from './components/login/authanticate';
+
+
+
+ReactDOM.render(
+    // <BrowserRouter>
+        <Main />,
+    // </BrowserRouter>,
+document.getElementById('root'));
+
+
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// reportWebVitals();

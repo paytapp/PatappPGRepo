@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.mapper.action.prefix.enabled" value="true" />
+	<constant name="struts.custom.i18n.resources" value="global" ></constant>
+	
+	<package name="paymentGatewaymain" extends="struts-default,json-default"
+		namespace="/jsp">
+
+		<interceptors>
+
+			<!-- custom interceptors -->
+
+			<!-- edited by harpreet (StateSaveInterceptor) -->
+			<interceptor name="stateSave"
+				class="com.paymentgateway.crm.interceptor.StateSaveInterceptor" />
+
+			<interceptor name="userLogin"
+				class="com.paymentgateway.crm.interceptor.SessionValidationIntercepter" />
+			<interceptor name="commonUserLogin"
+				class="com.paymentgateway.crm.interceptor.CommonSessionValidationIntercepter" />
+			<interceptor name="noCache"
+				class="com.paymentgateway.crm.interceptor.NoCacheInterceptor" />
+			<interceptor name="commonValidator"
+				class="com.paymentgateway.crm.interceptor.CommonValidationInterceptor" />
+			<interceptor name="adminAuthorizer"
+				class="com.paymentgateway.crm.interceptor.AdminAuthorizationInterceptor" />
+			<interceptor name="customToken"
+				class="com.paymentgateway.crm.interceptor.TokenValidationInterceptor" />
+			<interceptor name="encoder"
+				class="com.paymentgateway.crm.interceptor.EncodingInterceptor" />
+			<interceptor name="httpMethod"
+				class="com.paymentgateway.crm.interceptor.HTTPMethodFilterInterceptor" />
+			<interceptor name="subUserPermission"
+				class="com.paymentgateway.crm.interceptor.SubUserPermissionInterceptor" />
+					<interceptor name="subAdminPermission"
+				class="com.paymentgateway.crm.interceptor.SubAdminPermissionInterceptor" />
+
+			<!-- authentication interceptor for reseller module -->
+			<interceptor name="resellerAuthorizer"
+				class="com.paymentgateway.crm.interceptor.ResellerAuthorizationInterceptor" />
+			<!-- authentication interceptor for superAdmin module -->
+			<interceptor name="superAdminAuthorizer"
+				class="com.paymentgateway.crm.interceptor.SuperAdminAuthorizationInterceptor"/>
+			<interceptor name="paymentGatewayJson"
+				class="com.paymentgateway.crm.interceptor.CustomJsonInterceptor"/>
+			
+			<!-- custom interceptors -->
+			<interceptor-stack name="default">
+				<interceptor-ref name="commonValidator" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="stateSave" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewayDefault">
+				<interceptor-ref name="userLogin">
+					<param name="exception.logEnabled">false</param>
+					<param name="params.excludeParams">^struts\..*,parameters\...*</param>
+				</interceptor-ref>
+				<interceptor-ref name="noCache" />
+				<interceptor-ref name="default" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewayDefaultToken">
+				<interceptor-ref name="httpMethod" />
+				<interceptor-ref name="paymentGatewayDefault" />
+				<interceptor-ref name="customToken" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewayNewUser">
+				<interceptor-ref name="commonUserLogin">
+					<param name="exception.logEnabled">false</param>
+					<param name="params.excludeParams">^struts\..*,parameters\...*</param>
+				</interceptor-ref>
+				<interceptor-ref name="noCache" />
+				<interceptor-ref name="default" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewayNewUserToken">
+				<interceptor-ref name="httpMethod" />
+				<interceptor-ref name="customToken">
+					<param name="excludeMethods">authoriseUser</param>
+				</interceptor-ref>
+				<interceptor-ref name="paymentGatewayNewUser" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewayToken">
+				<interceptor-ref name="httpMethod" />
+				<interceptor-ref name="default" />
+				<interceptor-ref name="commonValidator" />
+				<interceptor-ref name="tokenSession">
+					<param name="includeMethods">*</param>
+				</interceptor-ref>
+				<interceptor-ref name="noCache" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewaySuperAdminDefault">
+				<interceptor-ref name="superAdminAuthorizer">
+					<param name="exception.logEnabled">false</param>
+					<param name="params.excludeParams">^struts\..*,parameters\...*</param>
+				</interceptor-ref>
+				<interceptor-ref name="noCache" />
+				<interceptor-ref name="default" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewayAdminDefault">
+				<interceptor-ref name="adminAuthorizer">
+					<param name="exception.logEnabled">false</param>
+					<param name="params.excludeParams">^struts\..*,parameters\...*</param>
+				</interceptor-ref>
+				<interceptor-ref name="noCache" />
+				<interceptor-ref name="default" />
+			</interceptor-stack>
+
+
+			<interceptor-stack name="paymentGatewaySuperAdminDefaultToken">
+				<interceptor-ref name="httpMethod" />
+				<interceptor-ref name="customToken" />
+				<interceptor-ref name="paymentGatewaySuperAdminDefault" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewayAdminDefaultToken">
+				<interceptor-ref name="httpMethod" />
+				<interceptor-ref name="customToken" />
+				<interceptor-ref name="paymentGatewayAdminDefault" />
+			</interceptor-stack>
+
+			<!-- authentication interceptor-stacks for reseller module -->
+			<interceptor-stack name="paymentGatewayResellerDefault">
+				<interceptor-ref name="resellerAuthorizer">
+					<param name="exception.logEnabled">false</param>
+					<param name="params.excludeParams">^struts\..*,parameters\...*</param>
+				</interceptor-ref>
+				<interceptor-ref name="noCache" />
+				<interceptor-ref name="default" />
+			</interceptor-stack>
+
+			<interceptor-stack name="paymentGatewayResellerDefaultToken">
+				<interceptor-ref name="httpMethod" />
+				<interceptor-ref name="customToken" />
+				<interceptor-ref name="paymentGatewayResellerDefault" />
+			</interceptor-stack>
+
+		</interceptors>
+	</package>
+
+	<include file="struts-crm-admin.xml"></include>
+	<include file="struts-crm-merchant.xml"></include>
+	<include file="struts-crm-reseller.xml"></include>
+	<include file="struts-crm-commons.xml"></include>
+	<include file="struts-crm-superAdmin.xml"></include>
+	<include file="struts-crm-subAdmin.xml"></include>
+	<include file="struts-crm-agent.xml"></include>
+
+</struts>

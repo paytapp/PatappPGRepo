@@ -1,0 +1,56 @@
+.addIcon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 18px;
+    color: $tertiaryColor;
+    cursor: pointer;
+}
+
+#logoImage{
+    max-width: 100%;
+}
+
+.linkDlt{
+    img{
+        max-width: 15px;
+        margin-left: 15px;
+    }
+}
+
+.createdLinks{
+    a{
+        margin-bottom: 10px;
+    }
+}
+
+.red-line{
+    border: 1px solid $error !important;
+    + .inputPriority button{
+        border: 1px solid $error !important;  
+    }
+}
+
+.red-line-upload{
+    &:after{
+        border-color: $error;
+    }
+}
+
+.error-bullets{
+    position: relative;
+    &:before{
+        content: "";
+        width: 8px;
+        height: 8px;
+        background-color:$error;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left:2px;
+    }
+}

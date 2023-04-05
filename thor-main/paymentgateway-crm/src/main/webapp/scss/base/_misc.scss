@@ -1,0 +1,436 @@
+// extend class
+%circle_box{
+    width: 41px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $fontSizeMd;
+};
+
+%border-radius{
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+%transition{
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+%big-icon-box{
+    width: 63px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: $whiteColor;
+    background-color: $secondaryColor;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgb(161, 161, 161);
+    
+}
+
+%transition{
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+%hover-state{
+    text-decoration: none;
+    background-color: $secondaryColor !important;
+    border: none;
+    font-weight: inherit;
+    background-image: none;
+    color: #fff;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba($secondaryColor, .4);
+}
+
+// flex center
+
+%lpay-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lpay-spaceBetween{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+// font size
+
+.lpay_lg{
+    font-size: 24px !important;
+}
+
+.lpay_xl{
+    font-size: 30px !important;
+
+}
+
+// hover state button
+// default 
+
+.center{
+    text-align: center !important;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+:focus{
+    outline: none;
+}
+
+.box-shadow{
+    box-shadow: 0 2px 2px 0 rgba(153, 153, 153, 0.14), 0 3px 1px -2px rgba(153, 153, 153, 0.2), 0 1px 5px 0 rgba(153, 153, 153, 0.12);
+}
+
+.box-shadow-section{
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+
+.white-bg{
+    background-color: $whiteColor;
+}
+
+.d-none{
+    display: none !important;
+}
+
+.lpay-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.d-flex{
+    display: flex;
+}
+
+// padding
+
+.p20{
+    padding: 20px;
+}
+
+// margin
+.mt-10{
+    margin-top: 10px;
+}
+.mr-15{
+    margin-right: 15px;
+}
+
+.mt-30{
+    margin-top: 30px;
+}
+
+.mt-20{
+    margin-top: 20px !important;
+}
+
+.mt-70{
+    margin-top: 70px;
+}
+
+.mb-10{
+    margin-bottom: 10px;
+}
+
+.mb-20{
+    margin-bottom: 20px;
+}
+
+.mb-30{
+    margin-bottom: 30px;
+}
+
+// background colors
+.green { background-color: #5cb85c !important; color: #fff;box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #5cb85c;}
+.blue {background-color: #03a9f4 !important;color: #fff;box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #03a9f4;}
+.red {background-color: #F0433D !important;color:#fff;box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #F0433D;}
+.magenta {background-color: #9c27b0 !important;color:#fff;box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #9c27b0;}
+.brown {background-color: #f0ad4e !important;color:#fff;box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #f0ad4e;}
+
+// default box card
+.lpay_section, .lapy_section{
+    width: 100%;
+    display: inline-block;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    position: relative;
+}
+
+.right_col{
+    background-color: $defaultBackgroundColor;
+    padding: 0px 20px 0;
+    width: 100%;
+    min-height: 700px;
+    float: right;
+    position: relative;
+    padding-bottom: 50px;
+    @extend %transition;
+    &.right_col_extend{
+        width: 100%;
+        @include break(568px){
+            width: calc(100% - 85px);
+        }
+        @extend %transition;
+    }
+    @include break(568px){
+        width: calc(100% - 230px);
+    }
+}
+
+
+// tooltip
+.registerDate{
+    position: relative;
+    .timeTip{
+        position: absolute;
+        right: 0;
+        background-color: #fff;
+        padding: 5px;
+        top: 0px;
+        left: -100px;
+        width: 100px;
+        bottom: 0;
+        text-align: center;
+        border: 1px solid #ddd;
+        margin: auto 0;
+        height: 30px;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+        display: none;
+        &:before{
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            right: -6px;
+            margin: auto;
+            bottom: 9px;
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+    }
+    &:hover{
+        .timeTip{
+            display: block;
+        }
+    }
+}
+
+// display 
+
+.d-b{
+    display: block !important;
+}
+
+.d-ib{
+    display: inline-block !important;
+}
+
+
+// no data found 
+
+.empty-data{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba($error, .8);
+    color: $whiteColor;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+
+// tab panel
+
+.lpay_tabs{
+    .lpay-nav-item{
+        border: none;
+        margin-right: 5px;
+        transition: all .5s ease;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+        -o-transition: all .5s ease;
+        &.active{
+            border: none;
+            .lpay-nav-link{
+                color: $whiteColor;
+                background-size: 200% auto;
+                background-image: linear-gradient(to right, #21597b 0%, #26a0da 51%, #21597b 100%);
+                @extend .box-shadow;
+            }
+        }
+    }
+    .lpay-nav-link{
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        &:hover{
+            color: $whiteColor;
+            background-size: 200% auto;
+            background-image: linear-gradient(to right, #21597b 0%, #26a0da 51%, #21597b 100%);
+            border: none;
+            @extend .box-shadow;
+
+        }
+        &:focus{
+            border: none;
+            outline: none;
+            text-decoration: none;
+        }
+    }
+}
+
+
+// footer css
+
+.lpay_footer{
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    padding-bottom: 15px;
+    background-color: #eee;
+}
+
+// calender
+
+#ui-datepicker-div{
+    width: 229px;
+    box-shadow: 0 0 15px rgba(0,0,0,.2);
+    &.ui-widget-content{
+        border: none;
+        background-color: #fff;
+        background-image: none;
+        .ui-state-hover{
+            background-image: none;
+            background-color: transparent;
+            border: none;
+        }
+        .ui-state-default{
+            border: none;
+            background-color: transparent;
+            background-image: none;
+            height: 25px;
+            width: 25px;
+            font-weight: 400;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ui-widget-header{
+            border: none;
+            background-color: transparent;
+            background-image: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            .ui-datepicker-title{
+                select{
+                    border: none !important;
+                }
+            }
+        }
+        .ui-datepicker-prev, .ui-datepicker-next{
+            cursor: pointer;
+            top: 10px;
+            span {
+                background-image: none !important;
+            }
+            &:before {
+                font-family: FontAwesome;
+                position: absolute;
+                top: 0; right: 0; bottom: 0; left: 0;
+                display: flex;
+                font-weight: normal;
+                align-items: center; justify-content: center;
+            }
+        }
+        .ui-datepicker-prev{
+            &:before{
+                content: "\f100";
+            }
+        }
+        .ui-datepicker-next{
+            &:before{
+                content: "\f101";
+            }
+        }
+        .ui-state-active{
+            font-weight: 400;
+            color: #fff !important;
+            background-color: #002663 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 10px;
+            border-radius: 50%;
+        }
+    }
+    &.ui-widget{
+        font-family: $primaryFont;
+        font-size: 13px;
+    }
+}
+
+
+// alert message
+#saveMessage{
+    background-color:rgba($success, .4);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    pointer-events: none;
+    li{
+        span{
+            text-align: center;
+        }
+    }
+}

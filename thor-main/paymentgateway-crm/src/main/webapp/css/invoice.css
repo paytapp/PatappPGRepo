@@ -1,0 +1,117 @@
+/* .textFL_merch {
+    border: 1px solid #c0c0c0;
+    background: #fff;
+    padding: 8px;
+    width: 100%;
+    min-height: 38px;
+    color: #000;
+    border-radius: 3px;
+}
+
+.textFL_merch:hover {
+    border: 1px solid #d5d0a3;
+    padding: 8px;
+    width: 100%;
+    border-radius: 3px;
+} */
+
+.error {
+    border: none !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    margin: 0 !important;
+    height: auto !important;
+    bottom: -8px !important;
+}
+
+
+.invoCont2 { width: 100%!important; }
+	.invo6 { width: 23%!important; }
+	.invoCont { width: 100%!important; }
+	.invoC1 { width:74%!important; }
+	.productIn {
+		width: 24%!important;
+		margin: 0 0 10px 10px;
+	}
+	/* .textFL_merch {
+		border: 1px solid #c0c0c0;
+		background: #fff;
+		padding: 8px;
+		width: 100%;
+		min-height: 38px;
+		color: #000;
+		border-radius: 3px;
+	}
+
+	.textFL_merch:hover {
+		border: 1px solid #d5d0a3;
+		padding: 8px;
+		width: 100%;
+		border-radius: 3px;
+	} */
+	/* .textFL_merch_invalid {
+		border: 1px solid #c0c0c0;
+		background: #fff;
+		padding: 8px;
+		width: 100%;
+		border-color: #FF0000;
+        border-radius: 1px;
+        min-height: 38px;
+	} */
+	.ui-dialog-osx {
+		-moz-border-radius: 0 0 8px 8px;
+		-webkit-border-radius: 0 0 8px 8px;
+		border-radius: 0 0 8px 8px; border-width: 3px 3px 3px 3px;
+	}
+	.ui-widget-header {
+		background: #173a71;
+		border: 0;
+		color: #fff;
+		font-weight: normal;
+	}
+	.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+		text-align: center;
+		float: none !important;
+	} 
+	.ui-dialog-content { display:none; }
+	.btn-custom {
+		width:95px;
+		background-color: #173a71;
+		margin-left:20px;
+		margin-right:20px;
+		border-color:#5d96ec;
+		color:#fff;
+	}
+	.btn-custom:hover {
+		background-color: #173a71;
+		border-color:#5d96ec;
+		color:#fff;
+	}
+	.ui-state-default {
+		border: 1px solid #5d96ec;
+		background-color: #173a71;
+		font-weight: bold;
+		color:#fff;
+		font-size: 11px;
+		height: auto;
+	}
+	.btnPdng { padding: 7px 36px !important; }
+	.invo6 {
+		min-height: 78px;
+		margin-bottom: 0 !important;
+	}
+	.btn:focus { outline: 0 !important; }
+	.position-relative { position: relative !important; }
+	.position-absolute { position: absolute !important; }
+	.d-flex { display: flex; }
+	.d-none { display: none; }
+	.justify-content-end { justify-content: flex-end; }
+	.height-auto { height: auto !important; }
+	.full-width { width: 100% !important; }
+
+#copyBtn {
+	padding-right: 10px;
+	padding-left: 10px;
+	width: 190px;
+	margin-right: 0 !important;
+}

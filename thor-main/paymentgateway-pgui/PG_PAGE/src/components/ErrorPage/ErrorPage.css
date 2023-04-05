@@ -1,0 +1,10 @@
+.font-size-55 { font-size: 55px !important; }
+.bg-off-white { background-color: #FBFAFF !important; }
+.text-primary-lightest { color: #AFADB5 !important; }
+
+.container-error-page {
+    padding-top: 78px;
+    height: 100vh;
+}
+
+.header-bg { background-color: rgba(0, 150, 250, 0.3); }

@@ -1,0 +1,1 @@
+export const PdfButton = props => <button className="pos_btn btn font-size-14 p-0 mr-5" id="savePdf" onClick={props.klass.downloadPdfHandler}><i className="fas fa-chevron-circle-down font-size-18"></i> Download</button>

@@ -1,0 +1,49 @@
+.ReactCodeInput input {
+    box-sizing: border-box;	
+	display: inline-block;	
+	width: 15%;
+	height: 42px;	
+	padding: 5px;	
+	margin: 0 1%;
+	border: 1px solid #ddd;	
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;	
+	border-radius: 6px;	
+	text-align: center;
+	font-weight: bold;	
+	outline:none;
+	background: #fff;	
+	transition: all .5s;
+    font-family: password-mask !important;
+}
+
+.ReactCodeInput input:first-of-type {
+    margin-left: 0;
+}
+
+.ReactCodeInput input:last-of-type {
+    margin-right: 0;
+}
+
+/* field with focus */
+.ReactCodeInput input:focus {
+	border-color: rgba(0,174,255,1);
+}
+
+/* field that's readonly */
+.ReactCodeInput input:read-only {
+	border-color:#ddd ;
+	color:#aaa;
+	background:#f5f5f5;
+	cursor:default;
+	
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;	
+}
+
+/* field that's invalid */
+.ReactCodeInput input.invalid {
+	border-color:red;
+	color:red;
+}

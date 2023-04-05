@@ -1,0 +1,45 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+apply plugin: 'io.spring.dependency-management'
+
+bootWar {
+    baseName = 'email'
+    archiveName 'email.war'
+}
+
+//jar {
+//    baseName = 'sms'
+//}
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+    compile project(':paymentgateway-commons')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.3.4'
+	compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.3'
+	compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.3'
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.1.Final'
+    compile group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.2.1.Final'
+    compile group: 'org.hibernate', name: 'hibernate-ehcache', version: '5.2.1.Final'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

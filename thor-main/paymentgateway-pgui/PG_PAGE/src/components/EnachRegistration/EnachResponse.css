@@ -1,0 +1,191 @@
+.lpay_button {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: #333333;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    font-weight: 400 !important;
+    cursor: pointer !important; }
+    .lpay_button[disabled] {
+      pointer-events: none; }
+    .lpay_button-sm {
+      font-size: 10px !important; }
+    .lpay_button-md {
+      font-size: 10px !important; }
+    .lpay_button-primary {
+      background-size: 200% auto;
+      background-image: linear-gradient(to right, #050c16 0%, #002663 51%, #050c16 100%);
+      color: #fff; }
+      .lpay_button-primary:hover {
+        background-position: right center;
+        text-decoration: none !important; }
+    .lpay_button-secondary {
+      background-size: 200% auto;
+      background-image: linear-gradient(to right, #21597b 0%, #26a0da 51%, #21597b 100%);
+      color: #fff; }
+      .lpay_button-secondary:hover {
+        background-position: right center;
+        box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4); }
+    .lpay_button-tertiary {
+      background-image: none;
+      background-color: #f5f5f5;
+      color: #000; }
+      .lpay_button-tertiary:hover {
+        color: #000 !important; }
+    .lpay_button-with-input {
+      margin-top: 17px !important;
+      padding: 8px 20px; }
+    .lpay_button:hover {
+      color: #fff;
+      text-decoration: none; }
+      
+.lpay_footer{
+    padding: 15px 0;
+    left: 0;
+    right: 0;
+    position: fixed !important;
+    z-index: 999;
+}
+input:read-only{
+    background-color: #ddd !important;
+}
+.lpay_footer .row{
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+.hide-input{
+    display: none;
+}
+.mpaHeader{
+    padding: 10px 10px;
+    background-color: #041020;
+}
+.mpaLogo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.success-msg {
+    padding: 10px;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    color: #0dc808;
+    padding-bottom: 0;
+}
+
+.mt-70{
+    margin-top: 0px !important;
+}
+
+.lpay_table_wrapper{
+    max-width: 600px;
+    margin: auto;
+}
+
+.lpay_table_wrapper table{
+    width: 100%;
+}
+
+.mpaLogo img{
+    max-width: 100%;
+    max-height: 70px;
+}
+
+.eNACH-response{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 9999;
+    height: 100vh;
+}
+
+.eNACH-response-box {
+    width: 100%;
+    max-width: 650px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.eNACH-respone-data {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.eNACH-respone-data > div {
+    width: 100%;
+    max-width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.eNACH-reponse-msg {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.eNACH-respone-data-div span:last-child{
+    font-weight: 600;
+    font-size: 12px;
+    color: #444;
+}
+
+.eNACH-response::before {
+    content: "";
+    width: 100%;
+    height: 106%;
+    position: fixed;
+    background-color: rgba(0,0,0,.8);
+    z-index: -1;
+}
+
+.eNACH-response-progress {
+    text-align: center;
+    margin-top: 17px;
+    font-size: 16px;
+}
+
+.eNACH-response-progress .progess-bar{
+    width: 100%;
+    height: 4px;
+    display: block;
+    margin-top: 17px;
+    background-color: #ccc;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.eNACH-response-progress .progess-bar::after{
+    content: "";
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    background-color: #002663;
+    top: 0;
+    right: 100%;
+    transition: all 10s ease;
+    border-radius: 4px;
+}
+
+.eNACH-response-progress.active-bar .progess-bar::after{
+    right: 0;
+}
+
+#timeCount{
+    color: #f00;
+}

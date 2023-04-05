@@ -1,0 +1,5 @@
+.zk-topbar_left .logo{ margin-right: 50px; }
+.zk-topbar_left .zk-topbar_home{ margin-left: 0;margin-right: 15px; }
+.zk-topbar_left .logo img{ max-height: 40px; }
+.zk-topbar_wrapper{ padding: 10px 15px;position: absolute;top: 0;left: 0;width: 100%; }
+.zk-login_txt{ margin-left: 15px;font-size: 14px; }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="crmSuperAdmin" extends="paymentGatewaymain" namespace="/jsp">
+		<default-interceptor-ref name="paymentGatewaySuperAdminDefaultToken" />
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+		<action name="adminList" class="com.paymentgateway.crm.action.AdminViewListAction">
+			<result type="json"></result>
+		</action>
+		<action name="viewAdmin" class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewaySuperAdminDefault" />
+			<interceptor-ref name="execAndWait" />
+			<result name="wait">loading.jsp</result>
+			<result name="input">viewAdminList.jsp</result>
+		</action>
+		<action name="adminSignup">
+			<interceptor-ref name="execAndWait" />
+			<result name="wait">loading.jsp</result>
+			<result>adminSignup.jsp</result>
+		</action>
+	 <action name="signupAdmin" class="com.paymentgateway.crm.action.SignupAdminAction">
+			<interceptor-ref name="paymentGatewaySuperAdminDefault"/>
+			<interceptor-ref name="execAndWait" />
+			<result name="wait">loading.jsp</result>
+			<result name="input">adminSignup.jsp</result>
+			<result name="success">adminSignup.jsp</result>
+		</action>
+		<action name="adminSetup"
+			class="com.paymentgateway.crm.action.AdminSetupAction">
+			<result name="success">adminSetup.jsp</result>
+			<result name="input">index.jsp</result>
+		</action>
+		<action name="adminSetupUpdate" class="com.paymentgateway.crm.action.AdminAccountSetupUpdateAction" 
+		   method="updateAdminSetup">
+		   <interceptor-ref name="paymentGatewaySuperAdminDefault"/>
+	       <result name="success">adminSetup.jsp</result>
+	     	<result name="input">adminSetup.jsp</result>
+		</action>
+	</package>
+	<package name="jspCallAdmin" extends="paymentGatewaymain" namespace="/jsp">
+
+		<default-interceptor-ref name="paymentGatewaySuperAdminDefault" />
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+		</global-results>
+	</package>
+</struts>

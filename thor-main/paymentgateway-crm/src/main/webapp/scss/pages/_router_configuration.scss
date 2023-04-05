@@ -1,0 +1,32 @@
+.router_configuration{
+        .router_input{
+            background-color: #fff;
+            height: 20px;
+            width: 50px;
+            text-indent: 8px;
+            border: none;
+            @extend.box-shadow;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+        }
+        .min_input{
+            width: 90px;
+        }
+
+        .card-list{
+            position: relative;
+            margin-bottom: 40px;
+            #saveBtnFirst{
+                position: absolute;
+                top: -50px;
+                right: 0;
+            }
+        }
+
+        .card-list-toggle{
+            margin-bottom: 20px;
+        }
+}

@@ -1,0 +1,11 @@
+html {
+	font-family: sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%
+}
+
+body {
+	margin: 0
+}
+
+.iframe { width:100%; min-height:350px; border:1px solid #00F; background:#fbfbfbl; padding:5px;}

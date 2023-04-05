@@ -1,0 +1,151 @@
+.lpay_data-container{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.3);
+    z-index: 999;
+}
+
+.wrongFileFormat {
+    padding: 10px;
+    background-color: #feaeae;
+    text-align: center;
+    border-radius: 5px;
+    padding: 17px;
+}
+
+.lpay_data-inner{
+    width: 100%;
+    max-width: 350px;
+    background-color: rgba(0,0,0,.3);
+    padding: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: #fff;
+    padding-bottom: 5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.lpay_data-inner:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #d1edc1;
+    left: 0;
+    top: 0;
+}
+
+.lpay_data-li {
+    padding: 10px 10px;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.lpay_data-li span:first-child{
+    font-weight: 500;
+}
+
+.lpay_data-heading {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    
+}
+
+.lpay_data-inner.vpa-success .lpay_data-heading{
+    color: #54a523;
+}
+
+.lpay_data-inner.vpa-failed .lpay_data-heading{
+    color: #e1392d;
+}
+
+.lpay_data-inner .lpay_popup_icon{
+    
+    margin: auto;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.lpay_data-inner.vpa-success .lpay_popup_icon{
+    border: 2px solid rgba(165, 220, 134, 0.5);
+    color: #d1edc1;
+}
+
+
+.lpay_data-inner.vpa-failed .lpay_popup_icon{
+    border: 2px solid rgba(206, 27, 27, 0.5);
+    color: #fea8a2;
+}
+
+
+.lpay_data-inner > div{
+    display: none;
+}
+
+.lpay_data-inner.vpa-success [data-status='success']{
+    display: flex;
+    flex-direction: column;
+}
+
+.lpay_data-inner.vpa-failed [data-status='error']{
+    display: flex;
+    flex-direction: column;
+}
+
+.lpay_data-inner .lpay_popup_icon img{
+    max-width: 50%;
+    height: 23px;
+}
+
+.lpay_data-inner:after {
+    content: "";
+    width: 100%;
+    height: 105px;
+    position: absolute;
+    
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.lpay_data-inner.vpa-success:after{
+    background-color: #cef6b6;
+}
+
+.lpay_data-inner.vpa-failed:after{
+    background-color: #ffc9c5;
+}
+
+.lpay_data-popup{
+    opacity: 0;
+    z-index: -99;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    position: relative;
+}
+
+h4#responseMsgVpa {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.lpay_data-popup.active-popup{
+    opacity: 1;
+    z-index: 999;
+
+}

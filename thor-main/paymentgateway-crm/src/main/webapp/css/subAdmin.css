@@ -1,0 +1,480 @@
+.txnf{
+    border-collapse: inherit !important;
+    border-spacing: inherit !important;
+    padding: 20px !important;
+}
+
+.registration_date{
+    color: #f00;
+}
+
+.dataTables_wrapper{
+    margin-top: 0 !important;
+}
+
+.inner-heading h3{
+    margin: 0 !important;
+}
+
+.merchant__buttons{
+    text-align: right;
+}
+
+.merchant__buttons button{
+    font-family: 'Source Sans Pro';
+    margin-right: 10px;
+	line-height: 20px;
+	font-size: 15px;
+	font-weight: 600;
+	padding: 5px 10px;
+	margin-bottom: 0;
+	text-transform: capitalize;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border: 0;
+}
+
+.merchant__buttons button img{
+	margin-right: 3px;
+	margin-top: -3px;
+	display: inline-block;
+}
+
+.merchant__buttons .save__button{
+	color: #5CB85C;
+	background-color: rgba(92,184,92,.08);
+}
+
+
+.actionBtns{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.actionBtns a{
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+.actionBtns a:last-child{
+    margin-right: 0;
+}
+
+.btn-edit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.d-none{
+    display: none !important;
+}
+
+.assign-mpa-table[disabled]{
+    opacity: .5;
+    cursor: no-drop;
+    pointer-events: none;
+}
+
+.merchantAssign-header h3 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px !important;
+    display: block;
+}
+
+.merchantAssing-status .inner-heading{
+    margin-bottom: 5px;
+}
+
+.confrim-popup{
+    display: none;
+}
+
+
+.confirm-delete-button button{
+    margin-bottom: 0;
+}   
+
+.confirm-delete-text {
+    color: #000;
+    text-align: center;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.confirm-delete-text h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.confirm-delete-text span{
+    color: #888888;
+    margin-top: 10px;
+    display: block;
+}
+
+.merchantAssing-status{
+    margin-bottom: 30px;
+}
+
+.pay_id{
+    text-decoration: underline;
+    color: #0000FF;
+    cursor: pointer;
+}
+
+.permission-checkboxe tr{
+    display: inline-block;
+    margin-right: 10px;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 32%;
+    margin-bottom: 10px;
+}
+
+.permission-checkboxe tr input[type='checkbox']{
+    margin-top: 0;
+    margin-right: 5px;
+}
+.permission-div {
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+}
+
+.my_class{
+    color: #2121fd;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.merchantAssign-filter {
+    display: inline-block;
+    width: 100%;
+
+}
+
+.merchantDetail-action {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px !important;
+}
+
+.merchantDetail-action .merchantDetail-box{
+    width: 100%;
+    max-width: 23%;
+    background-color: #f5f5f5;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.merchantDetail-action .merchantDetail-box:nth-child(4n){
+    border: none;
+}
+
+.merchantDetail-box span{
+    margin-bottom: 8px;
+    display: block;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    font-weight: 600;
+}
+
+.merchantDetail-box div{
+    color: #000;
+    font-size: 13px;
+}
+
+#merchantList_wrapper{
+    overflow-y: auto;
+}
+
+#merchantListEdit_wrapper{
+    overflow-y: auto;
+}
+
+#merchantListEdit_wrapper table{
+    white-space: nowrap;
+}
+
+#merchantList_wrapper table{
+    white-space: nowrap;
+}
+
+
+.merchantDetail-checks{
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.merchantDetail-checks span{
+    color: #000;
+    font-size: 12px;
+    padding-left: 15px;
+}
+
+.merchantDetail-checks > div{
+    width: 100%;
+    max-width: 23%;
+    margin: 10px;
+    margin-top: 0px;
+    background-color: #f5f5f5;
+    padding: 15px;
+    position: relative;
+    border: 1px solid #b6f39d;
+    border-radius: 4px;
+}
+
+.merchantDetail-checks > div:after{
+    content: " ";
+    width: 8px;
+    height: 8px;
+    background-color: #0f0;
+    position: absolute;
+    top: 20px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    left: 13px;
+}
+
+.merchantDetail-checks > div:nth-child(2):after{
+    background-color: #f00;
+}
+
+.merchantDetail-checks > div:nth-child(2){
+    border: 1px solid #f59c9c;
+}
+
+.registerDate{
+    position: relative;
+}
+
+.registerDate:hover .timeTip{
+    display: block;
+}
+
+.timeTip{
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    padding: 5px;
+    top: 0px;
+    left: -100px;
+    width: 100px;
+    bottom: 0;
+    /* max-width: 100px; */
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: auto 0;
+    height: 30px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    display: none;
+}
+
+.timeTip:before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    right: -6px;
+    margin: auto;
+    bottom: 9px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+#merchantPayId{
+    position: absolute;
+    opacity: 0;
+}
+
+.merchantAssing-response {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.merchantAssing-response.success-response{
+    background-color: #b6f39d;
+    display: block;
+}
+
+
+.merchantAssing-response.error-response{
+    background-color: #e87575;
+    display: block;
+    color: #fff;
+}
+
+.upload-pic{
+    height: 43px;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.upload-pic input{
+    width: 100%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+}
+
+.upload-pic img {
+    width: 20px;
+    position: absolute;
+    top: 12px;
+    z-index: 1;
+    left: 11px;
+}
+
+.upload-pic:after{
+    content: " ";
+    min-width: 43px;
+    height: 43px;
+    border-radius: 21px;
+    -webkit-border-radius: 21px;
+    -moz-border-radius: 21px;
+    -ms-border-radius: 21px;
+    -o-border-radius: 21px;
+    border: 1px solid rgba(204,204,204,.4);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.upload-success:after{
+    border-color: #68B118;
+}
+
+
+.upload-denied:after{
+    border-color: #E60000;
+}
+
+.upload-text {
+    padding-left: 55px;
+    margin-top: 2px;
+    display: inline-block;
+    word-break: break-all;
+}
+
+.upload-text .doc-text{
+    display: block;
+}
+
+.upload-text .doc-file-name{
+    display: block;
+    margin-top: 4px;
+}
+
+.merchnatStatus-head {
+    background-color: #f5f7f9;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.merchnatStatus-head span {
+    width: 24%;
+}
+
+.merchnatStatus-head span:nth-child(2){
+    width: 56%;
+}
+
+.merchnatStatus-head span:nth-child(3){
+    width: 20%;
+}
+
+.merchantStatus-data{
+    width: 100%;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.12);
+    margin-bottom: 20px;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.merchantStatus-data > div{
+    width: 24%;
+    font-size: 12px;
+    color: #888888;
+}
+
+
+.merchantStatus-data > div:nth-child(2){
+    width: 56%;
+}
+
+
+.merchantStatus-data > div:nth-child(3){
+    width: 20%;
+}
+
+.download-button{
+    box-sizing: border-box;
+    border: 1px solid rgba(204,204,204,0.4);
+    border-radius: 6px;
+    background-color: #002663;
+    padding: 6px 15px;
+    display: inline-block;
+    color: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.object-data{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}

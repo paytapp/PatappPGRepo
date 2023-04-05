@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="autodetect" dynamicConfig="true">
+
+
+
+	<defaultCache maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" diskSpoolBufferSizeMB="30"
+		maxEntriesLocalDisk="10000000" diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU" statistics="true">
+		<persistence strategy="none" />
+	</defaultCache>
+
+	<cache name="com.paymentgateway.commons.user.User" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="60" timeToLiveSeconds="120">
+		<persistence strategy="none" />
+	</cache>
+	
+	<cache name="com.paymentgateway.commons.user.Account" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="60" timeToLiveSeconds="120">
+		<persistence strategy="none" />
+	</cache>
+	
+	<cache name="com.paymentgateway.commons.user.Roles" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="60" timeToLiveSeconds="120">
+		<persistence strategy="none" />
+	</cache>
+	
+	<cache name="com.paymentgateway.commons.user.AccountCurrency" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="60" timeToLiveSeconds="120">
+		<persistence strategy="none" />
+	</cache>
+	
+	<cache name="com.paymentgateway.commons.user.ChargingDetails" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="60" timeToLiveSeconds="10">
+		<persistence strategy="none" />
+	</cache>
+
+	<cache name="org.hibernate.cache.internal.StandardQueryCache"
+		maxEntriesLocalHeap="60" eternal="false" timeToLiveSeconds="120">
+		<persistence strategy="none" />
+	</cache>
+
+	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+		maxEntriesLocalHeap="5000" eternal="true">
+		<persistence strategy="none" />
+	</cache>
+</ehcache>

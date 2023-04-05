@@ -1,0 +1,620 @@
+.lable-default{
+    z-index: 0;
+    font-size: 13px;
+    color: #000;
+    font-weight: $fontWeightLighter;
+}
+
+// readonly
+
+// input:-moz-read-only { /* For Firefox */
+//     background-color: $defaultBackgroundColor !important;
+//   }
+  
+//   input:read-only {
+//     background-color: $defaultBackgroundColor !important;
+//   }
+.lpay_input_group{
+    position: relative;
+    .form-control{
+        margin-left: 0;
+    }
+    label{
+        z-index: 0;
+        font-size: $globalFontSize;
+        color: #000;
+        font-weight: $fontWeightLighter;
+        // position: absolute;
+        // top: -10px;
+        // left: 8px;
+        // z-index: 99;
+        // background-color: $whiteColor;
+        // padding: 0 5px;
+    }
+    .lpay_input{
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 28px;
+        text-indent: 10px;
+        font-weight: $fontWeightLighter;
+        border: 1px solid $lightGrey;
+        border-radius: 4px;
+        background-color: transparent;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+        -o-border-radius: 4px;
+        &.upload_default{
+            text-indent: 0;
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+        &.lpay_input_textarea{
+            height: 90px !important;
+        }
+    }
+    &.focused{
+        label{
+            top: -9px;
+            z-index: 99;
+        }
+    }
+}
+
+// custom select box 
+
+.lpay_select_group{
+    font-size: 10px;
+    position: relative;
+    .form-control{
+        height: auto;
+        margin-left: 0;
+    }
+    label{
+        z-index: 0;
+        font-size: $globalFontSize;
+        color: #000;
+        font-weight: $fontWeightLighter;
+    }
+    .bootstrap-select{
+        width: 100% !important;
+        .dropdown-toggle{
+            height: 28px;
+            padding-left: 10px;
+            .filter-option{
+                font-size: $globalFontSize;
+            }
+            .bs-caret{
+                span{
+                    display: none;
+                }
+                &:after{
+                    content: "\f107";
+                    font-family: "FontAwesome";
+                    position: absolute;
+                    top:2px;
+                    font-size: 15px;
+                    right: 15px;
+                }
+            }
+            &:hover, &:focus{
+                background-color: transparent !important;
+                outline: none !important;
+                border-color: $lightGrey;   
+            }
+        }
+        &.open{
+            .dropdown-toggle{
+                box-shadow: none !important;
+                background-color: transparent;
+            }
+        }
+        div.dropdown-menu{
+            width: 100%;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            border-top: none;
+            font-size: 10px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            .bs-searchbox{
+                .form-control{
+                    height: 30px;
+                    font-size: 10px;
+                }
+            }
+           
+            ul{
+                
+                padding: 5px !important;
+                .active , .selected{
+                    a{
+                        background-size: 200% auto;
+                        background-image: linear-gradient(to right, #050c16 0%, #002663 51%, #050c16 100%);
+                        color: #fff;
+                    }
+                }
+                
+                a{
+                    padding: 7px 15px;
+                    display: block;
+                    color: $defaultTextColor;
+                    white-space: break-spaces;
+                    margin-bottom: 5px;
+                    font-size: 10px;
+
+                    &:hover{
+                        background-size: 200% auto;
+                        text-decoration: none;
+                        background-image: linear-gradient(to right, #050c16 0%, #002663 51%, #050c16 100%);
+                        color: #fff;
+                        box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.dropdown-menu::-webkit-scrollbar {
+    width: 10px;
+  }
+
+      
+  .dropdown-menu::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.1);
+    border-radius: 20px;
+  }
+  
+  .dropdown-menu::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+  }
+
+// mobile input box
+
+.mobile-div{
+    position: relative;
+    &:after {
+        content: "+91";
+        position: absolute;
+        bottom: 6px;
+        left: 10px;
+        color: #333;
+        letter-spacing: 1px;
+    }
+    .lpay_input{
+        text-indent: 40px !important;
+    }
+}
+
+// upload function
+
+.lpay-upload{
+    @extend .box-shadow;
+    margin-bottom: 0 !important;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+    font-weight: $fontWeightLighter;
+    input{
+        position: absolute;
+        opacity: 0;
+    }
+    .default-upload{
+        width: 100%;
+        max-height: 230px;
+        padding: 30px 20px;
+        background-color: $defaultBackgroundColor;
+        @extend .lpay-center;
+        flex-direction: column;
+        img{
+            width: 150px;
+            margin-top: 10px;
+        }
+    }
+    .upload-status-inner{
+        @extend %lpay-center;
+        text-align: center;
+        flex-direction: column;
+        padding: 24px 10px;
+        background-color: $defaultBackgroundColor;
+        &.success-wrapper{
+            display: none;
+            h4{
+                margin-top: 20px;
+            }
+        }
+        &.error-wrapper{
+            display: none;
+            h4{
+                margin-top: 20px;
+            }
+        }
+    }
+    .status-icon-box{
+        width: 70px;
+        height: 70px;
+        @extend %border-radius;
+        @extend %lpay-center;
+        position: relative;
+        overflow: hidden;
+        border: 2px solid;
+        img{
+            max-width: 50%;
+            height: 23px;
+        }
+        &.success-icon-box{
+            border-color: rgba($success, .5);
+
+        }
+        &.error-icon-box{
+            border-color: rgba($error, .5);
+        }
+
+    }
+
+    .fileInfo{
+        > div{
+            display: none;
+        }
+    }
+
+    &[data-status="success-status"]{
+      .success-wrapper{
+          display: flex !important;
+      }  
+    }
+    &[data-status="error-status"]{
+        .error-wrapper{
+            display: flex !important;
+        }
+        .wrong-size{
+            display: block;
+        }
+    }
+
+    &[data-status="error-status-file"]{
+        .error-wrapper{
+            display: flex !important;
+        }
+        .wrong-format{
+            display: block;
+        }
+
+    }
+
+    .success-text-box, .error-text-box{
+        margin-top: 20px;
+        h3{
+            margin-bottom: 8px;
+        }
+    }
+}
+
+// lapay toggle button
+
+.lpay_toggle{
+    width: 38px;
+    height: 15px;
+    border-radius: 50px;
+    background-color: $lightGrey;
+    position: relative;
+    cursor: pointer;
+    input{ opacity: 0;z-index: -9;position: relative;margin: 0; }
+    &:before{
+        content: "";
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: -4px;
+        left: 0;
+        border: 2px solid $lightGrey;
+        background-color: $whiteColor;
+        border-radius: 50%;
+        transition: all .5s ease;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+        -o-transition: all .5s ease;
+}
+    &.lpay_toggle_on{
+        background-color: $secondaryColor;
+        &:before{
+            left: 18px;
+            border-color: $secondaryColor;
+        }
+    }
+}
+
+
+
+// checkbox 
+.unchecked input{
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .unchecked:before {
+      content: "";
+      width: 15px;
+      height: 15px;
+      background-color: #fff;
+      border-radius: 3px;
+      border: 1px solid #888888;
+      display: inline-block;
+      opacity: .5;
+      box-sizing: border-box;
+      left: 0;
+      position: absolute;
+      top: 2px;
+  }
+  
+  .checkbox-checked:before{
+    background-image: url(../image/checked.png);
+      background-size: 100%;
+      opacity: 1;
+      border: none;
+  }
+  .checkbox-label{
+    position: relative;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    padding-left: 23px;
+    font-weight: $fontWeightLighter;
+    cursor: pointer;
+  }
+
+  // show erroor
+
+  [data-status]{
+      .lpay_error{
+          display: block;
+      }
+      input{
+        border-bottom-color: #f00 !important;
+      }
+      select{
+        border-bottom-color: #f00 !important;
+      }
+  }
+
+  // error
+
+  .lpay_error{
+    position: absolute;
+    bottom: 60px;
+    padding: 5px 10px;
+    color: #f00;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    right: 0;
+    white-space: nowrap;
+    z-index: 99;
+    display: none;
+    &:before{
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-color: #f5f5f5;
+        top: 20px;
+        border-radius: 4px;
+        transform: rotate(45deg);
+        right: 12px;
+    }
+  }
+
+
+
+.default_error{
+    color: #f00;
+    font-size: 12px;
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+
+
+// generic upload 
+
+.upload_file-wrapper{
+    position: relative;
+}
+
+.preview_link{
+    position: absolute;
+    right: 0;
+    top: 2px;
+    font-size: 12px;
+    color: #2597ce;
+}
+
+.upload_file-label{
+    height: 43px;
+	width: 100%;
+	position: relative;
+    cursor: pointer;
+    padding-left: 53px;
+    
+    input{
+        width: 100%;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        opacity: 0;
+    }
+    > img{
+        width: 20px;
+        position: absolute;
+        top: 12px;
+        z-index: 1;
+        left: 11px;
+    }
+    &:after{
+        content: " ";
+        min-width: 43px;
+        height: 43px;
+        border-radius: 21px;
+        -webkit-border-radius: 21px;
+        -moz-border-radius: 21px;
+        -ms-border-radius: 21px;
+        -o-border-radius: 21px;
+        border: 1px solid rgba(204, 204, 204, .4);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .uploaded_file-info {
+        display: none;
+        span{
+            display: block;
+            &:first-child{
+                margin-bottom: 5px;
+            }
+        }
+    }
+    &[data-response=default]{
+        .uploaded_file-default{
+            display: block;
+        }
+    }
+    &[data-response=success]{
+        .uploaded_file-success{
+            color: $success;
+            display: block;
+        }
+    }
+    &[data-response=typeError]{
+        .uploaded_file-typeError{
+            color: $error;
+            display: block;
+        }
+    }
+    &[data-response=sizeError]{
+        .uploaded_file-sizeError{
+            display: block;
+            color: $error;
+        }
+    }
+
+}
+
+// form elements
+.slide-form-element{
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+.active-slide-element{
+    .slide-form-element{
+        max-height: 80px;
+        margin-bottom: 20px;
+        transition: all .5s ease;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+        -o-transition: all .5s ease;
+        overflow: inherit;
+    }
+    .filter-icon{
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transition: all .5s ease;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+        -o-transition: all .5s ease;
+        background-color: #26a0da;
+}
+}
+
+// fitler arrow
+.filter-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $whiteColor;
+    font-size: 20px;
+    position: absolute;
+    right: 30px;
+    bottom: -15px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-color: $secondaryColor;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    &.filter-col{
+        bottom: 0;
+        right: 15px;
+    }
+}
+
+.error-class{
+    position: absolute;
+    opacity: 0;
+    right: 0px;
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+}
+
+.hasError-class{
+    .error-class{
+        position: absolute;
+        right: 15px;
+        opacity: 1;
+        top: 0;
+        color: #f00;
+        transition: all .5s ease;
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+        -o-transition: all .5s ease;
+}
+}
+
+.input-btn-space{
+    margin-top: 17px;
+}

@@ -1,0 +1,13 @@
+.zk-sidebar{ position: absolute; width: 100%; max-width: 180px; border-radius: 8px; -webkit-border-radius: 8px; -moz-border-radius: 8px; -ms-border-radius: 8px; -o-border-radius: 8px;box-shadow: 0 0 5px rgba(0,0,0,.1);top: 80px;bottom: 20px;left: 15px;background-color: #fff; }
+.zk-navbar_div .zk-navbar_ul{ padding-left: 0;list-style-type: none;padding-top: 20px; }
+.zk-navbar_ul li a{ z-index: 1; display: block; padding: 10px 15px; text-decoration: none; font-weight: 600; color: #686868; position: relative; margin-bottom: 10px; transition: all .5s ease-in; -webkit-transition: all .5s ease-in; -moz-transition: all .5s ease-in; -ms-transition: all .5s ease-in; -o-transition: all .5s ease-in;display: flex;align-items: center; }
+.zk-navbar_ul li > a:after{ content: ""; position: absolute; top: 0; left: -8px; right: 8px; bottom: 0; background-color: transparent; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; transition: all .5s ease-in-out; -webkit-transition: all .5s ease-in-out; -moz-transition: all .5s ease-in-out; -ms-transition: all .5s ease-in-out; -o-transition: all .5s ease-in-out; }
+.zk-navbar_ul li > a:before{ content: ""; position: absolute; top: 0; left: -8px; right: 8px; bottom: 0; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; transition: all .5s ease-in; -webkit-transition: all .5s ease-in; -moz-transition: all .5s ease-in; -ms-transition: all .5s ease-in; -o-transition: all .5s ease-in; }
+.zk-navbar_ul li a .zk-menuArrow{ margin-top: 1px;font-size: 14px;position: absolute;right: 15px; }
+.zk-navbar_ul li .zk-menuIcon{ width: 20px; height: 20px; background-color: #eee; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; margin-right: 10px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; }
+.zk-navbar_ul li.activeNav > a, .zk-navbar_ul li a:hover{ color: #e4ecff; }
+.zk-navbar_ul li.activeNav > a:before, .zk-navbar_ul li a:hover:before{ background-color: #fff;box-shadow: 4px 4px 10px rgba(0,0,0,.3);z-index: -2; }
+.zk-navbar_ul li.activeNav > a:after, .zk-navbar_ul li a:hover:after{ background-color: #5f90ff;box-shadow: inset 0 0 26px rgb(21 78 207);z-index: -1; }
+.zk-navbar_ul li.activeNav > .zk-dropdown{ max-height: 500px; }
+
+.zk-dropdown{ padding-left: 0; list-style: none; max-height: 0; overflow: hidden; transition: all 1s ease; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; -ms-transition: all 1s ease; -o-transition: all 1s ease; }

@@ -1,0 +1,2786 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="crmMerchant" extends="paymentGatewaymain"
+		namespace="/jsp">
+
+		<default-interceptor-ref
+			name="paymentGatewayDefaultToken" />
+
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+		<!-- Error Action -->
+		<action name="error"
+			class="com.paymentgateway.crm.action.AbstractSecureAction">
+			<interceptor-ref name="defaultStack" />
+			<result name="input">/jsp/error.jsp</result>
+		</action>
+
+		<action name="unsupportedMethod">
+			<result>/jsp/httpStatus400.jsp</result>
+			<!-- <result type="json"> <param name="statusCode">400</param> </result> -->
+		</action>
+
+
+
+
+		<action name="debitCardMopTypeAction"
+			class="com.paymentgateway.crm.action.StatisticsNetbankingSummaryAction"
+			method="debitCardMopTypeSummary">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+
+
+		<action name="loginHistoryAction"
+			class="com.paymentgateway.crm.action.LoginHistoryAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result type="json"></result>
+		</action>
+
+		<action name="loginHistorySubUserAction"
+			class="com.paymentgateway.crm.action.LoginHistorySubUserAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result type="json"></result>
+		</action>
+
+		<action name="txnAuthentication"
+			class="com.paymentgateway.crm.action.EmailValidationAction"
+			method="transactionAuthentication">
+			<interceptor-ref name="default" />
+			<result name="error">/jsp/error.jsp</result>
+			<result name="success">/jsp/transactionAuthentication.jsp</result>
+			<result name="alreadyAuthenticate">/jsp/transactionAuthentication.jsp</result>
+		</action>
+
+		<!-- <action name="checkFileExist" class="com.paymentgateway.crm.action.CheckFileExistAction"> 
+			<interceptor-ref name="default" /> <interceptor-ref name="paymentGatewayNewUser" 
+			/> <result name="success" type="json"></result> <result name="input" type="json"></result> 
+			</action> -->
+
+		<action name="downloadDocument"
+			class="com.paymentgateway.crm.action.DownloadDocumentAction">
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileNameStruts}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<!--User login-logout signup -->
+
+		<!-- reseller -->
+		<action name="resellerSaveAction"
+			class="com.paymentgateway.crm.action.ResellerAccountUpdateAction"
+			method="saveResellerAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<result name="admin">resellerAccountSetup.jsp</result>
+			<result name="input">resellerAccountSetup.jsp</result>
+		</action>
+
+		<!--User settings -->
+
+		<action name="changePassword"
+			class="com.paymentgateway.crm.action.ChangePasswordAction">
+			<interceptor-ref name="paymentGatewayDefaultToken" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+
+		<action name="verifyOldPin"
+			class="com.paymentgateway.crm.action.ChangePasswordAction"
+			method="validateOldPin">
+			<interceptor-ref name="paymentGatewayDefaultToken" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+
+		<action name="changePasswordSignup"
+			class="com.paymentgateway.crm.action.ChangePasswordAction">
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<result name="success">/jsp/index.jsp</result>
+			<result name="input">/jsp/changePasswordSignup.jsp</result>
+		</action>
+
+		<action name="merchantSaveAction"
+			class="com.paymentgateway.crm.action.MerchantAccountUpdateAction"
+			method="saveAction">
+			<interceptor-ref name="paymentGatewayNewUserToken" />
+			<result name="admin">merchantAccountSetup.jsp</result>
+			<result name="input">merchantAccountSetup.jsp</result>
+		</action>
+
+		<action name="merchantSetupUpdateAction"
+			class="com.paymentgateway.crm.action.MerchantAccountEditSetupAction"
+			method="saveAction">
+			<interceptor-ref name="paymentGatewayNewUserToken" />
+			<result name="admin">merchantAccountSetup.jsp</result>
+			<result name="input">merchantAccountSetup.jsp</result>
+		</action>
+
+		<action name="newMerchantSaveAction"
+			class="com.paymentgateway.crm.action.MerchantAccountUpdateAction"
+			method="saveAction">
+			<interceptor-ref name="paymentGatewayNewUserToken" />
+			<result name="signupProfile">merchantProfileCompletion.jsp</result>
+			<result name="input">merchantProfileCompletion.jsp</result>
+		</action>
+
+		<action name="summaryReportAction"
+			class="com.paymentgateway.crm.action.TransactionSummaryReportAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="summaryReportCountAction"
+			class="com.paymentgateway.crm.action.TransactionSummaryCountAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="getAcquirerDataForNodal"
+			class="com.paymentgateway.crm.action.AddBeneficiaryAction"
+			method="getAcquirerDataForNodal">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="analyticsDataAction"
+			class="com.paymentgateway.crm.action.AnalyticsDataAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="fetchEventInvoice"
+			class="com.paymentgateway.crm.action.EventInvoiceFetchService">
+			<result name="success" type="json"></result>
+		</action>
+				
+		<action name="smsAnalyticsDataAction"
+			class="com.paymentgateway.crm.action.SmsAnalyticsDataAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="sendPerformanceSmsAction"
+			class="com.paymentgateway.crm.action.SendPerformanceSmsAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="refundReportAction"
+			class="com.paymentgateway.crm.action.RefundReportAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="upload"
+			class="com.paymentgateway.crm.action.UploadFile" method="execute">
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,application/pdf
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">home</result>
+		</action>
+
+		<action name="uploadLogo"
+			class="com.paymentgateway.crm.action.UploadLogo" method="execute">
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<result name="success" type="redirect">home</result>
+		</action>
+
+		<action name="checkUploadDoc"
+			class="com.paymentgateway.crm.action.CheckUploadDocument">
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<result type="json"></result>
+		</action>
+
+		<action name="profile"
+			class="com.paymentgateway.crm.action.MerchantAccountSetupAction">
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<result name="success">/jsp/profile.jsp</result>
+		</action>
+
+		<action name="paymentPageLayout"
+			class="com.paymentgateway.crm.action.PaymentPageLayoutAction">
+			<result name="success">/jsp/layoutSetting.jsp</result>
+			<result name="input">/jsp/layoutSetting.jsp</result>
+		</action>
+
+		<action name="SetDefaultPaymentPage"
+			class="com.paymentgateway.crm.action.PaymentPageLayoutAction"
+			method="SetDefaultPaymentPage">
+			<result name="success">/jsp/layoutSetting.jsp</result>
+			<result name="input">/jsp/layoutSetting.jsp</result>
+		</action>
+		<!--User settings END -->
+
+		<!-- Manage User -->
+
+		<action name="addUserAction"
+			class="com.paymentgateway.crm.action.AddSubUserAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/addUser.jsp</result>
+			<result name="addedKhadiuser">/jsp/addKhadiUser.jsp</result>
+			<result name="success">/jsp/addUser.jsp</result>
+		</action>
+		
+		<action name="complaintRaiseAction"
+			class="com.paymentgateway.crm.action.ComplaintRaiseAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="updateComplaintAction"
+			class="com.paymentgateway.crm.action.ComplaintRaiseAction"
+			method="updateComplaint">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="viewComplaintAction"
+			class="com.paymentgateway.crm.action.ComplaintRaiseAction"
+			method="viewComplaint">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+		</action>
+
+		<action name="viewComplaintDetailsAction"
+			class="com.paymentgateway.crm.action.ComplaintRaiseAction"
+			method="viewComplaintFileDetails">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="viewComplaintDetailDownloadAction"
+			class="com.paymentgateway.crm.action.ComplaintRaiseAction" 
+			method = "viewComplaintDetailDownloadAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${zipFileName}</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+			
+			
+		
+		
+		<action name="searchUserAction"
+			class="com.paymentgateway.crm.action.SearchUserAction">
+			<result type="json"></result>
+		</action>
+
+		<action name="editUserCallAction"
+			class="com.paymentgateway.crm.action.EditUserCallAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/editUser.jsp</result>
+			<result name="success">/jsp/editUser.jsp</result>
+		</action>
+
+		<action name="editUserDetails"
+			class="com.paymentgateway.crm.action.EditUserAction"
+			method="editUser">
+			<result name="input">/jsp/editUser.jsp</result>
+		</action>
+		<action name="editSubUserDetails"
+			class="com.paymentgateway.crm.action.SubUserEditAction"
+			method="editSubUser">
+			<interceptor-ref name="paymentGatewayAdminDefaultToken" />
+			<result name="input">/jsp/editUser.jsp</result>
+		</action>
+		<!-- End Manage User -->
+
+
+		<!--Transaction search, reports, invoice and summary -->
+
+
+		<action name="transactionSearchAction"
+			class="com.paymentgateway.crm.action.TransactionSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="transactionReconSearchAction"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="transactionReconSearchActionAllahabad"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+
+		<action name="transactionReconExceptionAction"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction"
+			method="getExceptions">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="accountStatementSummary"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction"
+			method="getAccountStatementSummary">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountStatementSummaryIPAY"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountStatementSummaryIPAY">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountStatementSummaryBob"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountStatementSummaryBOB">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountStatementSummaryAllahabad"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountStatementSummaryAllahabad">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountStatementSummaryMaharashtra"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountStatementSummaryMaharashtra">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+	<action name="accountStatementSummaryCorporation"
+				class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountStatementSummaryCorporation">
+				<interceptor-ref name="paymentGatewayAdminDefault" />
+				<result name="success" type="json"></result>
+				<result name="input" type="json">
+					<param name="root">fieldErrors</param>
+					<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+					<param name="wrapSuffix"><![CDATA[}]]></param>
+				</result>
+				<result name="error" type="json">
+					<param name="errorCode">500</param>
+				</result>
+			</action>
+
+		<action name="accountStatementSummaryKarur"
+				class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountStatementSummaryKarur">
+				<interceptor-ref name="paymentGatewayAdminDefault" />
+				<result name="success" type="json"></result>
+				<result name="input" type="json">
+					<param name="root">fieldErrors</param>
+					<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+					<param name="wrapSuffix"><![CDATA[}]]></param>
+				</result>
+				<result name="error" type="json">
+					<param name="errorCode">500</param>
+				</result>
+			</action>
+			
+		<action name="accountSettlementSummary"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction"
+			method="getAccountSettlementSummary">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountSettlementSummaryBob"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountSettlementSummaryBob">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountSettlementSummaryMaharashtra"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountSettlementSummaryMaharashtra">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountSettlementSummaryAllahabad"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountSettlementSummaryAllahabad">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountSettlementSummaryCorporation"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountSettlementSummaryCorporation">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="accountSettlementSummaryKarur"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getAccountSettlementSummaryKarur">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="reversalsBobData"
+			class="com.paymentgateway.crm.action.TransactionReconSearchAction" method="getBobReversals">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<!-- <action name="searchTransactionAction" class="com.paymentgateway.crm.action.SearchTransactionAction"> 
+			<interceptor-ref name="paymentGatewayAdminDefault" /> <result name="success" 
+			type="json"></result> <result name="input" type="json"> <param name="root">fieldErrors</param> 
+			<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param> <param 
+			name="wrapSuffix"><![CDATA[}]]></param> </result> <result name="error" type="json"> 
+			<param name="errorCode">500</param> </result> </action> -->
+
+		<action name="saleTransactionSearchAction"
+			class="com.paymentgateway.crm.action.SaleTransactionSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="unsettledTransactionSearchAction"
+			class="com.paymentgateway.crm.action.SaleTransactionSearchAction"
+			method="fetchUnsettledTransactions">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="khadiProductReportSearchAction"
+			class="com.paymentgateway.crm.action.KhadiProductWiseSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="vendorTypeSubUserListAction"
+			class="com.paymentgateway.crm.action.MerchantNameAction"
+			method="getVendorTypeSubUserList">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result type="json"></result>
+		</action>
+
+		<action name="subMerchantSearchAction"
+			class="com.paymentgateway.crm.action.SubMerchantSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="khadiSubMerchantSearchAction"
+			class="com.paymentgateway.crm.action.SubMerchantSearchAction"
+			method="khadiSubMerchantSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="studentSearchAction"
+			class="com.paymentgateway.crm.action.StudentSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="bookingsSearchAction"
+			class="com.paymentgateway.crm.action.BookingsSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="cancelBookingAction"
+			class="com.paymentgateway.crm.action.BookingsSearchAction"
+			method="cancelBooking">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="studentFeeDetailSearchAction"
+			class="com.paymentgateway.crm.action.StudentFeeSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="eNachRegistrationDetailsAction"
+			class="com.paymentgateway.crm.action.EnachRegistrationReportAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<!-- <result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result> -->
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="debitTransactionReportData"
+			class="com.paymentgateway.crm.action.EnachRegistrationReportAction"
+			method="debitTransaction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="eNachRegistrationDeactivationAction"
+			class="com.paymentgateway.crm.action.IciciEnachRegistrationDeactivationAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<!-- <result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result> -->
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="eNachTransactionDetailsAction"
+			class="com.paymentgateway.crm.action.EnachTransactionReportAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<!-- <result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result> -->
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="upiAutoPayRegistrationReportAction"
+			class="com.paymentgateway.crm.action.UpiAutoPayReportAction"
+			method="registrationReport">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="upiAutoPayTransactionReportAction"
+			class="com.paymentgateway.crm.action.UpiAutoPayReportAction"
+			method="transactionReport">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="upiAutoPayDebitReportAction"
+			class="com.paymentgateway.crm.action.UpiAutoPayReportAction"
+			method="debitReport">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="autoPayDebitTransactionAction"
+			class="com.paymentgateway.crm.action.UpiAutoPayReportAction"
+			method="autoPayDebitTransaction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="downloadStudentFeeAction"
+			class="com.paymentgateway.crm.action.StudentFeeDownloadAction">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="beneficiarySearchAction"
+			class="com.paymentgateway.crm.action.BeneficiarySearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="beneficiaryTransactionSearch"
+			class="com.paymentgateway.crm.action.BeneficiarySearchAction"
+			method="getActiveBeneficiaries">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="settlementDataUploadHistory"
+			class="com.paymentgateway.crm.action.SettlementDataUploadAction"
+			method="getHistory">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="beneficiaryNodalSearch"
+			class="com.paymentgateway.crm.action.NodalTransactionsAction"
+			method="getActiveBeneficiaries">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="nodalTransactionsSearch"
+			class="com.paymentgateway.crm.action.NodalTransactionHistoryAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+
+		<action name="refreshTransactionStatus"
+			class="com.paymentgateway.crm.action.NodalTransactionHistoryAction"
+			method="refreshTransactionStatus">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+
+		<action name="refundTransactionSearchAction"
+			class="com.paymentgateway.crm.action.RefundTransactionSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+
+		<action name="settledTransactionSearchAction"
+			class="com.paymentgateway.crm.action.SettledTransactionSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="settledConsolidatedReport"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<result name="input">/jsp/settledConsolidatedReport.jsp</result>
+		</action>
+		
+		<action name="settledConsolidatedDataAction"
+			class="com.paymentgateway.crm.action.NetSettledReportAction"
+			method="fetchNetSettledData">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="editAdjustmentAnountAction"
+			class="com.paymentgateway.crm.action.NetSettledReportAction"
+			method="editOtherAdjustmentAnount">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+		</action>
+		<!-- CALL: settlementReport.jsp and SettlementReportAction; FUNCTION: Showing 
+			list of settlement processed transactions -->
+
+		<action name="customerAddressAction"
+			class="com.paymentgateway.crm.action.CustomerAddressAction">
+			<interceptor-ref name="defaultStack" />
+			<result type="json"></result>
+		</action>
+
+		<action name="authorisePopupAction"
+			class="com.paymentgateway.crm.action.AuthoriseDetailsAction">
+			<result name="success">/jsp/authoriseDetails.jsp</result>
+		</action>
+
+		<action name="invoiceSearchAction"
+			class="com.paymentgateway.crm.action.InvoiceSearchAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<!--Transaction search, reports and summary END -->
+
+		<!-- User Transaction operations -->
+
+		<action name="refundConfirmAction"
+			class="com.paymentgateway.crm.action.RefundDetailsAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="execAndWait">
+				<param name="delay">600</param>
+				<param name="delaySleepInterval">300</param>
+			</interceptor-ref>
+			<result name="wait">loading.jsp</result>
+			<result name="success">/jsp/refundDetails.jsp</result>
+			<!-- <result name="error">/jsp/refundTransactions.jsp</result> -->
+		</action>
+
+
+
+		<!-- Translation -->
+		<action name="locale"
+			class="com.paymentgateway.pg.action.LocaleAction">
+			<interceptor-ref name="default" />
+			<result name="success">paymentPage.jsp</result>
+		</action>
+
+		<action name="surchargelocale"
+			class="com.paymentgateway.pg.action.LocaleAction">
+			<interceptor-ref name="default" />
+			<result name="success">surchargePaymentPage.jsp</result>
+		</action>
+
+		<action name="invoiceEmailAction"
+			class="com.paymentgateway.crm.action.InvoiceTransaction"
+			method="invoiceEmail">
+			<result type="json"></result>
+		</action>
+
+		<action name="invoiceSMSAction"
+			class="com.paymentgateway.crm.action.InvoiceTransaction"
+			method="invoiceSMS">
+			<result type="json"></result>
+		</action>
+
+		<action name="getSubMerchantList"
+			class="com.paymentgateway.crm.action.MerchantNameAction"
+			method="subMerchantListByEmailId">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result type="json"></result>
+		</action>
+
+		<action name="getUserStatusList"
+			class="com.paymentgateway.crm.action.UserStatusAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result type="json"></result>
+		</action>
+
+		<action name="updateUserStatus"
+			class="com.paymentgateway.crm.action.UserStatusAction"
+			method="updateUserStatus">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result type="json"></result>
+		</action>
+		
+		<action name="downlodUserList"
+			class="com.paymentgateway.crm.action.DownloadUserListAction">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="getSubMerchantListByPayId"
+			class="com.paymentgateway.crm.action.MerchantNameAction"
+			method="subMerchantListByPayId">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result type="json"></result>
+		</action>
+
+		<action name="getSubMerchantListByPayIdForKhadi"
+			class="com.paymentgateway.crm.action.MerchantNameAction"
+			method="subMerchantListByPayIdForKhadi">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result type="json"></result>
+		</action>
+
+
+		<action name="getMerchantListByReseller"
+			class="com.paymentgateway.crm.action.ResellerRevenueAction"
+			method="getMerchantByResellerPayId">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result type="json"></result>
+		</action>
+
+		<action name="saveInvoice"
+			class="com.paymentgateway.crm.action.InvoiceTransaction">
+			<interceptor-ref
+				name="paymentGatewayAdminDefaultToken" />
+			<result type="json"></result>
+		</action>
+
+		<!-- CALL: from invoiceEvent.jsp save button FUNCTION: creating/saving 
+			invoice -->
+		<action name="saveInvoiceEvent"
+			class="com.paymentgateway.crm.action.InvoiceTransactionEvent">
+			<result name="success"> /jsp/invoiceEvent.jsp</result>
+			<result name="input"> /jsp/invoiceEvent.jsp</result>
+		</action>
+
+		<action name="invoicePopup"
+			class="com.paymentgateway.crm.action.InvoicePay">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success"> /jsp/invoicePopup.jsp</result>
+		</action>
+
+		<!-- CALL: adminprofile action open profileAdmin.jsp/merchantProfile action 
+			open profile.jsp FUNCTION: set selected currency in firstIndex of an dropdown -->
+		<action name="setDefaultCurrency"
+			class="com.paymentgateway.crm.action.DefaultCurrencyUpdater">
+			<interceptor-ref
+				name="paymentGatewayAdminDefaultToken" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+
+		<!-- CALL: invoiceEvent action open invoiceEvent.jsp FUNCTION: set mapped 
+			currency per customer of an dropdown list -->
+		<action name="setMerchantCurrency"
+			class="com.paymentgateway.crm.action.MerchantCurrencyAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="jspCallsMerchant" extends="paymentGatewaymain"
+		namespace="/jsp">
+
+		<default-interceptor-ref
+			name="paymentGatewayDefault" />
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+		</global-results>
+
+
+		<action name="transactionSearch"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionResults.jsp</result>
+		</action>
+
+		<action name="transactionReconSearch"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionReconResults.jsp</result>
+		</action>
+		
+		<action name="transactionReconSearchRupay"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionReconResultsRupay.jsp</result>
+		</action>
+		
+		<action name="transactionReconResultsAmex"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionReconResultsAmex.jsp</result>
+		</action>
+		
+		<action name="transactionReconResultsBob"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionReconResultsBob.jsp</result>
+		</action>
+		
+		<action name="transactionReconResultsAllahabad"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionReconResultsAllahabad.jsp</result>
+		</action>
+		
+		<action name="transactionReconResultsCorporation"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionReconResultsCorporation.jsp</result>
+		</action>
+		
+		<action name="transactionReconResultsKarur"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionReconResultsKarur.jsp</result>
+		</action>
+		
+		<action name="transactionReconResultsMaharashtra"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/transactionReconResultsMaharashtra.jsp</result>
+		</action>
+		
+		<action name="vendorPayoutReportAction"
+			class="com.paymentgateway.crm.action.MerchantNameAction"
+			method="khadiSubUserMerchantList">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/vendorPayout.jsp</result>
+		</action>
+
+		<action name="saleTransactionSearch"
+			class="com.paymentgateway.crm.action.SaleMerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/saleTransactionResults.jsp</result>
+		</action>
+
+		<action name="downloadMpr"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/downloadMpr.jsp</result>
+		</action>
+
+		<action name="unsettledTransactionSearch"
+			class="com.paymentgateway.crm.action.SaleMerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/unsettledTransactionResults.jsp</result>
+		</action>
+		<action name="historicalGenerateAction"
+			class="com.paymentgateway.crm.action.SaleMerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/historicalGenerate.jsp</result>
+		</action>
+		
+		<action name="p2MPayoutSearch"
+			class="com.paymentgateway.crm.action.P2MMerchantPayoutAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/p2mPayoutResults.jsp</result>
+		</action>
+		
+		<action name="p2MPayoutSearchAction"
+			class="com.paymentgateway.crm.action.P2MMerchantPayoutAction"
+			method="fetchP2MPayoutData">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="downloadp2MPayoutReportAction"
+			class="com.paymentgateway.crm.action.DownloadP2MMerchantPayoutAction">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+
+		<action name="saleReconTransactionSearch"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/saleReconTransactionResults.jsp</result>
+		</action>
+
+		<action name="accountStatementSearch"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResults.jsp</result>
+		</action>
+		
+		<action name="accountStatementSearchAllahabad"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResultsAllahabad.jsp</result>
+		</action>
+		
+		
+		<action name="accountStatementSearchMaharashtra"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResultsMaharashtra.jsp</result>
+		</action>
+		
+		<action name="accountStatementSearchCorporation"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResultsCorporation.jsp</result>
+		</action>
+		
+		<action name="accountStatementSearchKarur"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResultsKarur.jsp</result>
+		</action>
+		
+		<action name="accountStatementSearchAmex"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResultsAmex.jsp</result>
+		</action>
+		
+		<action name="accountStatementSearchBob"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResultsBob.jsp</result>
+		</action>
+		
+		<action name="accountStatementSearchRupay"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResultsRupay.jsp</result>
+		</action>
+		
+		<action name="accountStatementSearchIPAY"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountStatementResultsIPAY.jsp</result>
+		</action>
+
+		<action name="settleSummarySearch"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountSettlementSummary.jsp</result>
+		</action>
+
+		<action name="settleSummarySearchAllahabad"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountSettlementSummaryAllahabad.jsp</result>
+		</action>
+		
+		<action name="settleSummarySearchCorporation"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountSettlementSummaryCorporation.jsp</result>
+		</action>
+		
+		<action name="settleSummarySearchKarur"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountSettlementSummaryKarur.jsp</result>
+		</action>
+		
+		<action name="settleSummarySearchMaharashtra"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountSettlementSummaryMaharashtra.jsp</result>
+		</action>
+		
+		<action name="settleSummarySearchBob"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountSettlementSummaryBob.jsp</result>
+		</action>
+		
+		<action name="reversalsBob"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountReversalBob.jsp</result>
+		</action>
+
+		<action name="settleSummarySearchRupay"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountSettlementSummaryRupay.jsp</result>
+		</action>
+		
+		<action name="settleSummarySearchAmex"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/accountSettlementSummaryAmex.jsp</result>
+		</action>
+		
+		<action name="reconExceptionSearch"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/reconExceptionResults.jsp</result>
+		</action>
+
+		<action name="subMerchantSearch"
+			class="com.paymentgateway.crm.action.SubMerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/subMerchantList.jsp</result>
+		</action>
+
+		<!-- Khadi Actions -->
+
+		<action name="khadiSubMerchantSearch"
+			class="com.paymentgateway.crm.action.SubMerchantNameAction"
+			method="khadiSubMerchantSearch">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/khadiSubMerchantList.jsp</result>
+		</action>
+
+		<action name="khadiEditSubMerchCallAction"
+			class="com.paymentgateway.crm.action.KhadiMerchantAccountSetupAction">
+			<result name="wait">loading.jsp</result>
+			<result name="input">/jsp/editKhadiAccountMerchant.jsp</result>
+			<result name="success">/jsp/editKhadiAccountMerchant.jsp</result>
+		</action>
+
+
+		<action name="khadiMerchantSaveAction"
+			class="com.paymentgateway.crm.action.KhadiMerchantAccountUpdateAction"
+			method="saveAction">
+			<interceptor-ref name="paymentGatewayNewUserToken" />
+			<result name="admin">editKhadiAccountMerchant.jsp</result>
+			<result name="signupProfile">merchantProfileCompletion.jsp</result>
+			<result name="input">editKhadiAccountMerchant.jsp</result>
+		</action>
+
+		<action name="khadiMerchantSetupUpdateAction"
+			class="com.paymentgateway.crm.action.KhadiMerchantAccountEditSetupAction"
+			method="saveAction">
+			<interceptor-ref name="paymentGatewayNewUserToken" />
+			<result name="admin">editKhadiAccountMerchant.jsp</result>
+			<result name="signupProfile">merchantProfileCompletion.jsp</result>
+			<result name="input">editKhadiAccountMerchant.jsp</result>
+		</action>
+
+		<action name="khadiProductReport"
+			class="com.paymentgateway.crm.action.SaleMerchantNameAction"
+			method="khadiProductReport">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/khadiProductReport.jsp</result>
+		</action>
+
+		<!-- Khadi Actions End -->
+
+		<action name="schoolReport"
+			class="com.paymentgateway.crm.action.FeeDisplayActionAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/studentFeeTransactionResult.jsp</result>
+		</action>
+
+		<action name="bookingReportSearch"
+			class="com.paymentgateway.crm.action.BookingNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/bookingTransactionResults.jsp</result>
+		</action>
+
+		<action name="bookingsSettled"
+			class="com.paymentgateway.crm.action.BookingNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/bookingSettledReport.jsp</result>
+		</action>
+
+		<action name="bookingRecordSearch"
+			class="com.paymentgateway.crm.action.SaleMerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/bookingsRecordSearch.jsp</result>
+		</action>
+
+		<action name="feeDetailsSearch"
+			class="com.paymentgateway.crm.action.FeeDetailsSearchAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/feeDetailsReport.jsp</result>
+		</action>
+
+		<action name="viewBookingRecord"
+			class="com.paymentgateway.crm.action.BookingSaleCaptureReportAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json"></result>
+			<result name="error" type="json"></result>
+		</action>
+
+		<action name="viewFeeDetailReport"
+			class="com.paymentgateway.crm.action.FeeDetailReportAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+		</action>
+
+		<action name="nodalTransactionsHistory"
+			class="com.paymentgateway.crm.action.NodalTransactionHistoryAction"
+			method="loadData">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success">/jsp/nodalFundTransferHistory.jsp</result>
+		</action>
+
+
+		<action name="payoutAction"
+			class="com.paymentgateway.crm.action.PayoutAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/settlement.jsp</result>
+		</action>
+
+		<action name="payoutTransactionSearch"
+			class="com.paymentgateway.crm.action.PayoutTransactionSearchAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/payoutTransactionHistory.jsp</result>
+		</action>
+
+		<action name="refundTransactionSearch"
+			class="com.paymentgateway.crm.action.RefundMerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/refundTransactionResults.jsp</result>
+		</action>
+
+		<action name="refundReconTransactionSearch"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/refundReconTransactionResults.jsp</result>
+		</action>
+
+		<action name="settledTransactionSearch"
+			class="com.paymentgateway.crm.action.SettledMerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/settledTransactionResults.jsp</result>
+		</action>
+
+		<action name="settledReconTransactionSearch"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/settledReconTransactionResults.jsp</result>
+		</action>
+
+		<action name="paymentAdviseReport"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="input">/jsp/paymentAdviseReport.jsp</result>
+		</action>
+
+		<action name="loginHistoryRedirect"
+			class="com.paymentgateway.crm.action.ForwardAction"
+			method="allMerchants">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="input">/jsp/loginHistory.jsp</result>
+		</action>
+
+		<action name="bookingDownloadReport"
+			class="com.paymentgateway.crm.action.BookingNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/bookingDownloadReport.jsp</result>
+		</action>
+
+		<action name="bookingDownload"
+			class="com.paymentgateway.crm.action.DownloadBookingDetailsAction">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="downloadDebitWithFilter"
+			class="com.paymentgateway.crm.action.EnachRegistrationReportAction"
+			method="downloadEnachRegistrationDetail">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="downloadAutoPayDebitWithFilter"
+			class="com.paymentgateway.crm.action.UpiAutoPayReportAction"
+			method="downloadAutoPayCapturedRegistrationDetail">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="eNachRegistrationDetailsDownloadAction"
+			class="com.paymentgateway.crm.action.EnachRegistrationReportAction"
+			method="downloadEnachRegReport">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="downloadDebitIndividual"
+			class="com.paymentgateway.crm.action.EnachTransactionReportAction"
+			method="downloadEnachTransactionDetail">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="downloadAutoPayDebitIndividual"
+			class="com.paymentgateway.crm.action.UpiAutoPayReportAction"
+			method="downloadAutoPayIndividualTransactionDetail">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="eNachTransactionDetailsDownloadAction"
+			class="com.paymentgateway.crm.action.EnachTransactionReportAction"
+			method="downloadEnachTransactionReport">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="downloadBookingSettled"
+			class="com.paymentgateway.crm.action.DownloadBookingDetailsAction"
+			method="downloadSettled">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="downloadRegistrationReportAction"
+			class="com.paymentgateway.crm.action.UpiAutoPayReportAction"
+			method="downloadRegistrationReport">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="downloadTransactionReportAction"
+			class="com.paymentgateway.crm.action.UpiAutoPayReportAction"
+			method="downloadTransactionReport">
+			<result name="success" type="stream">
+				<param name="contentType">file/xlsx</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+		<action name="loginHistoryRedirectUser"
+			class="com.paymentgateway.crm.action.MerchantNameAction"
+			method="subUserList">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<result name="input">/jsp/userLoginHistory.jsp</result>
+		</action>
+
+		<action name="authorizeTransaction"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/authorizeTransaction.jsp</result>
+		</action>
+
+		<action name="incompleteTransaction"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/incompleteTransaction.jsp</result>
+		</action>
+
+		<action name="failedTransaction"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/failedTransaction.jsp</result>
+		</action>
+
+
+		<action name="invalidTransaction"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/invalidTransaction.jsp</result>
+		</action>
+
+		<action name="captureTransaction"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/captureTransaction.jsp</result>
+		</action>
+
+		<!-- CALL: from menu bar of admin/merchant FUNCTION: display fraud transaction 
+			on jsp (fraudTransaction.jsp) -->
+		<action name="fraudTransaction"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/fraudTransaction.jsp</result>
+		</action>
+
+		<action name="merachantAnalytics"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input">/jsp/analyticsPayments.jsp</result>
+		</action>
+
+		<action name="merchantProfile"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<interceptor-ref name="paymentGatewayDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/profile.jsp</result>
+		</action>
+
+		<action name="invoice"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/invoice.jsp</result>
+		</action>
+
+		<!-- <action name="transactionCharges" class="com.paymentgateway.crm.action.ForwardAction"> 
+			<interceptor-ref name="default" /> <interceptor-ref name="paymentGatewayAdminDefault" 
+			/> <interceptor-ref name="execAndWait"/> <result name="wait">loading.jsp</result> 
+			<result name="input"> /jsp/transactionCharges.jsp</result> </action> -->
+
+		<action name="invoiceSearch"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/invoiceSearch.jsp</result>
+		</action>
+
+		<action name="invoiceEvent"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/invoiceEvent.jsp</result>
+		</action>
+
+		<action name="invoiceQRCodeAction"
+			class="com.paymentgateway.crm.action.DownloadQRCodeAction"
+			method="downloadQRCode">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpg</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="QRcode.jpg"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="qrImageDowloadAction"
+			class="com.paymentgateway.crm.action.DownloadQRImageAction"
+			method="downloadStaticQRCode">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="stream">
+				<param name="contentType">image/png</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="viewRemittance"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/remittanceView.jsp</result>
+		</action>
+
+		<action name="settlementReport"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="subUserPermission" />
+			<interceptor-ref name="subAdminPermission" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/settlementReport.jsp</result>
+		</action>
+
+		<action name="passwordChange"
+			class="com.paymentgateway.crm.action.AbstractSecureAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input"> /jsp/changePassword.jsp</result>
+		</action>
+
+		<action name="passwordChangeSignUp"
+			class="com.paymentgateway.crm.action.AbstractSecureAction">
+			<interceptor-ref name="paymentGatewayNewUser" />
+			<result name="input"> /jsp/changePasswordSignup.jsp</result>
+		</action>
+
+		<action name="addUser"
+			class="com.paymentgateway.crm.action.AddUserCallAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="reseller">/jsp/addUser.jsp</result>
+			<result name="subAdmin">/jsp/addSubAdmin.jsp</result>
+			<result name="merchant">/jsp/addUser.jsp</result>
+			<result name="associate">/jsp/addAssociate.jsp</result>
+
+		</action>
+
+		<action name="addKhadiUser"
+			class="com.paymentgateway.crm.action.AddUserCallAction"
+			method="addKhadiUser">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="merchant">/jsp/addKhadiUser.jsp</result>
+		</action>
+		
+		<action name="addUserByAdmin"
+			class="com.paymentgateway.crm.action.AddUserCallAction"
+			method="addUserByAdmin">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="merchant">/jsp/addUserByAdmin.jsp</result>
+		</action>
+
+		<action name="searchUser"
+			class="com.paymentgateway.crm.action.AbstractSecureAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input">/jsp/searchUser.jsp</result>
+		</action>
+
+		<action name="logout"
+			class="com.paymentgateway.crm.action.LogoutAction" method="logout">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="input">/jsp/index.jsp</result>
+			<result name="success">/jsp/logoutSuccess.jsp</result>
+		</action>
+
+		<action name="summary"
+			class="com.paymentgateway.crm.action.AccountSummary">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="success">/jsp/accountSummary.jsp</result>
+			<result name="input"> /jsp/accountSummary.jsp</result>
+		</action>
+
+		<action name="paymentPageSetting"
+			class="com.paymentgateway.crm.action.PaymentPageSettingAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="success">/jsp/layoutSetting.jsp</result>
+			<result name="input">/jsp/layoutSetting.jsp</result>
+		</action>
+
+		<action name="previewPaymentPageSetting"
+			class="com.paymentgateway.crm.action.PaymentPageSettingAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="success">/jsp/previewPaymentPage.jsp</result>
+			<result name="input">/jsp/previewPaymentPage.jsp</result>
+		</action>
+
+		<!--Analytics Report -->
+		<!-- CALL: dayOfTheWeek.jsp and dayOfTheWeekAction; FUNCTION: Showing last 
+			7 days transactions day wise in chart -->
+		<action name="weeklyAnalytics"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<result name="input">/jsp/weeklyTransacions.jsp</result>
+		</action>
+
+		<action name="weekDay"
+			class="com.paymentgateway.crm.action.DayOfTheWeekAction">
+			<interceptor-ref name="default" />
+			<result type="json"></result>
+		</action>
+
+		<action name="hourlyAnalytics"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="default" />
+			<result name="input">/jsp/hourlyAnalyticsTransaction.jsp</result>
+		</action>
+
+		<action name="transactionCharges"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<!-- <result name="wait">loading.jsp</result> -->
+			<result name="input">/jsp/transactionCharges.jsp</result>
+		</action>
+		<action name="lineChartAction"
+			class="com.paymentgateway.crm.dashboard.LineChartAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+		<action name="chartAction"
+			class="com.paymentgateway.crm.dashboard.ChartAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+		<action name="statisticsAction"
+			class="com.paymentgateway.crm.dashboard.StatisticsAction"
+			method="capture">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+
+		<action name="statisticsActionCapture"
+			class="com.paymentgateway.crm.dashboard.StatisticsAction"
+			method="summaryData">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+
+		<action name="statisticsActionRefund"
+			class="com.paymentgateway.crm.dashboard.StatisticsAction"
+			method="refund">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+		<action name="payOutDataAction"
+			class="com.paymentgateway.crm.dashboard.StatisticsAction"
+			method="payOutAllData">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+		<action name="downloadPayOutDashboardTxn"
+			class="com.paymentgateway.crm.dashboard.DownloadTransationByStatus"
+			method="downloadPayoutReport">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="stream">
+				<param name="contentType">file/csv</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="hourlyLineChartAction"
+			class="com.paymentgateway.crm.action.HourlyAnalyticsTrasactionsAction">
+			<interceptor-ref name="default" />
+			<result type="json"></result>
+		</action>
+		<!-- Fraud Prevention System actions -->
+		<!-- CALL = from admin/merchant restriction page (ajax call) FUNCTION = 
+			to add specific rule for defined merchant -->
+		<action name="addFraudRule"
+			class="com.paymentgateway.crm.fraudPrevention.action.AddFraudRuleAction">
+			<interceptor-ref
+				name="paymentGatewayAdminDefaultToken" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<!-- CALL = from admin/merchant restriction page (ajax call) FUNCTION = 
+			populate page with all the fraud rules of specific merchant -->
+		<action name="fetchFraudRules"
+			class="com.paymentgateway.crm.fraudPrevention.action.ViewFraudRule">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="message">${response}</param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<!-- CALL = from admin/merchant restriction page (ajax call) FUNCTION = 
+			delete specific fraud rule -->
+		<action name="deleteFraudRule"
+			class="com.paymentgateway.crm.fraudPrevention.action.DeleteFraudRuleAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="message">${response}</param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<!-- CALL : View chargeback by merchant -->
+		<action name="viewChargeback"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/viewChargeback.jsp</result>
+		</action>
+
+		<!-- FILL : data in datatable -->
+		<action name="viewChargebackAction"
+			class="com.paymentgateway.crm.chargeback.ViewChargeback">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result type="json"></result>
+		</action>
+		
+		<action name="downloadChargebackReportAction"
+			class="com.paymentgateway.crm.chargeback.ViewChargeback"
+			method="downloadChargeback">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="success" type="stream">
+				<param name="contentType">file/csv</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="updateClosedStatus"
+			class="com.paymentgateway.crm.chargeback.ViewChargeback"
+			method = "updateCloseStatus">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result type="json"></result>
+		</action>
+
+		<!-- VIEW : complete details of the chargeback caseId -->
+		<action name="viewChargebackDetailsAction"
+			class="com.paymentgateway.crm.chargeback.ViewChargebackDetails">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success">/jsp/viewChargebackDetails.jsp</result>
+		</action>
+
+		<action name="reloadChargebackDetails"
+			class="com.paymentgateway.crm.chargeback.ViewChargebackDetails">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="fetchMPADataByPayIdAction"
+			class="com.paymentgateway.crm.mpa.MPADataAction">
+			<result name="success">/jsp/mpaMerchantDetails.jsp</result>
+		</action>
+
+		<action name="getAllMerchantData"
+			class="com.paymentgateway.crm.mpa.MPADataAction"
+			method="fetchMPADataByPayId">
+			<result name="success" type="json"></result>
+		</action>
+
+		<action name="updateMPAStatusAction"
+			class="com.paymentgateway.crm.mpa.MPADataAction"
+			method="updateMPAStatus">
+			<result type="json"></result>
+		</action>
+		
+		<action name="updateSubMerchantMPAStatusAction"
+			class="com.paymentgateway.crm.mpa.MPADataAction"
+			method="updateSubMerchantMPAStatus">
+			<result type="json"></result>
+		</action>
+
+		<!-- UPDATE : comments of the chargeback caseId -->
+		<action name="updateChargebackDetailsAction"
+			class="com.paymentgateway.crm.chargeback.UpdateChargebackDetails">
+			<interceptor-ref
+				name="paymentGatewayAdminDefaultToken" />
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result type="json"></result>
+		</action>
+
+		<!-- UPDATE : accept chargeback by merchant -->
+		<action name="updateStatusAction"
+			class="com.paymentgateway.crm.chargeback.UpdateStatusByMerchant">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result type="json"></result>
+		</action>
+
+		
+
+		<action name="barChartAction"
+			class="com.paymentgateway.crm.dashboard.BarChartAction">
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="statusCode">500</param>
+			</result>
+		</action>
+
+		<!-- <action name="downloadPaymentAdvise" class="com.paymentgateway.crm.action.DownloadMerchantPaymentAdviseAction"> 
+			<result name="success" type="stream"> <param name="contentType">file/csv</param> 
+			<param name="inputName">fileInputStream</param> <param name="contentDisposition">attachment;filename=${filename}</param> 
+			<param name="bufferSize">1024</param> </result> </action> -->
+
+		<!-- MPA Actions Start -->
+
+		<action name="mpaCallbackResponse"
+			class="com.paymentgateway.crm.mpa.MPACallbackResponseAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="input">/jsp/onboardingMerchant.jsp</result>
+			<result name="success">/jsp/onboardingMerchant.jsp</result>
+		</action>
+
+		<action name="loginMpa"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="input">/jsp/onboardingMerchant.jsp</result>
+			<result name="success">/jsp/onboardingMerchant.jsp</result>
+		</action>
+
+		<action name="logoutMpa"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="logOut">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<result name="input">/jsp/onboardingMerchant.jsp</result>
+			<result name="success">/jsp/onboardingMerchant.jsp</result>
+		</action>
+
+		<action name="companyName"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="cinByCompanyName">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="snecs"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="snecs">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="searchCin"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="simpleSearchByCin">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="panToGst"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="panToGst">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="panVerification"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="panVerification">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="businessPanVerification"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="businessPanVerification">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="detailsByEBill"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="detailsByEBill">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="processCheque"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="processCheque">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="esignResponseData"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="fetchEsignResponseData">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="processESign"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="processESign">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="esignResponseData"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="processESign">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="processDrivingLicense"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="processDrivingLicense">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="invokeGstrOtp"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="invokeGstrOtp">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="invokeGstr3b"
+			class="com.paymentgateway.crm.mpa.MerchantProcessingApplicationAction"
+			method="invokeGstr3b">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="fetchStage"
+			class="com.paymentgateway.crm.mpa.MPAStagesFactoryAction"
+			method="fetchStage">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="saveStage"
+			class="com.paymentgateway.crm.mpa.MPAStagesFactoryAction"
+			method="saveStage">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="uploadFile"
+			class="com.paymentgateway.crm.mpa.MPAUploadAction" method="execute">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="uploadCheckerDocument"
+			class="com.paymentgateway.crm.mpa.MPAUploadAction" method="uploadCheckerDocument">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json">/jsp/onboardingMerchant.jsp
+			</result>
+			<result name="input" type="json">/jsp/onboardingMerchant.jsp</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="processImage"
+			class="com.paymentgateway.crm.mpa.MPAUploadAction"
+			method="processImage">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="downloadTnCPolicy"
+			class="com.paymentgateway.crm.mpa.MPAUploadAction"
+			method="downloadTnCPolicy">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<!-- MPA Actions End -->
+
+		<action name="eCollectionData"
+			class="com.paymentgateway.crm.action.ECollectionReportAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		<action name="virtaulAccountList"
+			class="com.paymentgateway.crm.action.ECollectionReportAction"
+			method="virtaulAccountList">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="uploadBalance"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<!-- <interceptor-ref name="execAndWait" /> <result name="wait">loading.jsp</result> -->
+			<result name="input">uploadBalance.jsp</result>
+		</action>
+
+		<action name="eCollection"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/eCollection.jsp</result>
+		</action>
+
+		<action name="merchantDetailsUpdate"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/merchantUpdatedDetails.jsp</result>
+		</action>
+
+		<action name="merchantData"
+			class="com.paymentgateway.crm.action.MerchantDataAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+		<action name="customCaptureReport"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/customCaptureReport.jsp</result>
+		</action>
+
+		<action name="captureReportData"
+			class="com.paymentgateway.crm.action.CapturedDataAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<!-- <action name="addUserAdminAction"
+			class="com.paymentgateway.crm.action.AddSubUserAdminAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/addUserByAdmin.jsp</result>
+			<result name="success">/jsp/addUserByAdmin.jsp</result>
+		</action> -->
+		
+		<action name="searchUserListAction"
+			class="com.paymentgateway.crm.action.SearchUserListAction">
+			<result type="json"></result>
+		</action>
+		
+		<action name="vendorPayoutReport"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/vendorPayoutReport.jsp</result>
+		</action>
+		
+		<action name="loadWalletAction"
+			class="com.paymentgateway.crm.action.LoadWalletAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="fraudAnalytics"
+			class="com.paymentgateway.crm.action.MerchantNameAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/fraudAnalytics.jsp</result>
+		</action>
+		
+		<action name="fraudAnalyticsReportData"
+			class="com.paymentgateway.crm.action.FraudAnalyticsReportDataAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="fraudDataDownload"
+			class="com.paymentgateway.crm.action.DownloadFraudAnalyticsReportData">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="stream">
+				<param name="contentType">file/csv</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="nodalReport"
+			class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="input">/jsp/nodalReport.jsp</result>
+		</action>
+		
+		<action name="downloadTransaction"
+			class="com.paymentgateway.crm.dashboard.DownloadTransationByStatus">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="stream">
+				<param name="contentType">file/csv</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="vpaValidate"
+            class="com.paymentgateway.crm.action.ForwardAction">
+            <interceptor-ref name="paymentGatewayDefault" />
+            <result name="input">/jsp/vpaValidate.jsp</result>
+        </action>
+		
+		<action name="vpaVerificationAction"
+			class="com.paymentgateway.crm.action.AccountVerificationAction" method="upiVerification">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="vpaBeneVerifyReportData"
+			class="com.paymentgateway.crm.action.AccountVerificationAction" method="vpaBeneVerificationReport">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="downloadVpaBeneVerifyData"
+			class="com.paymentgateway.crm.action.AccountVerificationAction" method="downloadVpaBeneVerificationData">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="stream">
+				<param name="contentType">file/csv</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename=${fileName}</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="bulkVpaBeneVerification"
+            class="com.paymentgateway.crm.action.AccountVerificationAction" method="bulkVpaVerificationRequest">
+            <interceptor-ref name="paymentGatewayDefault" />
+            <result name="input">/jsp/vpaValidate.jsp</result>
+            <result name="success">/jsp/vpaValidate.jsp</result>
+        </action>
+        
+        <action name="verifyAccountDetails"
+			class="com.paymentgateway.crm.mpa.MPADataAction"
+			method="verifyAccountDetails">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result type="json"></result>
+		</action>
+		
+		<action name="transactionStatusEnquiry"
+			class="com.paymentgateway.crm.action.TransactionSearchAction"
+			method="getTransactionStatus">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+		
+		<action name="sendTransactionCallback"
+			class="com.paymentgateway.crm.action.TransactionSearchAction"
+			method="sendTransactionCallback">
+			<interceptor-ref name="paymentGatewayAdminDefault" />
+			<result name="success" type="json"></result>
+			<result name="input" type="json"></result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+	</package>
+</struts>

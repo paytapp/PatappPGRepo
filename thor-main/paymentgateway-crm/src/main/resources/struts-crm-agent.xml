@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="crmAgent" extends="paymentGatewaymain" namespace="/jsp">
+		<default-interceptor-ref name="paymentGatewayDefaultToken" />
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+		</global-results>
+
+		
+		
+		
+		
+		<action name="searchTransactionAgentAction" class="com.paymentgateway.crm.action.SearchTransactionAction">
+
+			<result name="success" type="json"></result>
+			<result name="input" type="json">
+				<param name="root">fieldErrors</param>
+				<param name="wrapPrefix"><![CDATA[{ "Invalid request" : ]]></param>
+				<param name="wrapSuffix"><![CDATA[}]]></param>
+			</result>
+			<result name="error" type="json">
+				<param name="errorCode">500</param>
+			</result>
+		</action>
+
+
+	</package>
+
+
+	<package name="jspCallAgent" extends="paymentGatewaymain" namespace="/jsp">
+		<default-interceptor-ref name="paymentGatewayDefault" />
+		<global-results>
+			<result name="error" type="redirect">error</result>
+			<result name="login" type="redirect">loginResult</result>
+			<result name="invalid.token">loginResult</result>
+		</global-results>
+		<action name="agentProfile" class="com.paymentgateway.crm.action.ForwardAction">
+			<interceptor-ref name="paymentGatewayDefault" />
+			<interceptor-ref name="execAndWait" />
+			<result name="wait">loading.jsp</result>
+			<result name="input"> /jsp/profile.jsp</result>
+		</action>
+		<action name="searchTransactionAgent" class="com.paymentgateway.crm.action.ForwardAction">
+			<result name="input">/jsp/searchTransactionAgent.jsp</result>
+		</action>
+
+	</package>
+</struts>
+		

@@ -1,0 +1,105 @@
+.horizontal-nav-wrapper {
+  position: relative;
+  /* padding: 0 11px; */
+  box-sizing: border-box;
+}
+
+.horizontal-nav {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  position: relative;
+  font-size: 0;
+}
+
+.horizontal-nav {
+  -ms-overflow-style: none;
+}
+
+.horizontal-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-nav-content {
+  float: left;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+  position: relative;
+}
+
+.horizontal-nav-content-no-transition {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.horizontal-nav-content > li {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  float: none;
+}
+
+/* .horizontal-nav-content .nav-link {
+  text-decoration: none;
+  color: #888;
+  font-size: 1.2rem;
+  font-family: -apple-system, sans-serif;
+  min-height: 44px;
+  border: 1px solid transparent;
+  padding: 0 11px;
+}
+
+.nav-link + .nav-link {
+  border-left-color: #eee;
+}
+
+.nav-link[aria-selected="true"] {
+  color: #111;
+} */
+
+.horizontal-nav-btn {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+  z-index: -1;
+}
+.horizontal-nav-btn:focus {
+  outline: 0;
+}
+.horizontal-nav-btn:hover {
+  cursor: pointer;
+}
+
+.horizontal-nav-btn-left {
+  left: 0;
+}
+
+[data-overflowing="both"] ~ .horizontal-nav-btn-left,
+[data-overflowing="both"] ~ .horizontal-nav-btn-right,
+[data-overflowing="left"] ~ .horizontal-nav-btn-left,
+[data-overflowing="right"] ~ .horizontal-nav-btn-right {
+  opacity: 1;
+  z-index: 1;
+}
+
+.horizontal-nav-btn-right {
+  right: 0;
+}
+
+.horizontal-nav-icon {
+  width: 20px;
+  height: 100%;
+  fill: #bbb;
+}

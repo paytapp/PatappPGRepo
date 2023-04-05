@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#002163" />
+    <title>Payment Gateway</title>
+	<link rel="shortcut icon" href="%PUBLIC_URL%/img/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/loader-animation.min.css">
+	<link rel="stylesheet" href="%PUBLIC_URL%/css/common-style.min.css">
+</head>
+<body>
+	<div id="root"></div>
+	<input type="hidden" th:value="${pageData}" id="sessionObj" />
+
+	<!-- <input type="hidden" id="sessionObj" value='{"RESPONSE_CODE":"000","PG_REF_NUM":"1244111019184718","customToken":"N99ZHH9WAG6E6WWW4PPI8479IHFIATX1"}' /> -->
+</body>
+</html>

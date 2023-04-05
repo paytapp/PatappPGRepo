@@ -1,0 +1,58 @@
+
+h1, h2, h3, h4, h5, h6{
+    font-family: $primaryFont;
+    font-weight: $fontWeightLighter;
+    color: $headingColor;
+    margin: 0;
+}
+
+// h2{
+//     font-size: 21px !important;
+// }
+
+h3{
+    font-size: $fontSizeMd !important;
+}
+
+.lpay_title{
+    font-size: 16px;
+}
+
+.lpay_h3{
+    font-size: 18px;
+    font-weight: $fontWeightRegular;
+}
+
+
+// heading icon style
+
+.heading_with_icon{
+    display: flex;
+    align-items: flex-end;
+    .heading_icon_box{
+        img{
+            max-width: 65%;
+        }
+        @extend %big-icon-box;
+        margin-top: -45px;
+    }
+    .heading_text{
+        margin-left: 10px;
+        padding-bottom: 5px;
+        font-size: 14px !important;
+    }
+    &.mb-30{
+        margin-bottom: 20px !important;
+    }
+}
+
+.default_heading {
+    padding: 12px 10px;
+    font-size: 17px;
+    background-color: #eff2f4;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    h3{
+        font-size: 15px !important;
+    }
+}

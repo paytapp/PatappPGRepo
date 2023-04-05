@@ -1,0 +1,30 @@
+.zk_center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zk_wrapper{
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0, .5);
+}
+
+.zk_iconBox{
+    width: 35px;
+    height: 35px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 5px rgba(0,0,0, .5);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.zk_mr10{ margin-right: 10px !important; }
+.zk_mr20{ margin-right: 20px !important; }
+.zk_mr30{ margin-right: 30px !important; }
+.zk_mr40{ margin-right: 40px !important; }
+.zk_mr50{ margin-right: 50px !important; }
