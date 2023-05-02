@@ -1058,7 +1058,7 @@ public class PDFCreator {
 		Paragraph custDetailsParagraph = null;
 		Paragraph signatoryParagraph = null;
 		Paragraph amountParagraph = null;
-		String merchantImageAddr = System.getenv("DTECH_PROPS") + "invoiceImage/" + (String) epos.getPAY_ID() + ".png";
+		String merchantImageAddr = System.getenv("PG_PROPS") + "invoiceImage/" + (String) epos.getPAY_ID() + ".png";
 		File file = new File(merchantImageAddr);
 
 		if (StringUtils.isBlank(merchantImageAddr) || merchantImageAddr.contains("null") || !file.exists()) {

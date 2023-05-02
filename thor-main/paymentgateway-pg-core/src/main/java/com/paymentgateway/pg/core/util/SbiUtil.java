@@ -29,7 +29,7 @@ public class SbiUtil {
 
 	public String encrypt(String data) {
 
-		String path = System.getenv("DTECH_PROPS") + "" + propertiesManager.propertiesMap.get("SBIEncKeyFileName");
+		String path = System.getenv("PG_PROPS") + "" + propertiesManager.propertiesMap.get("SBIEncKeyFileName");
 		byte[] key = null;
 		try {
 			key = returnbyte(path);
@@ -69,7 +69,7 @@ public class SbiUtil {
 
 	public String decrypt(String encData) {
 		String decdata = null;
-		String path = System.getenv("DTECH_PROPS") + "" + propertiesManager.propertiesMap.get("SBIEncKeyFileName");
+		String path = System.getenv("PG_PROPS") + "" + propertiesManager.propertiesMap.get("SBIEncKeyFileName");
 		byte[] key = null;
 		key = returnbyte(path);
 		try {

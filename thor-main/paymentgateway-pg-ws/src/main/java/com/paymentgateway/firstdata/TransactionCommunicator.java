@@ -106,7 +106,7 @@ public class TransactionCommunicator {
 		SSLContext sc = SSLContext.getInstance("TLSv1.2");
 		try {
 			String jksPassword = fields.get(FieldType.ADF2.getName());
-			String path = System.getenv("DTECH_PROPS")+fields.get(FieldType.ADF1.getName());
+			String path = System.getenv("PG_PROPS")+fields.get(FieldType.ADF1.getName());
 			char[] password = jksPassword.toCharArray();
 			KeyManagerFactory keyManagerFactory = KeyManagerFactory
 					.getInstance(KeyManagerFactory.getDefaultAlgorithm());
