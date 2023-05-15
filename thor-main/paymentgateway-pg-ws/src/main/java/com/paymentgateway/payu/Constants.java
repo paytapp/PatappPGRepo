@@ -73,4 +73,11 @@ public class Constants {
 	public static final String TRANSACTION_DETAIL = "transaction_details";
 	public static final String UPI = "UPI";
 	public static final String VPA = "vpa";
+	//Constants for phonepe
+	public static final String PHONEPE_REQUEST_URL = "PHONEPERequestUrl";
+	public static final String PHONEPE_REFUND_URL = "PHONEPERefundUrl";
+	public static final String PHONEPE_STATUS_ENQ_URL = "PHONEPEStatusEnqUrl";
+	public static final String PHONEPE_RESPONSE_URL = "PHONEPEReturnUrl";
+	public static final String PHONEPE_REFUND_STATUS_ENQ_URL = "PHONEPERefundStatusEnqURL";
+	
 }

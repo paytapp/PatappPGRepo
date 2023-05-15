@@ -292,7 +292,7 @@ public class CreateSuperAdmin {
 		Set<Roles> roles = new HashSet<Roles>();
 		Roles role = new Roles();
 		
-		role.setPermissions(permissions);
+		role.setPermissions(permissions); 
 		role.setName(UserType.ADMIN.name());
 		roles.add(role);
 		
