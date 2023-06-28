@@ -1,0 +1,128 @@
+package com.paymentgateway.phonepe;
+
+import java.net.URL;
+import java.util.Base64;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import javax.crypto.*;
+
+
+public class TestEncodeBase64 {
+
+	
+	static final String crypto = "crypto";
+	static final String request = "request";
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		String phonepePayload="";
+		RequestBody reqBody=null;
+		try {
+			phonepePayload = "{"+
+					  "\"merchantId\": \"GAMEZDADDYUAT\",\""+
+					  "\"merchantTransactionId\": \"MT7850590068188104\","+
+					  "\"merchantUserId\": \"PAYTAPP1\","+
+					  "\"amount\": 10000,"+
+					  "\"redirectUrl\": \"https://webhook.site/redirect-url\","+
+					  "\"redirectMode\": \"POST\","+
+					  "\"callbackUrl\": \"https://webhook.site/callback-url\","+
+					  "\"mobileNumber\": \"9999999999\","+
+					  "\"paymentInstrument\": {"+
+					  "\"type\": \"WINDOWS\""+
+					  "}"+
+					"}";
+	 
+	        // Encode into Base64 format
+	        String BasicBase64format
+	            = Base64.getEncoder()
+	                  .encodeToString(phonepePayload.getBytes());
+	        
+	        System.out.println("Base value is ----"+BasicBase64format);
+	 
+	        // print encoded String
+	        System.out.println("Encoded String:\n" + BasicBase64format);
+	        
+	        //sample 
+	        //RequestBody rb=BasicBase64format;
+	        //Header 1. Content-Type=application/json 2. X-VERIFY=ad138f42ca73bce0fe8d275eb03038c3e3665ee3e3553d9883d8d82e880750bf###1
+	        //X-VERIFY=SHA256(base64 encoded payload + "/pg/v1/pay" + salt key) + ### + salt index
+	        
+//	        -----
+	        
+	        String checksum = BasicBase64format + "/pg/v1/pay" + 1;
+
+	       
+	        System.out.println("PHONEPE-INITIATE-REQUEST==="+ "checksum=="+ checksum);
+
+	        
+	        String hash = crypto.createHash("sha256").update(checksum, "utf-8").digest("hex");
+
+	        //console.log('');
+	        System.out.println("PHONEPE-INITIATE-REQUEST"+"hash"+ hash);
+
+
+	        String phonepe_request = {
+	            "method": "POST",
+	            "url": PHONEPE_REQUEST_URL,
+	            "headers": {
+	                "Content-Type": "application/json",
+	                "X-VERIFY": hash + "###1",
+	            },
+	            body: JSON.stringify({ 
+	                request: encoded
+	            })
+	        };
+
+	        //console.log('');
+	        System.out.println("PHONEPE-INITIATE-REQUEST"+"phonepe_request"+ phonepe_request);
+
+	        request(phonepe_request, async function (error, response){
+	            console.log('');
+	            console.log('PHONEPE-INITIATE-REQUEST', 'phonepe_response', response.body);
+	        });
+
+	        
+	        
+	        
+	        
+	        
+	/*        -----
+	        String ContentType="";
+	        String XVERIFY="4f2121ab-5d79-46e5-883e-ff6d46bc3a87"+"###"+1;
+	        		
+	        //String hostUrl = PropertiesManager.propertiesMap.get("https://api.phonepe.com/apis/hermes/pg/v1/pay");
+			//URL url = new URL(hostUrl);
+	        URL url = new URL("https://api.phonepe.com/apis/hermes/pg/v1/pay");
+			OkHttpClient client = new OkHttpClient();
+
+			JSONParser parser = new JSONParser();  
+			JSONObject json = (JSONObject) parser.parse(BasicBase64format);  
+			RequestBody body = RequestBody.create(JSON, json);
+			
+			Request request = new Request.Builder()
+			//  .url(Constants.PHONEPE_REQUEST_URL)
+			  .url("https://api.phonepe.com/apis/hermes/pg/v1/pay")
+			  .post(reqBody)
+			  .addHeader("accept", "application/json")
+			  .addHeader("Content-Type", "application/json")
+			  .addHeader("X-VERIFY", "ad138f42ca73bce0fe8d275eb03038c3e3665ee3e3553d9883d8d82e880750bf###1")
+			  .build();
+
+			Response response = client.newCall(request).execute();
+	        
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		//return phonepePayload;
+	
+*/
+	}
+
+}

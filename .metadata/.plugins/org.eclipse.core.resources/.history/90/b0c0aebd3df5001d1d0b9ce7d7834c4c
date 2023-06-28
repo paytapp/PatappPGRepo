@@ -1,0 +1,22 @@
+package com.paymentgateway.ewallet;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan({ "com.paymentgateway.commons", "com.paymentgateway.ewallet","com.paymentgateway" })
+public class PaymentGatewayEwalletApplication {
+
+	public static void main(String[] args) {
+		PaymentGatewayEwalletApplication.run(PaymentGatewayEwalletApplication.class, args);
+		
+	}
+	
+	 @Override
+	  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+	      return builder.sources(PaymentGatewayEwalletApplication.class);
+	  }
+
+}

@@ -1,0 +1,111 @@
+package com.paymentgateway.phonepe_old;
+
+import java.security.MessageDigest;
+import java.util.Properties;
+import org.springframework.stereotype.Service;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+@Service
+public class PhonePeTransactionStatusCheck {
+
+	    public static void main(String[] args) throws Exception {
+	    	PhonePeTransactionStatusCheck phonePeStatusCheck = new PhonePeTransactionStatusCheck();
+	    	phonePeStatusCheck.checkPaymentStatus("MT7850590068188104");
+	    }
+	    
+	    public Response checkPaymentStatus(String merchantTransactionId) throws Exception {
+	    Properties prop = null;
+	    	try {
+	    		prop = PhonePeCommon_old.getAllProperties();
+	    		
+			
+	    	
+		    final String PHONEPE_SALTKEY = prop.getProperty("PHONEPE_SALTKEY");
+		    final String PHONEPE_SALT_INDEX = prop.getProperty("PHONEPE_SALT_INDEX");
+		    final String PHONEPE_MID = prop.getProperty("PHONEPE_MID");
+		    final String PHONEPE_HOST = prop.getProperty("PHONEPE_BASE_URL");
+		    final String PHONEPE_STATUS_CHECK_ENDPOINT = prop.getProperty("PHONEPE_STATUS_CHECK_ENDPOINT");
+		    final String PHONEPE_STATUS_CHECK_API_URL = PHONEPE_HOST + PHONEPE_STATUS_CHECK_ENDPOINT + PHONEPE_MID + "/";
+	    	    	
+	        String status_payload = "/pg/v1/status/" + PHONEPE_MID + "/" + merchantTransactionId + PHONEPE_SALTKEY;
+	        System.out.println("");
+	        System.out.println("PHONEPE-STATUS-CHECK" + " status_payload " + status_payload);
+//	        MessageDigest md = MessageDigest.getInstance("SHA-256");
+//	        byte[] hashInBytes = md.digest(status_payload.getBytes(StandardCharsets.UTF_8));
+//	        StringBuilder sb = new StringBuilder();
+//	        for (byte b : hashInBytes) {
+//	            sb.append(String.format("%02x", b));
+//	        }
+//	        String hash = sb.toString();
+	        
+	        
+	        String hash =HashCrypto(status_payload);
+	        
+	        
+	        System.out.println("");
+	        System.out.println("PHONEPE-STATUS-CHECK" + " hash " + hash);
+
+	        String url = PHONEPE_STATUS_CHECK_API_URL + merchantTransactionId;
+	        System.out.println("");
+	        System.out.println("PHONEPE-STATUS-CHECK" + " url " + url);
+	        
+	        System.out.println("X-VERIFY             " + hash + "###" + PHONEPE_SALT_INDEX );
+	        System.out.println("PHONEPE_MID         " + PHONEPE_MID);
+	        System.out.println("url        " + url);
+	        System.out.println("");
+	        System.out.println("");
+	        
+	        OkHttpClient client = new OkHttpClient();
+	        Request request = new Request.Builder()
+	          	  .url(url)
+	          	  .get()
+	          	  .addHeader("accept", "application/json")
+	          	  .addHeader("Content-Type", "application/json")
+	          	  .addHeader("X-VERIFY", hash + "###" + PHONEPE_SALT_INDEX)
+	          	  .addHeader("X-MERCHANT-ID", PHONEPE_MID)
+	          	  .build();
+	        Response response = client.newCall(request).execute();
+	        String responseStr = response.toString();
+	        
+	        
+	        System.out.println("responseStr  ::::"       + responseStr);
+	        System.out.println("PHONEPE-STATUS-CHECK" + " phonepe_response " + response);
+	        return response;
+	        
+	    	} catch (java.io.IOException e1) {
+				e1.printStackTrace();
+			}
+	    	return null;	
+	    }
+	    
+	    
+		public String HashCrypto(String input)throws Exception{
+			
+	        MessageDigest md = MessageDigest.getInstance("SHA-256");
+	        md.update(input.getBytes());
+
+	        byte byteData[] = md.digest();
+	        StringBuffer sb=new StringBuffer();
+
+	        //convert the byte to hex format method 1
+	       // byte[] byteArray=input.getBytes();
+	        
+	        for (int i = 1; i < byteData.length-1; i++) {
+	        	sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	        }
+
+	        System.out.println("Hex format : " + sb.toString());
+
+	        //convert the byte to hex format method 2
+	        StringBuffer hexString = new StringBuffer();
+	        for (int i=0;i<byteData.length;i++) {
+	            String hex=Integer.toHexString(0xff & byteData[i]);
+	            if(hex.length()==1) hexString.append('0');
+	            hexString.append(hex);
+	        }
+	        return hexString.toString();
+	    }
+	    
+	}

@@ -1,0 +1,115 @@
+package com.paymentgateway.phonePe;
+
+
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.JsonObject;
+
+import net.minidev.json.JSONObject;
+import okhttp3.Response;
+
+
+@RestController
+@RequestMapping("/phonePe")
+public class PhonePeController {
+	
+	@Autowired
+	private PhonePeService phonePeService;
+	
+	@Autowired
+	private RequestCreatorPhonpe requestCreatorPhonpe;
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/transaction")
+	public String getTransaction() {
+		return "PhonePe Controller is working";
+	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/UPI/openIntentFlow")
+	public String payRequestForUPIOpenIntentFlow() {
+		return phonePeService.payRequestForUPIOpenIntentFlow();
+	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/UPI/collect")
+	public String payRequestForUPICollect() {
+		return phonePeService.payRequestForUPICollect();
+	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/UPI/QR")
+	public String payRequestForUPIQr() {
+		return phonePeService.payRequestForUPIQr();
+	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/newCard")
+	public String payRequestForNewCardFlow() {
+		return phonePeService.payRequestForNewCardFlow();
+	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/card/id")
+	public String payRequestWithCardId() {
+		return phonePeService.payRequestWithCardId();
+	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/token")
+	public String payRequestWithToken() {
+		return phonePeService.payRequestWithToken();
+	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/netBanking", produces = "application/json")
+	public String payRequestForNetBanking(JsonObject json) {
+		
+		  JSONObject jsonObject = JSONObject.fromObject(json);
+	        
+		try {
+			String userId = jsonObject.get("userId").toString();
+	        int txnAmount = Integer.parseInt(jsonObject.get("txnAmount").toString());
+	        String phNo = jsonObject.get("phNo").toString();
+	        String bankId = jsonObject.get("bankId").toString();
+	        
+		requestCreatorPhonpe.initiatePhonepePayment("NETBANKING", userId,txnAmount,
+				phNo, bankId,"NULL","NULL","NULL","NULL","NULL","NULL","NULL","NULL","NULL","NULL",
+				"NULL","NULL","NULL","NULL","NULL");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return phonePeService.payRequestForNetBanking();
+	}
+	
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/payment", produces = "application/json")
+	public String payment(@RequestParam("purchaseId") String purchaseId, 
+						  	@RequestParam("userId") String userId,
+						  	@RequestParam("transactionAmount") int txnAmount) throws IOException {
+//		String purchaseId = "1006";
+//		String userId = "629388";
+//		int txnAmount = 116;
+		String responseStr = phonePeService.initiatePhonepePayment(purchaseId, userId, txnAmount);
+		
+		
+		return responseStr;
+		}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/transaction/status")
+	public Response getTransactionStatus() {
+		return phonePeService.getTransactionStatus("MT7850590068188104");
+		}
+	
+	
+	
+	
+	
+	
+}

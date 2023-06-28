@@ -1,0 +1,30 @@
+package com.paymentgateway.phonepe;
+
+public class TestNewPayment {
+
+	const crypto = require('crypto');
+	const request = require('request');
+
+
+	const PHONEPE_SALTKEY = "537735a0-d4f2-4761-af5b-887320cb73ab";
+	const PHONEPE_MID = "POKERDADDYUAT";
+	const SERVER_URL = "https://pokerapi.pokerdaddy.in";
+	const PHONEPE_CALLBACK_URL = SERVER_URL + "/pokerApi/v1/purchase/payments/phonepe/return";
+	const PURCHASE_REDIRECT_URL = SERVER_URL + "/ngaccount/web/add-money/payment-complete/"
+	const PHONEPE_REQUEST_URL = "https://api-preprod.phonepe.com/apis/merchant-simulator/pg/v1/pay"
+	
+	public static void main(String args) {
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public boolean paymentPhonpe() {
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

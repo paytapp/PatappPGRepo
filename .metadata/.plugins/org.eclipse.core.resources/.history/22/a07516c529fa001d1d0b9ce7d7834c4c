@@ -1,0 +1,5 @@
+package com.paymentgateway.phonepe;
+
+public class Pay_Request_UPI_Open_Intent {
+
+}

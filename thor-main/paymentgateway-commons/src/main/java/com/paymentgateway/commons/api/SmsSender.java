@@ -411,4 +411,86 @@ public class SmsSender {
 		}
 		return response;
 	}
+	//Send SMS by Arvind for Kaleyra
+	public String sendSMSByKaleyra(String mobile, String message) throws IOException {
+		String user = PropertiesManager.propertiesMap.get(Constants.USER_KALEYRA.getValue());
+		String password = PropertiesManager.propertiesMap.get(Constants.PASSWORD_KALEYRA.getValue());
+		String smsUrl = PropertiesManager.propertiesMap.get(Constants.SMS_KALEYRA_URL.getValue());
+		String senderId = PropertiesManager.propertiesMap.get(Constants.SENDER_ID_KALEYRA.getValue());
+		String channel = PropertiesManager.propertiesMap.get(Constants.CHANNEL_KALEYRA.getValue());
+		//Need to check the values
+		String DCS = PropertiesManager.propertiesMap.get(Constants.DCS.getValue());
+		String flashsms = PropertiesManager.propertiesMap.get(Constants.FLASHSMS.getValue());
+		String peid = PropertiesManager.propertiesMap.get(Constants.PEID.getValue());
+		String response = "";
+		if (mobile.length() == 11) {
+			if (mobile.charAt(0) == 0) {
+				mobile = mobile.substring(1, 10);
+			} else {
+				return null;
+			}
+		}
+
+		StringBuilder str = new StringBuilder();
+		str.append(smsUrl);
+		str.append("user=");
+		str.append(user);
+		str.append("&password=");
+		str.append(password);
+		str.append("&senderid=");
+		str.append(senderId);
+		str.append("&channel=");
+		str.append(channel);
+		str.append("&DCS=");
+		str.append(DCS);
+		str.append("&flashsms=");
+		str.append(flashsms);
+		str.append("&number=");
+		str.append(mobile);
+		message = message.trim();
+		message = message.replaceAll("\\s", "%20");
+		str.append("&text=");
+		str.append(message);
+		str.append("&route=");
+		str.append("2");
+		str.append("&peid=");
+		str.append(peid);
+		try {
+			// System.out.println("string : " + str);
+			URL url = new URL(str.toString());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+			conn.setRequestMethod("GET");
+
+			StringBuilder str1 = new StringBuilder();
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			// System.out.print(rd);
+
+			String line;
+			while ((line = rd.readLine()) != null) {
+				str1.append(line);
+			}
+
+			rd.close();
+			response = str1.toString();
+			// System.out.println(response);
+
+			JSONObject serverResponse = new JSONObject(response);
+			logger.info("Server Response = " + maskFields(serverResponse.toString()));
+			logger.info("Message = " + serverResponse.get("ErrorMessage"));
+			// System.out.println(serverResponse);
+
+			if (serverResponse.getString("ErrorCode").equalsIgnoreCase("000")) {
+				logger.info("SMS send by InnvisSolution");
+				return serverResponse.getString("ErrorCode");
+			} else {
+				return null;
+			}
+
+		} catch (Exception exception) {
+			logger.error("Exception : ", exception);
+			return null;
+		}
+	}
+
 }

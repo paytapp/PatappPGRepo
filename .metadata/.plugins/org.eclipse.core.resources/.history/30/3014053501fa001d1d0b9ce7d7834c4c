@@ -1,0 +1,38 @@
+package com.paymentgateway.phonepe;
+
+public class initiatePhonepe {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	public boolean initiatePhonepePayment() {
+		
+		String purchaseId = "1006";
+		String userId = "629388";
+		int txnAmount = 116;
+		int txnAmount = txnAmount*100;
+		
+		try {
+			String  phonepe_payload_card_initiate = {
+				    "merchantId": PHONEPE_MID,
+				    "merchantTransactionId": purchaseId,
+				    "merchantUserId": userId,
+				    "amount": txnAmount,
+				    "redirectUrl": PURCHASE_REDIRECT_URL + purchaseId,
+				    "redirectMode": "POST",
+				    "callbackUrl": PHONEPE_CALLBACK_URL,
+				    "paymentInstrument": {
+				        "type":"PAY_PAGE"
+				    }
+			
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+}

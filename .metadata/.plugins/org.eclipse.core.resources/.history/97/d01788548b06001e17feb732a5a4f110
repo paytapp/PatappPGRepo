@@ -1,0 +1,53 @@
+package com.paymentgateway.phonePe;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class PhonePeDaoImpl implements PhonePeDao {
+	
+	SessionFactory sessionFactory;
+	
+	@Override
+	public void savePhonePeRequest(PhonePeRequest entity) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(entity);
+	}
+
+	@Override
+	public String payRequestForUPIOpenIntentFlow() {
+		return null;
+	}
+
+	@Override
+	public String payRequestForUPICollect() {
+		return null;
+	}
+
+	@Override
+	public String payRequestForUPIQr() {
+		return null;
+	}
+
+	@Override
+	public String payRequestForNewCardFlow() {
+		return null;
+	}
+
+	@Override
+	public String payRequestWithCardId() {
+		return null;
+	}
+
+	@Override
+	public String payRequestWithToken() {
+		return null;
+	}
+
+	@Override
+	public String payRequestForNetBanking() {
+		return null;
+	}
+
+}

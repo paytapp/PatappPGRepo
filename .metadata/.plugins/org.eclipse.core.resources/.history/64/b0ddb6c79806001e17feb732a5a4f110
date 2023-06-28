@@ -1,0 +1,10 @@
+package com.paymentgateway.phonePe;
+//package com.paymentgateway.phonePe;
+//
+//import org.springframework.data.mongodb.repository.MongoRepository;
+//
+//public interface TransactionDao  extends MongoRepository<PhonePeRequest, String>{
+//
+//	
+//	
+//}

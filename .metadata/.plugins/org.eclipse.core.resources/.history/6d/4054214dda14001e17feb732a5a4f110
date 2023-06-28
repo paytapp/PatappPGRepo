@@ -1,0 +1,69 @@
+package com.paymentgateway.sendsms;
+
+public class SendSMSKaleyra {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String baceURL="https://api.kaleyra.io/v1/<SID>";
+		SendSMSKaleyra smsKaleyra=new SendSMSKaleyra();
+		try {
+			smsKaleyra.sendSMSOTP("OTP", "Abb401016af3b049b34a854bb49fa1baa", "OTP", "Daddy tech", 
+					"9079382565", "Https", "Templet id");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public boolean sendSMSOTP(String CONTENT_TYPE,String API_KEY,String OTP,String SENDER_ID,String TO_NUMBER,
+			String CALLBACK_URL,String TEMPLATE_ID) {
+		boolean sendSMSFlag=false;
+		String requestStrURL="";
+		try {
+			curl --location --request POST '<URL>/v1/<SID>/messages/json' \
+			--header 'api-key: <API_KEY>' \
+			--header 'Content-Type: <CONTENT_TYPE>' \
+			--data-raw 
+			
+			requestStrURL="{"+
+					    "\"channel\": \""+CHANNEL+"\","+
+					    "\"type\": \""+TYPE+"\","+
+					    "\"source\":\""+SOURCE+"\","+
+					    "\"prefix\": \""+PRIFIX+"\","+
+					    "\"time\":\""+TIME+"\","+
+					    "\"from\": \""+FROM+"\","+
+					    "\"body\":\""+MESSAGE_BODY+"\","+
+					    "\"template_id\":\""+TEMPLATE_ID+"\","+
+					    "\"entity_id\": \""+ENTITY_ID+"\","+
+					    "\"unicode\": \""+UNICODE+"\","+
+					    "\"callback_profile_id\": \""+CALLBACK_PROFILE_ID+"\","+
+					    "\"url_data\": {\""+shorten_url+"\":\""+SHORTEN_URL+"\",\""+url+":"URL","slug":"SLUG","callback_url":"CALLBACK_URL","track_user ":"TRACE_USER"},
+					    "\"ref_custom\": {"+
+					    	"\"ref_name": "REF_NAME",
+					    	"\"ref_age": "REF_AGE"
+					    "\},
+					    "\"sms": [
+					        "\{
+					            "\"to": "TO_NUMBER",
+					            "\"from": "FROM",
+					            "\"body":"MESSAGE_BODY",
+					            "\"template_id": "TEMPLATE_ID",
+					            "\"entity_id": "ENTITY_ID",
+					            "\"unicode": "UNICODE",
+					            "\"callback_profile_id": "CALLBACK PROFILE_ID",
+					            "\"url_data": {"shorten_url":"SHORTEN_URL","url":"URL","slug":"SLUG","callback_url":"CALLBACK_URL","track_user ":"TRACE_USER"},
+					            "\"ref_custom\": {"+
+					            	"\"ref_name": "REF_NAME",
+					            	"\"ref_age": "REF_AGE"
+					            "}"+
+					         "}"+
+					    "]"+
+					 "}";
+				
+			System.out.println("request URL is ---->"+requestStrURL);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return sendSMSFlag;
+	}
+
+}

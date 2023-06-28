@@ -1,0 +1,12 @@
+package com.EwalletPaytapp.service;
+
+public class WalletUserRegistrationService {
+
+	public String AddEwalletUser() {
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

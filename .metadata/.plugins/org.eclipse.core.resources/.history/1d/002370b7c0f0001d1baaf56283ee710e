@@ -1,0 +1,17 @@
+package com.EwalletPaytapp.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class WalletUserRegistrationService {
+
+	public String AddEwalletUser() {
+		String custId="";
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return custId;
+	}
+}

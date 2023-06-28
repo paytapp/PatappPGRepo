@@ -1,0 +1,46 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+apply plugin: 'io.spring.dependency-management'
+
+bootWar {
+    baseName = 'api'
+    archiveName 'api.war'
+}
+
+jar {
+    baseName = 'api'
+}
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+    compile project(':paymentgateway-commons')
+    compile project(':paymentgateway-pg-core')
+		compile('org.springframework.boot:spring-boot-starter-web')
+	//runtime('org.springframework.boot:spring-boot-devtools')
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.1.Final'
+    compile group: 'org.hibernate', name: 'hibernate-c3p0', version: '5.2.1.Final'
+    compile group: 'org.hibernate', name: 'hibernate-ehcache', version: '5.2.1.Final'
+    compile group: 'javax.servlet', name: 'jsp-api', version: '2.0'
+    compile group: 'com.amazonaws', name: 'aws-java-sdk-cloudhsm', version: '1.11.147'
+    
+   testCompile('org.springframework.boot:spring-boot-starter-test')
+}

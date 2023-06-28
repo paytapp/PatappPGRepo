@@ -1,0 +1,18 @@
+package com.paymentgateway.phonepe;
+
+public class initiatePhonepe {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	public boolean initiatePhonepePayment() {
+		
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

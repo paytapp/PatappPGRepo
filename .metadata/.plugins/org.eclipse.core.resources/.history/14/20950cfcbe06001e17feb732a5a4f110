@@ -1,0 +1,217 @@
+package com.paymentgateway.phonePe;
+
+import java.util.HashMap;
+
+public class phonePeRequestGenerator {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public String requestCreator() {
+		
+		String finalRequest="";
+		String valDiff="";
+
+		HashMap prop = common.readProperty("phonePe.properties");
+		
+		//phonepeResponse phonepeResponseData=new phonepeResponse();
+		//txnAmount = txnAmount*100;
+		
+		String baseUrl = prop.get("PHONEPE_BASE_URL").toString();
+		String payEndpoint = prop.get("PHONEPE_PAY_ENDPOINT").toString();
+		String PHONEPE_MID = prop.get("PHONEPE_MID").toString();
+		String PURCHASE_REDIRECT_URL = prop.get("PURCHASE_REDIRECT_URL").toString();
+		String PHONEPE_CALLBACK_URL = prop.get("PHONEPE_CALLBACK_URL").toString();
+	//	saltKey = prop.get("PHONEPE_SALTKEY").toString();
+	//	saltIndex = prop.get("PHONEPE_SALT_INDEX").toString();
+	//	PHONEPE_REQUEST_URL = baseUrl + payEndpoint;
+		
+		try {
+			// UPI Open Intent (ANDROID)
+			if(valDiff.equalsIgnoreCase("UPIOpenIntent")){
+			
+				finalRequest="{"+
+			   "\"merchantId\": \""+merchantId+"\","+
+			   "\"merchantTransactionId\": \""+merchantTransactionId"\","+
+			   "\"merchantUserId\": \""+merchantUserId"\","+
+			   "\"amount\":"+ 10000+","+
+			   "\"callbackUrl\": \""+callbackUrl+"\","+
+			   "\"mobileNumber\": \""+9999999999"\","+
+			   "deviceContext": {
+			     "deviceOS": "ANDROID"
+			   },
+			   "paymentInstrument": {
+			     "type": "UPI_INTENT",
+			     "targetApp": "com.phonepe.app"
+			   }
+			 }
+			}
+			 //-------------------------------
+			// Sample Payload for Base64 - UPI Collect
+			if(valDiff.equalsIgnoreCase("UPICollect")){
+				
+			 {
+			   "merchantId": "MERCHANTUAT",
+			   "merchantTransactionId": "OD620471739210623",
+			   "merchantUserId": "MUID123",
+			   "amount": 10000,
+			   "callbackUrl": "https://mykewlapp.com/callback",
+			   "mobileNumber": "9999999999",
+			   "paymentInstrument": {
+			     "type": "UPI_COLLECT",
+			     "vpa": "test-vpa@ybl"
+			   }
+			 }
+			}
+			 //------------------
+			 //Sample Payload for Base64 - UPI QR
+			 if(valDiff.equalsIgnoreCase("UPIQR")){
+			 {
+			   "merchantId": "MERCHANTUAT",
+			   "merchantTransactionId": "MT7850590068188104",
+			   "merchantUserId": "MUID123",
+			   "amount": 10000,
+			   "callbackUrl": "https://mykewlapp.com/callback",
+			   "mobileNumber": "9999999999",
+			   "paymentInstrument": {
+			     "type": "UPI_QR"
+			   }
+			 }
+			 }
+			 //--------------------------
+			 //Sample Payload for Base64 - Web Flow
+			 if(valDiff.equalsIgnoreCase("Web")){
+			 {
+			   "merchantId": "MERCHANTUAT",
+			   "merchantTransactionId": "MT7850590068188104",
+			   "merchantUserId": "MUID123",
+			   "amount": 10000,
+			   "redirectUrl": "https://webhook.site/redirect-url",
+			   "redirectMode": "POST",
+			   "callbackUrl": "https://webhook.site/callback-url",
+			   "mobileNumber": "9999999999",
+			   "paymentInstrument": {
+			     "type": "PAY_PAGE"
+			   }
+			 }
+			 }
+			 //------------------------
+			 //Sample Payload for Base64 - With Card Number
+			 if(valDiff.equalsIgnoreCase("CardNumber")){
+			 {
+			     "merchantId": "MERCHANTUAT",
+			     "merchantTransactionId": "OD620471739210623",
+			     "merchantUserId": "MU933037302229373",
+			     "amount": 10000,
+			     "redirectUrl": "https://webhook.site/redirect-url",
+			     "redirectMode": "POST",
+			     "callbackUrl": "https://webhook.site/callback-url",
+			     "mobileNumber": "9999999999",
+			     "paymentInstrument": {
+			         "type": "CARD",
+			         "authMode": "3DS",
+			         "saveCard": true,
+			         "cardDetails": {
+			             "encryptedCardNumber": "<encrypted_card_number>",
+			             "encryptionKeyId": 10,
+			             "cardHolderName": "Carlos Sainz",
+			             "expiry": {
+			                 "month":"06",
+			                 "year":"2025"
+			             },
+			             "encryptedCvv": "<encrypted_cvv_number>",
+			             "billingAddress": {
+			                 "line1": "Unit No.001, Ground Floor, Boston House",
+			                 "line2": "Suren Road, Andheri(East)",
+			                 "city": "Mumbai",
+			                 "state": "Maharashtra",
+			                 "zip": "400093",
+			                 "country": "India"
+			             }
+			         }
+			     }
+			 }
+			 }
+			 //--------------------
+			 //Sample Payload for Base64 - With Card Id
+			 if(valDiff.equalsIgnoreCase("CardId")){
+			 {
+			   "merchantId": "MERCHANTUAT",
+			   "merchantTransactionId": "OD620471739210623",
+			   "merchantUserId": "MU933037302229373",
+			   "amount": 10000,
+			   "redirectUrl": "https://mykewlapp.com/redirect",
+			   "redirectMode": "POST",
+			   "callbackUrl": "https://mykewlapp.com/callback",
+			   "mobileNumber": "9999999999",
+			   "paymentInstrument": {
+			     "type": "SAVED_CARD",
+			     "authMode": "3DS",
+			     "cardDetails": {
+			       "cardId": "C903889349294273423",
+			       "encryptedCvv": "<encrypted_cvv_number>",
+			       "encryptionKeyId": 10
+			     }
+			   }
+			 }
+			 }
+			 //-------------
+			 //Sample Payload for Base64 - With Token
+			 if(valDiff.equalsIgnoreCase("Token")){
+			 {
+			   "merchantId": "MERCHANTUAT",
+			   "merchantTransactionId": "MT7850590068188104",
+			   "merchantUserId": "U4909206497168257",
+			   "amount": 10000,
+			   "redirectUrl": "https://webhook.site/redirect-url",
+			   "redirectMode": "POST",
+			   "callbackUrl": "https://webhook.site/callback-url",
+			   "mobileNumber": "9999999999",
+			   "paymentInstrument": {
+			     "type": "TOKEN",
+			     "authMode": "3DS",
+			     "tokenDetails": {
+			       "encryptedCvv": "<encrypted_cvv_number>",
+			       "cryptogram": "95031131582962057737",
+			       "encryptedToken": "SJk7Sazu894+cHsxsTOLML5ZYseMzdQ",
+			       "encryptionKeyId": 10,
+			       "expiry": {
+			         "month": "11",
+			         "year": "2037"
+			       },
+			       "panSuffix": "1212",
+			       "cardHolderName": "Prashant"
+			     }
+			   }
+			 }
+			 }
+			 //------------------
+			 //Sample Payload for Base64 - NET BANKING
+			 if(valDiff.equalsIgnoreCase("NETBANKING")){
+			 {
+			   "merchantId": "MERCHANTUAT",
+			   "merchantTransactionId": "MT7850590068188104",
+			   "merchantUserId": "MUID123",
+			   "amount": 10000,
+			   "redirectUrl": "https://webhook.site/redirect-url",
+			     "redirectMode": "POST",
+			     "callbackUrl": "https://webhook.site/callback-url",
+			   "mobileNumber": "9999999999",
+			   "paymentInstrument": {
+			     "type": "NET_BANKING",
+			         "bankId": "SBIN"
+			   }
+			 }
+			 }
+
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return finalRequest;
+	}
+	
+	
+	
+}

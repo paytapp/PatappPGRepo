@@ -1,0 +1,63 @@
+package com.paymentgateway.phonepe;
+
+public class initiatePhonepe {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	public boolean initiatePhonepePayment() {
+		
+		String purchaseId = "1006";
+		String userId = "629388";
+		int txnAmount = 116;
+		txnAmount = txnAmount*100;
+		String PHONEPE_MID = "POKERDADDYUAT"; 
+		String PURCHASE_REDIRECT_URL="";
+		String PHONEPE_CALLBACK_URL="";
+		
+		try {
+			String  phonepe_payload_card_initiate = "{"+
+				    "\"merchantId\":\""+PHONEPE_MID+"\","+
+				    "\"merchantTransactionId\":\""+ purchaseId+"\","+
+				    "\"merchantUserId\":\""+userId+"\","+
+				    "\"amount\":\""+ txnAmount+"\","+
+				    "\"redirectUrl\":\""+ PURCHASE_REDIRECT_URL + purchaseId+"\","+
+				    "\"redirectMode\":\"POST\","+
+				    "\"callbackUrl\":\""+ PHONEPE_CALLBACK_URL+"\","+
+				    "\"paymentInstrument\"{"+
+						"\"type\":\"PAY_PAGE\""+
+				        	
+				    "}";
+			
+			//phonepe_payload_card_initiate = JSON.stringify(phonepe_payload_card_initiate);
+
+			
+			System.out.println("PHONEPE-INITIATE-REQUEST"+ "raw_payload===--"+ phonepe_payload_card_initiate);
+			        
+			String encoded = Buffer.from(phonepe_payload_card_initiate, "utf8").toString("base64");
+
+			//console.log('');
+			System.out.println("PHONEPE-INITIATE-REQUEST"+ "encoded====="+ encoded);
+			
+
+
+			String checksum = encoded + "/pg/v1/pay" + PHONEPE_SALTKEY;
+
+			
+			System.out.println("PHONEPE-INITIATE-REQUEST"+ "checksum"+ checksum);
+
+			let hash = crypto.createHash("sha256").update(checksum, "utf-8").digest("hex");
+
+			
+			System.out.println("PHONEPE-INITIATE-REQUEST"+ "hash"+ hash);
+
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+}

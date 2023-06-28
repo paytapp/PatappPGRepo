@@ -1,0 +1,12 @@
+#
+#Mon May 15 16:44:25 IST 2023
+classpath=<?xml version\="1.0" encoding\="UTF-8"?>\n<classpath>\n</classpath>\n
+buildScriptPath=build.gradle
+linkedResources=
+subprojectPaths=paymentgateway-apis;paymentgateway-bindb;paymentgateway-commons;paymentgateway-crm;paymentgateway-crypto;paymentgateway-notification-email;paymentgateway-notification-sms;paymentgateway-payout;paymentgateway-pg-core;paymentgateway-pg-ws;paymentgateway-pgui;paymentgateway-scheduler
+managedNatures=
+hasAutoBuildTasks=false
+gradleVersion=5.4.1
+buildDir=build
+managedBuilders=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><commands/>
+derivedResources=.gradle;build;paymentgateway-apis/build;paymentgateway-bindb/build;paymentgateway-commons/build;paymentgateway-crm/build;paymentgateway-crypto/build;paymentgateway-notification-email/build;paymentgateway-notification-sms/build;paymentgateway-payout/build;paymentgateway-pg-core/build;paymentgateway-pg-ws/build;paymentgateway-pgui/build;paymentgateway-scheduler/build

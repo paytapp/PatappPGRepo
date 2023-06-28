@@ -1,0 +1,38 @@
+package com.paymentgateway.sendsms;
+
+public class SendSMSKaleyra {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String baceURL="https://api.kaleyra.io/v1/<SID>";
+		
+		try {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public boolean sendSMSOTP() {
+		boolean sendSMSFlag=false;
+		String requestStrURL="";
+		try {
+			
+			requestStrURL="curl -X POST \"https://api.kaleyra.io/v1/<SID>/messages\" \"+
+		     -H "Content-Type: <CONTENT_TYPE>" \
+		     -H "api-key: <API_KEY>" \
+		     -d "to=<TO_NUMBER>" \
+		     -d "type=OTP" \
+		     -d "sender=<SENDER_ID>" \
+		     -d "body= Dear Customer, 1234 is your OTP (One Time Password) for the transaction." \
+		     -d "callback=<CALLBACK_URL>" \
+		     -d "template_id=<TEMPLATE_ID>"
+				
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return sendSMSFlag;
+	}
+
+}
