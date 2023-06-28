@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;EwalletPaytapp&apos;" deleteContents="true" description="Delete resource &apos;EwalletPaytapp&apos;" element1="/EwalletPaytapp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1684387350448"/>
-</session>

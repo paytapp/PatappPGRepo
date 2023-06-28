@@ -1,7 +1,0 @@
-INDEX VERSION 1.131
-C:\paytapp work\payTapp_Codebase\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1546767894.index
-\paymentgateway-crm\src\main\java
-C:\paytapp work\payTapp_Codebase\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\881876480.index
-\paymentgateway-pgui\src\main\java
-C:\paytapp work\payTapp_Codebase\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1040743503.index
-\paymentgateway-crm\src\main\java

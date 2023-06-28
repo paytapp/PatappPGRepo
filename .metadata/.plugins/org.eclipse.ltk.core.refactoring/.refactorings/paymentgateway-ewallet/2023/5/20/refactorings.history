@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename package &apos;paymentgateway.ewallet&apos; to &apos;com.paymentgateway.ewallet&apos;&#x0D;&#x0A;- Original project: &apos;paymentgateway-ewallet&apos;&#x0D;&#x0A;- Original element: &apos;paymentgateway-ewallet/src/main/java/paymentgateway.ewallet&apos;&#x0D;&#x0A;- Renamed element: &apos;paymentgateway-ewallet/src/main/java/com.paymentgateway.ewallet&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;paymentgateway.ewallet&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;paymentgateway.ewallet" name="com.paymentgateway.ewallet" qualified="false" references="true" stamp="1684387515052" textual="false" version="1.0"/>
-</session>
