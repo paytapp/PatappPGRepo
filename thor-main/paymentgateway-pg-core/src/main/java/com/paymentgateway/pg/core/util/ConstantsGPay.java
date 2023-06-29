@@ -17,7 +17,7 @@ public class ConstantsGPay {
 	public static final String ORIGINATINGPLATFORM = "originatingPlatform";
 	public static final String GOOGLEPAY_SCOPE_URL = "googlePayscopeUrl";
 	public static final String GOOGLEPAY_TOKEN_URL = "googlePayTokenUrl";
-	public static final String PG_PROPERTIES_PATH = "DTECH_PROPS";
+	public static final String PG_PROPERTIES_PATH = "PG_PROPS";
 	public static final String GOOGLEPAY_PUSH_NOTIFICATION_URL ="googlePayPushNotificationUrl";
 	public static final String SAMPLE_DESCRIPTION ="Sample description";
 	public static final String DESKTOP = "DESKTOP";

@@ -102,7 +102,7 @@ public class HandleInvoiceResponse{
 		if (StringUtils.isNotBlank(payId)) {
 
 			try {
-				String imageAddr = System.getenv("DTECH_PROPS") + "invoiceImage/" + payId + ".png";
+				String imageAddr = System.getenv("PG_PROPS") + "invoiceImage/" + payId + ".png";
 				
 				if (new File(imageAddr).exists()) {
 					BufferedImage img = ImageIO.read(new File(imageAddr));

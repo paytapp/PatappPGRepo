@@ -22,7 +22,7 @@ public class Constants {
 	public static final String TERMINAL_ID = "terminalId";
 	public static final String MERCHANT_TRANSACTION_ID = "merchantTranId";
 	public static final String BILL_NUMBER = "billNumber";
-	public static final String PG_PROPERTIES_PATH = "DTECH_PROPS";
+	public static final String PG_PROPERTIES_PATH = "PG_PROPS";
 	public static final String PUBLIC_KEY_FILE_NAME = System.getenv(Constants.PG_PROPERTIES_PATH) + "icici_upi_rsa_apikey.cer";
 	public static final String PRIVATE_KEY_FILE_NAME = System.getenv(Constants.PG_PROPERTIES_PATH) + "PaymentGatewayPrivateKey.pfx";
 	public static final String RESPONSE_CODE = "response";

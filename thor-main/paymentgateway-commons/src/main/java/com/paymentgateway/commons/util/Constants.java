@@ -166,7 +166,7 @@ public enum Constants {
     FRAUD_PREVENTION_COLLECTION			("fraudPreventionCollection"),
     FRAUD_PREVENTION_HISTORY_COLLECTION ("fraudPreventionHistoryCollection"),
     PARENT_MERCHANT_MAPPING						("parentMerchantMapping"),
-    PG_PROPERTIES_PATH                      ("DTECH_PROPS"),
+    PG_PROPERTIES_PATH                      ("PG_PROPS"),
     
     COMPLAINT_COLLECTION				("complaintRaised"),
     COMPLAINT_FILE_COLLECTION			("complaintFiles"),

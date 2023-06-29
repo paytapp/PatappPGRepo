@@ -37,7 +37,7 @@ public class FileModifiedWatcher {
 					logger.info("Checking DestDir for changes...");
 					if (true) {
 
-						String dirPath = System.getenv("DTECH_PROPS") + "/RECON/DestDir";
+						String dirPath = System.getenv("PG_PROPS") + "/RECON/DestDir";
 						try (Stream<Path> filePathStream = Files.walk(Paths.get(dirPath))) {
 							filePathStream.forEach(filePath -> {
 								if (Files.isRegularFile(filePath)) {

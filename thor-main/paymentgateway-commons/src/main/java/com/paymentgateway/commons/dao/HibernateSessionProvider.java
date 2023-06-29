@@ -77,7 +77,7 @@ public class HibernateSessionProvider {
 	private HibernateSessionProvider() {
 
 		// configures settings from hibernate.cfg.xml
-	final File hibernateFile = new File(System.getenv("DTECH_PROPS")+Constants.HIBERNATE_FILE_NAME.getValue());
+	final File hibernateFile = new File(System.getenv("PG_PROPS")+Constants.HIBERNATE_FILE_NAME.getValue());
 	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
 																.configure(hibernateFile).applySetting(hbmddlAutoSettingName, hbmddlAutoSetting)
 																.build();

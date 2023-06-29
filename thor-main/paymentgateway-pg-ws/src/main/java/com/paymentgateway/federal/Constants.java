@@ -117,7 +117,7 @@ public class Constants {
 	public static final String UPI_UAT_PREFIX_FLAG = "FederalUPIUATPREFIX";
 	public static final String UPI_PROD_PREFIX_FLAG = "FederalUPIPROPREFIX";
 	
-	public static final String PG_PROPERTIES_PATH = "DTECH_PROPS";
+	public static final String PG_PROPERTIES_PATH = "PG_PROPS";
 	public static final String JKS_FILE_NAME = "cacerts";
 	public static final String PAYMENT_GATEWAY_JKS_FILE_NAME = "paymentGateway.jks";
 	

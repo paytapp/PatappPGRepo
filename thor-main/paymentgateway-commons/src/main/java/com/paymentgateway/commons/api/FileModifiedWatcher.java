@@ -19,7 +19,7 @@ public class FileModifiedWatcher {
 	private static int pollingInterval;
 	private static Timer fileWatcher;
 	private static long lastReadTimeStamp = 0L;
-	private static final String ymlFileLocation = System.getenv("DTECH_PROPS");
+	private static final String ymlFileLocation = System.getenv("PG_PROPS");
 	private final static YamlPropertySourceLoader loader = new YamlPropertySourceLoader();
 	private static Logger logger = LoggerFactory.getLogger(FileModifiedWatcher.class.getName());
 
@@ -52,7 +52,7 @@ public class FileModifiedWatcher {
 						logger.info("File modified , using updated values for application.yml");
 
 						YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
-						yaml.setResources(new FileSystemResource(System.getenv("DTECH_PROPS")+"application.yml"));
+						yaml.setResources(new FileSystemResource(System.getenv("PG_PROPS")+"application.yml"));
 						Properties configProperty = yaml.getObject();
 						Set<Object> keys = configProperty.keySet();
 						
