@@ -1,0 +1,20 @@
+--- 
+- hosts: paytab
+  user: ubuntu
+  become: yes
+  tasks:
+  - name: stop the service
+    command: /opt/tomcat9/bin/shutdown.sh
+  - name: set the enviornment
+    script: env.sh
+  - name: copy the war file on server
+    copy: 
+      src: "{{item}}"
+      dest: /opt/tomcat9/webapps/
+    loop:
+     - thor-main/paymentgateway-commons/build/libs/paymentgatewway-commons.jar
+     - thor-main/paymentgateway-pg-ws/build/libs/pgws.war
+     - thor-main/paymentgateway-crm
+  - name: start the service 
+    command: /opt/tomcat9/bin/startup.sh
+   
