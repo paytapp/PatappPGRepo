@@ -14,7 +14,7 @@
     loop:
      - thor-main/paymentgateway-commons/build/libs/paymentgatewway-commons.jar
      - thor-main/paymentgateway-pg-ws/build/libs/pgws.war
-     - thor-main/paymentgateway-crm
+     - thor-main/paymentgateway-crm/crm.war
   - name: start the service 
     command: /opt/tomcat9/bin/startup.sh
    
