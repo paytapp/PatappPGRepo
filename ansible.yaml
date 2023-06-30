@@ -19,6 +19,6 @@
     copy: 
       src: thor-main/paymentgateway-crm/build/libs/crm.war
       dest: /opt/tomcat9/webapps/
-    - name: start the service 
+  - name: start the service 
     command: /opt/tomcat9/bin/startup.sh
    
