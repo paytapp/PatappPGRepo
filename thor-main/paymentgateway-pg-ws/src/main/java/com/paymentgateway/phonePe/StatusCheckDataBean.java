@@ -1,5 +1,7 @@
 package com.paymentgateway.phonePe;
 
+import java.math.BigDecimal;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -11,11 +13,25 @@ public class StatusCheckDataBean {
 	public String merchantId;
 	public String merchantTransactionId;
 	public String transactionId;
-	public String amount;
+	public BigDecimal amount;
 	public String state;
 	public String responseCode;
 	public StatusCheckPaymentInstrumentBean paymentInstrument;
 	
+	
+	
+	public StatusCheckDataBean(String merchantId, String merchantTransactionId, String transactionId, BigDecimal amount,
+			String state, String responseCode, StatusCheckPaymentInstrumentBean paymentInstrument) {
+		super();
+		this.merchantId = merchantId;
+		this.merchantTransactionId = merchantTransactionId;
+		this.transactionId = transactionId;
+		this.amount = amount;
+		this.state = state;
+		this.responseCode = responseCode;
+		this.paymentInstrument = paymentInstrument;
+	}
+
 	@JsonGetter("merchantId")
 	public String getMerchantId() {
 		return merchantId;
@@ -44,11 +60,11 @@ public class StatusCheckDataBean {
 	}
 	
 	@JsonGetter("amount")
-	public String getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 	
-	public void setAmount(String amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 	

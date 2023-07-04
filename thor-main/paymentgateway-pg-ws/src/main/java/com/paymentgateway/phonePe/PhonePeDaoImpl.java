@@ -17,17 +17,21 @@ import com.paymentgateway.commons.user.MPAMerchant;
 //@Transactional
 public class PhonePeDaoImpl implements PhonePeDao {
 	
-//	@Autowired
-//	SessionFactory sessionFactory;
+	@Autowired
+	SessionFactory sessionFactory;
 	
 	@Override
 	public void savePhonePeTransaction(Transaction entity) {
-//		try {
-//			Session session = sessionFactory.getCurrentSession();
-//			session.saveOrUpdate(entity);
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			org.hibernate.Transaction transaction = session.getTransaction();
+			transaction.begin();
+			session.saveOrUpdate(entity);
+			transaction.commit();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -66,26 +70,39 @@ public class PhonePeDaoImpl implements PhonePeDao {
 	}
 	
 	
-//	public MPAMerchant getMerchantById(String payId){
-//		try {
-//			Session session = sessionFactory.getCurrentSession();
-//		Query query = session.createQuery("FROM mpamerchant where payId=:payId");
-//		query.setParameter("payId" , payId);
-//		return (MPAMerchant)query.getSingleResult();
-//		}catch (NoResultException e){
-//			return null;
-//		}
-//	}
-//	
-//	public List<Transaction> findAllTransaction(){
-//		try {
-//			Session session = sessionFactory.getCurrentSession();
-//		Query<Transaction> query = session.createQuery("FROM transaction");
-//		return query.getResultList();
-//		}catch (NoResultException e){
-//			return null;
-//		}
-//	}
+	@Override
+	public PaymentResponse savePaymentResponse(PaymentResponse response) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			org.hibernate.Transaction transaction = session.getTransaction();
+			transaction.begin();
+			session.save(response);
+			transaction.commit();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return response;
+		
+	}
+	
+	@Override
+	public StatusCheckResponse saveTransactionStatusResponse(StatusCheckResponse response) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			org.hibernate.Transaction transaction = session.getTransaction();
+			transaction.begin();
+			session.save(response);
+			transaction.commit();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return response;
+		
+	}
 
 
 }

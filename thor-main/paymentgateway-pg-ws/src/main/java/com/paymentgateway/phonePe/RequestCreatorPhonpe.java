@@ -173,7 +173,16 @@ public class RequestCreatorPhonpe {
 			 */
 		
 			System.out.println("Responser json is --->"+responseStr);
-//			savePhonePeRequest(bean);
+			responseStr=response.body().string();
+			System.out.println("Responser json is --->"+responseStr);
+			
+			String[] splitStr = responseStr.split("(?=\"data)");
+			responseStr = splitStr[0] + "\"amount\":\"" + (txnAmount/100) + "\"," + splitStr[1];
+			
+			Gson gson = new Gson();
+			ResponseBean bean = gson.fromJson(responseStr , ResponseBean.class);			
+			//			savePhonePeRequest(bean);
+			phonePeService.savePhonePeRequest(bean, purchaseId, userId);
 			return responseStr;
 			
 		}catch(Exception e) {

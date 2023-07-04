@@ -18,4 +18,8 @@ public interface PhonePeDao {
 	
 	public String payRequestForNetBanking();
 	
+	public PaymentResponse savePaymentResponse(PaymentResponse response);
+	
+	public StatusCheckResponse saveTransactionStatusResponse(StatusCheckResponse response);
+	
 }

@@ -281,8 +281,7 @@ public class StatusCheckResponse {
 		this.transactionId = transactionId;
 	}
 	
-	@OneToOne
-    @JoinColumn(name = "transactionReference", referencedColumnName = "id")
+	@OneToOne(mappedBy = "statusCheckResponseIdRef")
 	public Transaction getTransactionReference() {
 		return transactionReference;
 	}

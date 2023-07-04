@@ -22,8 +22,12 @@ public interface PhonePeService {
 	
 	public String initiatePhonepePayment(String purchaseId, String userId, int txnAmount) throws IOException;
 	
-	public void savePhonePeTransaction(Transaction entity);
+//	public void savePhonePeTransaction(Transaction entity);
 	
 	public String getTransactionStatus(String merchantTransactionId);
 
+	public void savePhonePeRequest(ResponseBean bean, String purchaseId, String userId);
+	
+	public void saveTransactionStatusResponse(StatusCheckResponseBean bean);
+	
 }
