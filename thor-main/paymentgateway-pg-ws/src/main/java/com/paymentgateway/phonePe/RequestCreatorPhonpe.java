@@ -137,7 +137,6 @@ public class RequestCreatorPhonpe {
 			System.out.println("Response body---     "+response.code());
 			System.out.println("Response body---     "+response.toString());
 			
-			responseStr=response.body().string();
 //			{"success":true,"code":"PAYMENT_INITIATED","message":"Payment initiated",
 //			"data":{"merchantId":"GAMEZDADDYUAT","merchantTransactionId":"1006",
 //			"transactionId":"T2306071554587550922237",
@@ -172,7 +171,6 @@ public class RequestCreatorPhonpe {
 			 * bean.getData().getInstrumentResponse().getRedirectInfo().getUrl());
 			 */
 		
-			System.out.println("Responser json is --->"+responseStr);
 			responseStr=response.body().string();
 			System.out.println("Responser json is --->"+responseStr);
 			
