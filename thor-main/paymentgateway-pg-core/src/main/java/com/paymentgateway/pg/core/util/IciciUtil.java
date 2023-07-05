@@ -74,7 +74,7 @@ public class IciciUtil {
 
 		try {
 			logger.info("Icici Encryption Start for " + request);
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("IciciPublicKeyName");
 			File file = new File(fileName);
 			PublicKey publicKey = getPublicKey(file);
@@ -93,7 +93,7 @@ public class IciciUtil {
 	public String decrypt(String response) {
 		try {
 			// logger.info("Icici decryption Start");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("PaymentGatewayPrivateKeyName");
 			File file = new File(fileName);
 			PrivateKey privateKey = getPrivateKey(file);
@@ -192,7 +192,7 @@ public class IciciUtil {
 	public String eCollectionEncrypt(String plainText) throws Exception {
 		// logger.info("Icici eCollection Encryption Started");
 		try {
-			String fileName = System.getenv("DTECH_PROPS") + propertiesManager.propertiesMap.get("ICICI_PUB_KEY");
+			String fileName = System.getenv("PG_PROPS") + propertiesManager.propertiesMap.get("ICICI_PUB_KEY");
 			File file = new File(fileName);
 			PublicKey publicKey = getPublicKey(file);
 			Cipher cipher = Cipher.getInstance(RSA_ALGO_ENC_DEC);
@@ -850,7 +850,7 @@ public class IciciUtil {
 
 		try {
 			logger.info("Icici Encryption Start for ");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("ICICI_COMPOSITE_PUBLIC_KEY");
 			File file = new File(fileName);
 			PublicKey publicKey = getPublicKey(file);
@@ -868,7 +868,7 @@ public class IciciUtil {
 	public String compositeDecrypt(String response) {
 		try {
 			logger.info("Icici Composite decryption Start");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("ICICI_COMPOSITE_PAYMENT_GATEWAY_PRIVATE_KEY");
 			logger.info("Private Key Name " + fileName);
 			File file = new File(fileName);
@@ -891,7 +891,7 @@ public class IciciUtil {
 
 		try {
 			logger.info("Icici Encryption Start for ");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("NODAL_PUBLIC_KEY");
 			File file = new File(fileName);
 			PublicKey publicKey = getPublicKey(file);
@@ -909,7 +909,7 @@ public class IciciUtil {
 	public String CibCompositeDecrypt(String response) {
 		try {
 			logger.info("Icici Composite decryption Start");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("NODAL_TXN_PRIVATE_KEY");
 			logger.info("Private Key Name " + fileName);
 			File file = new File(fileName);
@@ -932,7 +932,7 @@ public class IciciUtil {
 
 			try {
 				logger.info("Icici Encryption Start for ");
-				String fileName = System.getenv("DTECH_PROPS") + ""
+				String fileName = System.getenv("PG_PROPS") + ""
 						+ adfFields.getString(ADF_35);
 				File file = new File(fileName);
 				PublicKey publicKey = getPublicKey(file);
@@ -950,7 +950,7 @@ public class IciciUtil {
 		public String compositeDecrypt(String response,JSONObject adfFields) {
 			try {
 				logger.info("Icici Composite decryption Start");
-				String fileName = System.getenv("DTECH_PROPS") + ""
+				String fileName = System.getenv("PG_PROPS") + ""
 						+ adfFields.getString(ADF_31);
 				logger.info("Private Key Name " + fileName);
 				File file = new File(fileName);
@@ -971,7 +971,7 @@ public class IciciUtil {
 		public String compositeBeneDecrypt(String response, JSONObject adfFields) {
 			try {
 				logger.info("Icici Composite Bene decryption Start");
-				String fileName = System.getenv("DTECH_PROPS") + ""
+				String fileName = System.getenv("PG_PROPS") + ""
 						+  adfFields.getString(ADF_33);
 				logger.info("Private Key Name " + fileName);
 				File file = new File(fileName);
@@ -991,7 +991,7 @@ public class IciciUtil {
 	public String compositeBeneDecrypt(String response) {
 		try {
 			logger.info("Icici Composite Bene decryption Start");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("ICICI_COMPOSITE_PAYMENT_GATEWAY_BENE_PRIVATE_KEY");
 			logger.info("Private Key Name " + fileName);
 			File file = new File(fileName);
@@ -1013,7 +1013,7 @@ public class IciciUtil {
 		logger.info("inside compositeEncryptPayble()");
 		try {
 			logger.info("Icici Encryption Start for ");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("PAYBLE_ICICI_COMPOSITE_PUBLIC_KEY");
 			File file = new File(fileName);
 			PublicKey publicKey = getPublicKey(file);
@@ -1033,7 +1033,7 @@ public class IciciUtil {
 		logger.info("inside eCollectionEncryptPayble()");
 		try {
 			logger.info("Icici Encryption Start for ");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("PAYBLE_ICICI_COMPOSITE_PUBLIC_KEY_ECOLLECTION");
 			File file = new File(fileName);
 			PublicKey publicKey = getPublicKey(file);
@@ -1053,7 +1053,7 @@ public class IciciUtil {
 		logger.info("inside eCollectionEncryptComposite()");
 		try {
 			logger.info("Icici Encryption Start for ");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("ICICI_COMPOSITE_PUBLIC_KEY_ECOLLECTION");
 			File file = new File(fileName);
 			PublicKey publicKey = getPublicKey(file);
@@ -1072,7 +1072,7 @@ public class IciciUtil {
 	public String compositeDecryptPayble(String response) {
 		try {
 			logger.info("Icici payble Composite decryption Start");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("ICICI_COMPOSITE_PAYMENT_GATEWAY_PRIVATE_KEY");
 			logger.info("Private Key Name " + fileName);
 			File file = new File(fileName);
@@ -1094,7 +1094,7 @@ public class IciciUtil {
 	public String compositeBeneDecryptPayble(String response) {
 		try {
 			logger.info("Icici Payble Composite Bene decryption Start");
-			String fileName = System.getenv("DTECH_PROPS") + ""
+			String fileName = System.getenv("PG_PROPS") + ""
 					+ propertiesManager.propertiesMap.get("PAYBLE_ICICI_COMPOSITE_PAYMENT_GATEWAY_BENE_PRIVATE_KEY");
 			logger.info("Private Key Name " + fileName);
 			File file = new File(fileName);

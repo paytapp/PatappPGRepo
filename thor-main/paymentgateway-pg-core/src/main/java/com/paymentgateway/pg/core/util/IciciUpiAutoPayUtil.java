@@ -81,7 +81,7 @@ public class IciciUpiAutoPayUtil {
 	public String encrypt(String request){
 	    	
 		   try {	    		
-				String fileName = System.getenv("DTECH_PROPS")+""+propertiesManager.propertiesMap.get("UPI_AUTOPAY_PUBLIC_KEY");
+				String fileName = System.getenv("PG_PROPS")+""+propertiesManager.propertiesMap.get("UPI_AUTOPAY_PUBLIC_KEY");
 				File file = new File(fileName);
 				PublicKey publicKey = getPublicKey(file);
 				Cipher cipher = Cipher.getInstance(propertiesManager.propertiesMap.get("Encrypt_Decrypt_Algo"));
@@ -152,7 +152,7 @@ public class IciciUpiAutoPayUtil {
 	    @SuppressWarnings("static-access")
 		public String decrypt(String response) {
 	    	try {
-				String fileName = System.getenv("DTECH_PROPS")+""+propertiesManager.propertiesMap.get("PaymentGatewayPrivateKeyName");
+				String fileName = System.getenv("PG_PROPS")+""+propertiesManager.propertiesMap.get("PaymentGatewayPrivateKeyName");
 				File file = new File(fileName);
 				PrivateKey privateKey = getPrivateKey(file);
 				byte[] bytes = Base64.getDecoder().decode(response.replace("\r\n",""));

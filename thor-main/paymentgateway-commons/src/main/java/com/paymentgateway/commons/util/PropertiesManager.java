@@ -25,8 +25,8 @@ import com.paymentgateway.commons.api.FileModifiedWatcher;
 public class PropertiesManager {
 
 	private static Logger logger = LoggerFactory.getLogger(PropertiesManager.class.getName());
-	private static final String fileLocation = System.getenv("DTECH_PROPS");
-	private static final String ymlFileLocation = System.getenv("DTECH_PROPS");
+	private static final String fileLocation = System.getenv("PG_PROPS");
+	private static final String ymlFileLocation = System.getenv("PG_PROPS");
 	private static final String saltPropertiesFile = "salt.properties";
 	private static final String saltEncPropertiesFile = "saltEnc.properties";
 	private static final String keyPropertiesFile = "key.properties";
@@ -53,7 +53,7 @@ public class PropertiesManager {
 
 			logger.info("Getting values from application.yml");
 			YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
-			yaml.setResources(new FileSystemResource(System.getenv("DTECH_PROPS") + "application.yml"));
+			yaml.setResources(new FileSystemResource(System.getenv("PG_PROPS") + "application.yml"));
 			Properties configProperty = yaml.getObject();
 			Set<Object> keys = configProperty.keySet();
 

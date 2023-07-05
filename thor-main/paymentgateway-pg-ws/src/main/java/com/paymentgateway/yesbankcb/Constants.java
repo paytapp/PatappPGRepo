@@ -18,7 +18,7 @@ public class Constants {
 	public static final String TXN_WS_HDFC_UPI_PROCESSOR ="txnWsHdfcUpiProcessor";
 	public static final String REFUND_DESCRIPTION_MESSAGE ="Refund";
 	public static final String JKS_PASSWORD = "cashlesso123";
-	public static final String PG_PROPERTIES_PATH = "DTECH_PROPS";
+	public static final String PG_PROPERTIES_PATH = "PG_PROPS";
 	public static final String JKS_FILE_NAME = "yesBankSelfSigned.jks";
 	public static final String MMAD_JKS_FILE_NAME = "mmad.jks";
 	public static final String LAST_VALUE = "NA";

@@ -22,4 +22,6 @@ public interface PhonePeDao {
 	
 	public StatusCheckResponse saveTransactionStatusResponse(StatusCheckResponse response);
 	
+	public void saveTransactionDetails(TransactionDetailsEntity entity);
+	
 }

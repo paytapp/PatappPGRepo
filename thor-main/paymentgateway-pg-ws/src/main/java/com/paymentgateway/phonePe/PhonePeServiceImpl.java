@@ -183,6 +183,24 @@ public class PhonePeServiceImpl implements PhonePeService {
         
 	}
 	
+	public void saveTransactionDetails(ResponseBean bean, String purchaseId, String userId, String payload, String responseStr) {
+		TransactionDetailsEntity entity = new TransactionDetailsEntity();
+		
+		entity.setPurchaseId(purchaseId);
+		entity.setUserId(userId);
+		entity.setTransactionAmount(bean.getAmount());
+		entity.setPaymentRequestSuccess(bean.getSuccess());
+		entity.setMerchantId(bean.getData().getMerchantId());
+		entity.setPaymentType(bean.getData().getInstrumentResponse().getType());
+		entity.setPaymentRequestJson(payload);
+		entity.setPaymentResponseJson(responseStr);
+		entity.setCreatedDate(new Date());
+		entity.setCreatedBy("");
+		
+		phonePeDao.saveTransactionDetails(entity);
+		
+	}
+
 
 
 }

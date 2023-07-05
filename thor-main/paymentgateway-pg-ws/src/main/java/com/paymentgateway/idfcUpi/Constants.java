@@ -58,7 +58,7 @@ public class Constants {
 	public static final String GEO_CODE = "GeoCode";
 	public static final String DATEFORMAT = "ddMMyyHHmmss";
 	public static final String JKS_PASSWORD = "JKS_PASSWORD";
-	public static final String PG_PROPERTIES_PATH = "DTECH_PROPS";
+	public static final String PG_PROPERTIES_PATH = "PG_PROPS";
     public static final String JKS_FILE_NAME = 	"JKS_FILE_NAME";
 	public static final String EXP_DEV_LOC ="ExpDevLocationdate";
 	public static final String POST_FIX = "11111111111111";

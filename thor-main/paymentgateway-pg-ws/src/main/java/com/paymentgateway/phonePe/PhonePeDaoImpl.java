@@ -9,12 +9,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.paymentgateway.commons.user.MPAMerchant;
 
 @Repository
-//@Transactional
+@Transactional
 public class PhonePeDaoImpl implements PhonePeDao {
 	
 	@Autowired
@@ -75,9 +75,10 @@ public class PhonePeDaoImpl implements PhonePeDao {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			org.hibernate.Transaction transaction = session.getTransaction();
-			transaction.begin();
+//			transaction.begin();
 			session.save(response);
-			transaction.commit();
+			System.out.println("response ::::::::::::::::::::::::::::::::::" + response);
+//			transaction.commit();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -102,6 +103,21 @@ public class PhonePeDaoImpl implements PhonePeDao {
 		
 		return response;
 		
+	}
+	
+	@Override
+	public void saveTransactionDetails(TransactionDetailsEntity entity) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			org.hibernate.Transaction transaction = session.getTransaction();
+			transaction.begin();
+			session.save(entity);
+			transaction.commit();
+			System.out.println("entity::::::::::;;;    "+entity.getPaymentType());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+				
 	}
 
 

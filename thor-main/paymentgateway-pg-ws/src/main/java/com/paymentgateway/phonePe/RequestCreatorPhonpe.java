@@ -179,8 +179,9 @@ public class RequestCreatorPhonpe {
 			
 			Gson gson = new Gson();
 			ResponseBean bean = gson.fromJson(responseStr , ResponseBean.class);			
-			//			savePhonePeRequest(bean);
-			phonePeService.savePhonePeRequest(bean, purchaseId, userId);
+//			phonePeService.savePhonePeRequest(bean, purchaseId, userId);
+			phonePeService.saveTransactionDetails(bean, purchaseId, userId, phonepe_payload_card_initiate, responseStr);
+			
 			return responseStr;
 			
 		}catch(Exception e) {
