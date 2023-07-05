@@ -5,7 +5,8 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "payment_response", schema = "paytapp")
+@Table(name = "payment_response")
+//, schema = "paytapp")
 public class PaymentResponse {
 	
     private int id;
@@ -18,37 +19,38 @@ public class PaymentResponse {
     private String type;
     private String url;
     private String method;
-//    private Transaction transactionReference;
+    private Transaction transactionReference;
     private Date createdDate;
     private String createdBy;
     private Date updatedDate;
     private String updatedBy;
 
 
-//	public PaymentResponse() {
-//		super();
-//	}
-//
-//	public PaymentResponse(int id, boolean success, String code, String message, String merchantId,
-//			String merchantTransactionId, String transactionId, String type, String url, String method,
-//			Transaction transactionReference, Date createdDate, String createdBy, Date updatedDate, String updatedBy) {
-//		super();
-//		this.id = id;
-//		this.success = success;
-//		this.code = code;
-//		this.message = message;
-//		this.merchantId = merchantId;
-//		this.merchantTransactionId = merchantTransactionId;
-//		this.transactionId = transactionId;
-//		this.type = type;
-//		this.url = url;
-//		this.method = method;
+	public PaymentResponse() {
+		super();
+	}
+
+	public PaymentResponse(int id, boolean success, String code, String message, String merchantId,
+			String merchantTransactionId, String transactionId, String type, String url, String method,
+			//Transaction transactionReference,
+			Date createdDate, String createdBy, Date updatedDate, String updatedBy) {
+		super();
+		this.id = id;
+		this.success = success;
+		this.code = code;
+		this.message = message;
+		this.merchantId = merchantId;
+		this.merchantTransactionId = merchantTransactionId;
+		this.transactionId = transactionId;
+		this.type = type;
+		this.url = url;
+		this.method = method;
 //		this.transactionReference = transactionReference;
-//		this.createdDate = createdDate;
-//		this.createdBy = createdBy;
-//		this.updatedDate = updatedDate;
-//		this.updatedBy = updatedBy;
-//	}
+		this.createdDate = createdDate;
+		this.createdBy = createdBy;
+		this.updatedDate = updatedDate;
+		this.updatedBy = updatedBy;
+	}
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -177,16 +179,15 @@ public class PaymentResponse {
 	public void setMethod(String method) {
 		this.method = method;
 	}
+	
+	@OneToOne(mappedBy = "paymentResponseIdRef")
+	public Transaction getTransactionReference() {
+		return transactionReference;
+	}
 
-//	@OneToOne
-//    @JoinColumn(name = "transactionId", referencedColumnName = "id")
-//	public Transaction getTransactionReference() {
-//		return transactionReference;
-//	}
-//
-//	public void setTransactionReference(Transaction transactionReference) {
-//		this.transactionReference = transactionReference;
-//	}
+	public void setTransactionReference(Transaction transactionReference) {
+		this.transactionReference = transactionReference;
+	}
 
 
 

@@ -170,7 +170,7 @@ public class initiatePhonepe {
 			System.out.println("converted responseStr::::::::::::::::::::     "+ responseStr);
 
 			
-			savePhonePeRequest(bean, purchaseId, userId);
+//			savePhonePeRequest(bean, purchaseId, userId);
 			return responseStr;
 			
 		
@@ -269,7 +269,7 @@ public class initiatePhonepe {
 		
 //		daoImpl.getMerchantById("GAMEZDADDYUAT");
 //		daoImpl.findAllTransaction();
-		phonePeService.savePhonePeTransaction(transaction);
+//		phonePeService.savePhonePeTransaction(transaction);
 		
 		}catch(Exception e) {
 			e.printStackTrace();

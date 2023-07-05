@@ -8,17 +8,25 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StatusCheckResponseBean {
 	
-	public String success;	
+	public boolean success;	
 	public String code;
 	public String message;
 	public StatusCheckDataBean data;
 	
+	public StatusCheckResponseBean(boolean success, String code, String message, StatusCheckDataBean data) {
+		super();
+		this.success = success;
+		this.code = code;
+		this.message = message;
+		this.data = data;
+	}
+
 	@JsonGetter("success")
-	public String getSuccess() {
+	public boolean getSuccess() {
 		return success;
 	}
 	
-	public void setSuccess(String success) {
+	public void setSuccess(boolean success) {
 		this.success = success;
 	}
 	

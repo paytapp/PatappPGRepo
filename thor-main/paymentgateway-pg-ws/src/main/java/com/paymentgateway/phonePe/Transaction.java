@@ -4,10 +4,9 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-import com.paymentgateway.commons.user.MPAMerchant;
-
 @Entity
-@Table(name = "transaction", schema = "paytapp")
+@Table(name = "transaction")
+//, schema = "paytapp")
 public class Transaction {
    
     private int id;
@@ -26,27 +25,27 @@ public class Transaction {
 
 	
 
-//	public Transaction(int id, String purchaseId, String userId, BigDecimal transactionAmount,
-//			boolean transactionSuccess, PaymentResponse paymentResponseIdRef, StatusCheckResponse statusCheckResponseIdRef,
-//			String merchantId, Date createdDate, String createdBy, Date updatedDate, String updatedBy) {
-//		super();
-//		this.id = id;
-//		this.purchaseId = purchaseId;
-//		this.userId = userId;
-//		this.transactionAmount = transactionAmount;
-//		this.transactionSuccess = transactionSuccess;
-//		this.paymentResponseIdRef = paymentResponseIdRef;
-//		this.statusCheckResponseIdRef = statusCheckResponseIdRef;
-//		this.merchantId = merchantId;
-//		this.createdDate = createdDate;
-//		this.createdBy = createdBy;
-//		this.updatedDate = updatedDate;
-//		this.updatedBy = updatedBy;
-//	}
-//
-//	public Transaction() {
-//		
-//	}
+	public Transaction(int id, String purchaseId, String userId, BigDecimal transactionAmount,
+			boolean transactionSuccess, PaymentResponse paymentResponseIdRef, StatusCheckResponse statusCheckResponseIdRef,
+			String merchantId, Date createdDate, String createdBy, Date updatedDate, String updatedBy) {
+		super();
+		this.id = id;
+		this.purchaseId = purchaseId;
+		this.userId = userId;
+		this.transactionAmount = transactionAmount;
+		this.transactionSuccess = transactionSuccess;
+		this.paymentResponseIdRef = paymentResponseIdRef;
+		this.statusCheckResponseIdRef = statusCheckResponseIdRef;
+		this.merchantId = merchantId;
+		this.createdDate = createdDate;
+		this.createdBy = createdBy;
+		this.updatedDate = updatedDate;
+		this.updatedBy = updatedBy;
+	}
+
+	public Transaction() {
+		
+	}
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -100,7 +99,9 @@ public class Transaction {
 		this.transactionSuccess = transactionSuccess;
 	}
 
-	@OneToOne(mappedBy = "id", cascade = CascadeType.ALL)
+//	@OneToOne(mappedBy = "transactionReference")
+	@OneToOne
+    @JoinColumn(name = "paymentResponseIdRef", referencedColumnName = "id")
 	public PaymentResponse getPaymentResponseIdRef() {
 		return paymentResponseIdRef;
 	}
@@ -109,7 +110,8 @@ public class Transaction {
 		this.paymentResponseIdRef = paymentResponseIdRef;
 	}
 
-	@OneToOne(mappedBy = "id", cascade = CascadeType.ALL)
+	@OneToOne
+    @JoinColumn(name = "statusCheckResponseIdRef", referencedColumnName = "id")
 	public StatusCheckResponse getStatusCheckResponseIdRef() {
 		return statusCheckResponseIdRef;
 	}
@@ -118,7 +120,7 @@ public class Transaction {
 		this.statusCheckResponseIdRef = statusCheckResponseIdRef;
 	}
 
-	@OneToOne(mappedBy = "emailId", cascade = CascadeType.ALL)
+//	@OneToOne(mappedBy = "emailId", cascade = CascadeType.ALL)
 	public String getMerchantId() {
 		return merchantId;
 	}
