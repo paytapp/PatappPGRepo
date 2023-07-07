@@ -183,22 +183,28 @@ public class PhonePeServiceImpl implements PhonePeService {
         
 	}
 	
-	public void saveTransactionDetails(ResponseBean bean, String purchaseId, String userId, String payload, String responseStr) {
+	public void saveTransactionDetails(ResponseBean bean, String purchaseId, String userId, String paymentType, Integer txnAmount, String merchantId, String payload, String responseStr) {
+		
+		try {
 		TransactionDetailsEntity entity = new TransactionDetailsEntity();
 		
-		entity.setPurchaseId(purchaseId);
-		entity.setUserId(userId);
-		entity.setTransactionAmount(bean.getAmount());
-		entity.setPaymentRequestSuccess(bean.getSuccess());
-		entity.setMerchantId(bean.getData().getMerchantId());
-		entity.setPaymentType(bean.getData().getInstrumentResponse().getType());
-		entity.setPaymentRequestJson(payload);
-		entity.setPaymentResponseJson(responseStr);
-		entity.setCreatedDate(new Date());
-		entity.setCreatedBy("");
+			entity.setTransactionId(bean.getData().getTransactionId());
+			entity.setPurchaseId(purchaseId);
+			entity.setUserId(userId);
+			entity.setTransactionAmount(txnAmount);
+			entity.setPaymentRequestSuccess(bean.getSuccess());
+			entity.setMerchantId(merchantId);
+			entity.setPaymentType(paymentType);
+			entity.setPaymentRequestJson(payload);
+			entity.setPaymentResponseJson(responseStr);
+			entity.setCreatedDate(new Date());
+			entity.setCreatedBy("");
+			
+			phonePeDao.saveTransactionDetails(entity);
 		
-		phonePeDao.saveTransactionDetails(entity);
-		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 

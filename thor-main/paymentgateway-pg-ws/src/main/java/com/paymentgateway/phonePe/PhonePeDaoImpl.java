@@ -75,10 +75,9 @@ public class PhonePeDaoImpl implements PhonePeDao {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			org.hibernate.Transaction transaction = session.getTransaction();
-//			transaction.begin();
+			transaction.begin();
 			session.save(response);
-			System.out.println("response ::::::::::::::::::::::::::::::::::" + response);
-//			transaction.commit();
+			transaction.commit();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -113,11 +112,33 @@ public class PhonePeDaoImpl implements PhonePeDao {
 			transaction.begin();
 			session.save(entity);
 			transaction.commit();
-			System.out.println("entity::::::::::;;;    "+entity.getPaymentType());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 				
+	}
+	
+	public void updateCallbackInTransactionDetail(TransactionDetailsEntity entity) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			org.hibernate.Transaction transaction = session.getTransaction();
+			transaction.begin();
+			session.update(entity);
+			transaction.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+				
+	}
+	
+	public TransactionDetailsEntity findTransactionFromTxnId(String txnId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("FROM transaction_details where empId=:empId");
+		query.setParameter("empId" , empId);
+		return (TransactionDetailsEntity)query.getSingleResult();
+		}catch (NoResultException e){
+			return null;
+		}
 	}
 
 

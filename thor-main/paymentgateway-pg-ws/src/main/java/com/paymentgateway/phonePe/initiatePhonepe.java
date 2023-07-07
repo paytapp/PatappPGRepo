@@ -41,17 +41,32 @@ public class initiatePhonepe {
 	static OkHttpClient client = new OkHttpClient();
 	
 	
-	public static void main(String[] args) {
-		initiatePhonepe ip=new initiatePhonepe();
-		String purchaseId = "1006";
-		String userId = "629388";
-		int txnAmount = 116;
-		try {
-			ip.initiatePhonepePayment(purchaseId, userId, txnAmount);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+	public static void main(String[] args) throws Exception {
+//		initiatePhonepe ip=new initiatePhonepe();
+//		String purchaseId = "1006";
+//		String userId = "629388";
+//		int txnAmount = 116;
+//		try {
+//			ip.initiatePhonepePayment(purchaseId, userId, txnAmount);
+//			
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		String a = "{ \"success\": true, \"code\": \"PAYMENT_SUCCESS\", \"message\": \"Your request has been successfully completed.\", \"data\": { \"merchantId\": \"FKRT\", \"merchantTransactionId\": \"MT7850590068188104\", \"transactionId\": \"T2307071538293524102247\", \"amount\": 100, \"paymentState\": \"COMPLETED\", \"responseCode\": \"PAYMENT_SUCCESS\", \"paymentInstrument\": { \"type\": \"UPI\", \"utr\": \"206378866112\" } } }";
+		
+		String encoded =Base64.getEncoder().encodeToString(a.getBytes());
+		
+		System.out.println("encoded:::::::::::::::: :;"+encoded);
+		
+		encoded = encoded + "4f2121ab-5d79-46e5-883e-ff6d46bc3a87";
+		
+		String hash =HashCrypto(encoded);
+		
+		hash = hash + "###1";
+		
+		System.out.println("hash::::::::::::::::::::::::::: :;"+hash);
 	}
 	
 	public String initiatePhonepePayment(String purchaseId, String userId, int txnAmount) throws IOException {
@@ -184,7 +199,7 @@ public class initiatePhonepe {
 		 return responseStr;
 	}
 	
-	public String HashCrypto(String input)throws Exception{
+	public static String HashCrypto(String input)throws Exception{
 		
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(input.getBytes());

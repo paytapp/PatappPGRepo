@@ -30,6 +30,6 @@ public interface PhonePeService {
 	
 	public void saveTransactionStatusResponse(StatusCheckResponseBean bean);
 	
-	public void saveTransactionDetails(ResponseBean bean, String purchaseId, String userId, String payload, String responseStr);
+	public void saveTransactionDetails(ResponseBean bean, String purchaseId, String userId, String paymentType, Integer txnAmount, String merchantId, String payload, String responseStr);
 	
 }

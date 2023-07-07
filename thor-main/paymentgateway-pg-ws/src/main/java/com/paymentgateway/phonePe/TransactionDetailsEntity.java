@@ -1,6 +1,5 @@
 package com.paymentgateway.phonePe;
 
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,32 +13,41 @@ import java.util.Date;
 public class TransactionDetailsEntity {
 	
     private int id;
+    private String transactionId;
     private String purchaseId;
     private String userId;
-    private BigDecimal transactionAmount;
+    private Integer transactionAmount;
     private Boolean paymentRequestSuccess;
     private String merchantId;
     private String paymentType;
+    private String paymentSuccess;
     private String paymentRequestJson;
     private String paymentResponseJson;
+    private String callbackResponseJson;
     private Date createdDate;
     private String createdBy;
     private Date updatedDate;
     private String updatedBy;  
+
+	
     
-    public TransactionDetailsEntity(int id, String purchaseId, String userId, BigDecimal transactionAmount,
-			Boolean paymentRequestSuccess, String merchantId, String paymentType, String paymentRequestJson,
-			String paymentResponseJson, Date createdDate, String createdBy, Date updatedDate, String updatedBy) {
+	public TransactionDetailsEntity(int id, String transactionId, String purchaseId, String userId,
+			Integer transactionAmount, Boolean paymentRequestSuccess, String merchantId, String paymentType,
+			String paymentSuccess, String paymentRequestJson, String paymentResponseJson, String callbackResponseJson,
+			Date createdDate, String createdBy, Date updatedDate, String updatedBy) {
 		super();
 		this.id = id;
+		this.transactionId = transactionId;
 		this.purchaseId = purchaseId;
 		this.userId = userId;
 		this.transactionAmount = transactionAmount;
 		this.paymentRequestSuccess = paymentRequestSuccess;
 		this.merchantId = merchantId;
 		this.paymentType = paymentType;
+		this.paymentSuccess = paymentSuccess;
 		this.paymentRequestJson = paymentRequestJson;
 		this.paymentResponseJson = paymentResponseJson;
+		this.callbackResponseJson = callbackResponseJson;
 		this.createdDate = createdDate;
 		this.createdBy = createdBy;
 		this.updatedDate = updatedDate;
@@ -60,7 +68,16 @@ public class TransactionDetailsEntity {
         this.id = id;
     }
     
-    @Column(name = "purchaseId", nullable = false)
+    @Column(name = "transactionId")
+    public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	@Column(name = "purchaseId", nullable = false)
     public String getPurchaseId() {
         return purchaseId;
     }
@@ -79,12 +96,12 @@ public class TransactionDetailsEntity {
     }
     
     @Column(name = "transactionAmount", nullable = false)
-    public BigDecimal getTransactionAmount() {
+    public Integer getTransactionAmount() {
         return transactionAmount;
     }
     
-    public void setTransactionAmount(BigDecimal transactionAmount) {
-        this.transactionAmount = transactionAmount;
+    public void setTransactionAmount(Integer txnAmount) {
+        this.transactionAmount = txnAmount;
     }
     
     @Column(name = "paymentRequestSuccess", nullable = false)
@@ -114,7 +131,16 @@ public class TransactionDetailsEntity {
         this.paymentType = paymentType;
     }
     
-    @Column(name = "paymentRequestJson")
+    @Column(name = "paymentSuccess")
+    public String getPaymentSuccess() {
+		return paymentSuccess;
+	}
+
+	public void setPaymentSuccess(String paymentSuccess) {
+		this.paymentSuccess = paymentSuccess;
+	}
+
+	@Column(name = "paymentRequestJson")
     public String getPaymentRequestJson() {
         return paymentRequestJson;
     }
@@ -132,7 +158,16 @@ public class TransactionDetailsEntity {
         this.paymentResponseJson = paymentResponseJson;
     }
     
-    @Column(name = "created_date")
+    @Column(name = "callbackResponseJson")
+    public String getCallbackResponseJson() {
+		return callbackResponseJson;
+	}
+
+	public void setCallbackResponseJson(String callbackResponseJson) {
+		this.callbackResponseJson = callbackResponseJson;
+	}
+
+	@Column(name = "created_date")
     public Date getCreatedDate() {
         return createdDate;
     }

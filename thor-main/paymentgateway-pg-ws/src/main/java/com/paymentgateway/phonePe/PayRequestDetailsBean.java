@@ -13,7 +13,7 @@ public class PayRequestDetailsBean {
 //	private String paymentType;
 	private String purchaseId;
 	private String userId;
-	private int txnAmount;
+	private Integer txnAmount;
 	private String phNo;
 	private String bankId;
 	private String encCardNumber;
@@ -48,7 +48,7 @@ public class PayRequestDetailsBean {
 	}
 	
 	@JsonGetter("txnAmount")
-	public int getTxnAmount() {
+	public Integer getTxnAmount() {
 		return txnAmount;
 	}
 	
@@ -149,7 +149,7 @@ public class PayRequestDetailsBean {
 		this.userId = userId;
 	}
 	
-	public void setTxnAmount(int txnAmount) {
+	public void setTxnAmount(Integer txnAmount) {
 		this.txnAmount = txnAmount;
 	}
 	

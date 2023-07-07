@@ -46,7 +46,7 @@ public class RequestCreatorPhonpe {
 			e.printStackTrace();
 		}
 	}
-	public String initiatePhonepePayment(String paymentType,String purchaseId, String userId, int txnAmount,
+	public String initiatePhonepePayment(String paymentType,String purchaseId, String userId, Integer txnAmount,
 			String phNo,String bankId,String encCardNumber,String cardNo,String month,String year,
 			String cvv,String addressLine1,String addressLine2,String city,String state,String pin,
 			String country,String cardId,String cryptoGram,String panSuffix,String encryptedToken1) throws IOException {
@@ -180,7 +180,8 @@ public class RequestCreatorPhonpe {
 			Gson gson = new Gson();
 			ResponseBean bean = gson.fromJson(responseStr , ResponseBean.class);			
 //			phonePeService.savePhonePeRequest(bean, purchaseId, userId);
-			phonePeService.saveTransactionDetails(bean, purchaseId, userId, phonepe_payload_card_initiate, responseStr);
+			Integer txnAmt = txnAmount/100; 	// divided by 100 because the value is in paise in txnAmount
+			phonePeService.saveTransactionDetails(bean, purchaseId, userId, paymentType, txnAmt, PHONEPE_MID, phonepe_payload_card_initiate, responseStr);
 			
 			return responseStr;
 			
